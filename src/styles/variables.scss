@@ -1,0 +1,23 @@
+:root {
+  $primary-white: #ffffff;
+  $primary-black: #121212;
+  $primary-light-gray: #dedede;
+  $primary-dark-gray: #575757;
+
+  $secondary-white: #fcfcfc;
+  $secondary-black: #1a1818;
+  $secondary-gray: #9c9c9c;
+  $accent-red: #9b4b4b;
+  $accent-gold: #ab8956;
+  $hover-gray: #f3f3f3;
+  $hover-dark: #1b1b1b;
+}
+
+$spacing-sizes: (
+  'xs': 4px,
+  'sm': 8px,
+  'md': 16px,
+  'lg': 24px,
+  'xl': 32px,
+  'xxl': 48px
+);
