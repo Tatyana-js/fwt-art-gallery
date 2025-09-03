@@ -6,7 +6,10 @@ const Card = ({ name, yearOfCreation }: ICard) => {
   return (
     <div className={styles.painting}>
       <a href="#" className={styles.linkboxOverlay}></a>
-      <img src='https://internship-front.framework.team/images/6895b1b57f43dbbf6fcac008/image.jpg' alt={name} />
+      <img
+        src="https://internship-front.framework.team/images/6895b1b57f43dbbf6fcac008/image.jpg"
+        alt={name}
+      />
       <div className={styles.container}>
         <div>
           <p>{name}</p>
@@ -15,6 +18,6 @@ const Card = ({ name, yearOfCreation }: ICard) => {
         {/* <div className={styles.line}></div> */}
       </div>
     </div>
-  )       
-}
+  );
+};
 export default Card;

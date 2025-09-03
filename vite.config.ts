@@ -27,7 +27,7 @@ export default defineConfig({
         ],
         test: {
           globals: true,
-          environment: 'jsdom',
+          environment: "jsdom",
           name: "storybook",
           browser: {
             enabled: true,

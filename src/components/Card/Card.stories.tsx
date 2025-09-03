@@ -1,29 +1,29 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import Card from './Card'; 
-import type ICard from './types'; 
+import type { Meta, StoryObj } from "@storybook/react-vite";
+import Card from "./Card";
+import type ICard from "./types";
 
 // данные для историй
 const mockCardData: ICard = {
-  _id: '66d70a6bb123431edba12d9f',
-  name: 'Field with poppies',
-  yearOfCreation: '1890',
+  _id: "66d70a6bb123431edba12d9f",
+  name: "Field with poppies",
+  yearOfCreation: "1890",
   image: {
-    _id: '6895b1b67f43dbbf6fcac009',
-    src: '/images/6895b1b57f43dbbf6fcac008/image.jpg',
-    webp: '/images/6895b1b57f43dbbf6fcac008/image.webp',
-    src2x: '/images/6895b1b57f43dbbf6fcac008/image2x.jpg',
-    webp2x: '/images/6895b1b57f43dbbf6fcac008/image2x.webp',
-    original: '/images/6895b1b57f43dbbf6fcac008/original.jpg'
+    _id: "6895b1b67f43dbbf6fcac009",
+    src: "/images/6895b1b57f43dbbf6fcac008/image.jpg",
+    webp: "/images/6895b1b57f43dbbf6fcac008/image.webp",
+    src2x: "/images/6895b1b57f43dbbf6fcac008/image2x.jpg",
+    webp2x: "/images/6895b1b57f43dbbf6fcac008/image2x.webp",
+    original: "/images/6895b1b57f43dbbf6fcac008/original.jpg",
   },
-  artist: '66d70a65b123431edba12d05'
+  artist: "66d70a65b123431edba12d05",
 };
 
 const meta = {
-  title: 'Components/Card',
+  title: "Components/Card",
   component: Card,
-  tags: ['autodocs'],
+  tags: ["autodocs"],
   args: {
-    ...mockCardData
+    ...mockCardData,
   },
 } satisfies Meta<typeof Card>;
 
@@ -34,7 +34,7 @@ type Story = StoryObj<typeof meta>;
 // Базовая история
 export const Default: Story = {
   args: {
-    ...mockCardData
+    ...mockCardData,
   },
 };
 
@@ -42,7 +42,7 @@ export const Default: Story = {
 export const WithLongTitle: Story = {
   args: {
     ...mockCardData,
-    name: 'The Starry Night Over the Rhône with Beautiful Sky and Stars',
+    name: "The Starry Night Over the Rhône with Beautiful Sky and Stars",
   },
 };
 
