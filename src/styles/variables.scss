@@ -1,23 +1,62 @@
 :root {
-  $primary-white: #ffffff;
-  $primary-black: #121212;
-  $primary-light-gray: #dedede;
-  $primary-dark-gray: #575757;
+  --primary-white: #ffffff;
+  --primary-black: #121212;
+  --primary-light-gray: #dedede;
+  --primary-dark-gray: #575757;
 
-  $secondary-white: #fcfcfc;
-  $secondary-black: #1a1818;
-  $secondary-gray: #9c9c9c;
-  $accent-red: #9b4b4b;
-  $accent-gold: #ab8956;
-  $hover-gray: #f3f3f3;
-  $hover-dark: #1b1b1b;
+  --secondary-white: #fcfcfc;
+  --secondary-black: #1a1818;
+  --secondary-gray: #9c9c9c;
+  --accent-red: #9b4b4b;
+  --accent-gold: #ab8956;
+  --hover-gray: #f3f3f3;
+  --hover-dark: #1b1b1b;
 }
 
-$spacing-sizes: (
-  "xs": 4px,
-  "sm": 8px,
-  "md": 16px,
-  "lg": 24px,
-  "xl": 32px,
-  "xxl": 48px,
-);
+.dark {
+  --text-color: var(--primary-white);
+  --background-color: var(--primary-black);
+  --accent-color: var(--accent-gold);
+  --button-background: var(--secondary-black);
+  --button-background-hover: var(--hover-dark);
+  --placeholder-color: var(--primary-dark-gray);
+  --input-color: var(--primary-light-gray);
+  --imgUrl: url("../../public/assets/icon_search.svg");
+  --icon_close: url("../../public/assets/icon_close.svg");
+  --border_search: none;
+}
+
+.light {
+  --text-color: var(--primary-black);
+  --background-color: var(--primary-white);
+  --accent-color: var(--accent-red);
+  --button-background: var(--secondary-white);
+  --button-background-hover: var(--hover-gray);
+  --placeholder-color: var(--primary-light-gray);
+  --input-color: var(--primary-dark-gray);
+  --imgUrl: url("../../public/assets/icon_searсh_light.svg");
+  --icon_close: url("../../public/assets/icon_close_light.svg");
+  --border_search: 1px, solid, var(--placeholder-color);
+}
+
+$max-desktop-width: 1441px;
+$max-tablet-width: 1279px;
+$max-mobile-width: 768px;
+
+@mixin screen($screen) {
+  @if $screen == desktop {
+    @media screen and (min-width: $max-tablet-width) {
+      @content;
+    }
+  } @else if $screen == tablet {
+    @media screen and (min-width: $max-mobile-width) and (max-width: $max-tablet-width) {
+      @content;
+    }
+  } @else if $screen == mobile {
+    @media screen and (max-width: $max-mobile-width) {
+      @content;
+    }
+  } @else {
+    @warn "Unknown screen size `#{$screen}` passed to screen mixin.";
+  }
+}
