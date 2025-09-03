@@ -1,8 +1,9 @@
-import type ICard from "./types";
+import type Artist from "../../types/types";
 import styles from "./Card.module.scss";
 import "../../styles/global.scss";
 
-const Card = ({ name, yearOfCreation }: ICard) => {
+const Card = ({ mainPainting }: Artist) => {
+  const { name, yearOfCreation } = mainPainting;
   return (
     <div className={styles.painting}>
       <a href="#" className={styles.linkboxOverlay}></a>
@@ -20,4 +21,5 @@ const Card = ({ name, yearOfCreation }: ICard) => {
     </div>
   );
 };
+
 export default Card;
