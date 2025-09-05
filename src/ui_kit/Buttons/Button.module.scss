@@ -21,12 +21,12 @@
 
   @include fonts("Inter", sans-serif, 700, 12px);
 
-   & svg {
+  & svg {
     width: 12px;
     height: 12px;
     margin-right: 12px;
     vertical-align: middle;
-   }
+  }
 }
 
 .icon {
@@ -35,7 +35,7 @@
   width: 28px;
   height: 28px;
 
-  & svg  {
+  & svg {
     width: 24px;
     height: 24px;
   }
@@ -48,7 +48,7 @@
   height: 60px;
   border: none;
 
-  & svg  {
+  & svg {
     width: 24px;
     height: 24px;
   }

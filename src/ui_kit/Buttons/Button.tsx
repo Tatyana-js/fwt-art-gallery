@@ -4,7 +4,8 @@ import styles from "./Button.module.scss";
 
 type ButtonVariant = "defaultButton" | "text" | "icon" | "circleIcon";
 
-export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: ButtonVariant;
   children: ReactNode;
   type: "button" | "submit" | "reset";

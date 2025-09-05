@@ -10,7 +10,8 @@ describe("Button Component", () => {
     const { container } = render(
       <Button variant="defaultButton" type="button">
         TEXT
-      </Button>);
+      </Button>,
+    );
     const button = container.firstChild;
 
     test("check Button", () => {
@@ -23,7 +24,8 @@ describe("Button Component", () => {
       <Button variant="text" type="button">
         <PlusIconLight />
         TEXT
-      </Button>);
+      </Button>,
+    );
     const button = container.firstChild;
 
     test("check Button", () => {
@@ -35,7 +37,8 @@ describe("Button Component", () => {
     const { container } = render(
       <Button variant="icon" type="button">
         <DeleteIconLight />
-      </Button>);
+      </Button>,
+    );
     const button = container.firstChild;
 
     test("check Button", () => {
@@ -47,7 +50,8 @@ describe("Button Component", () => {
     const { container } = render(
       <Button variant="text" type="button">
         <ArrowIconLight />
-      </Button>);
+      </Button>,
+    );
     const button = container.firstChild;
 
     test("check Button", () => {
@@ -55,5 +59,3 @@ describe("Button Component", () => {
     });
   });
 });
-
-
