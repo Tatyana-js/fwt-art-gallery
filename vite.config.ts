@@ -43,13 +43,13 @@ export default defineConfig({
       },
     ],
   },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@use "@/styles/variables.scss" as *;`,
-      },
-    },
-  },
+  // css: {
+  //   preprocessorOptions: {
+  //     scss: {
+  //       additionalData: `@use "@/styles/variables.scss" as *;`,
+  //     },
+  //   },
+  // },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

@@ -1,4 +1,14 @@
-@import url("https://fonts.googleapis.com/css2?family=Cormorant+SC:wght@300;400;500;600;700&family=Cormorant:ital,wght@0,300..700;1,300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@use "../styles/mixins.scss" as *;
+
+@font-face {
+  font-family: "Cormorant SC";
+  src: url("../fonts/CormorantSC.woff2");
+}
+
+@font-face {
+  font-family: "Iter";
+  src: url("../fonts/Inter.woff2");
+}
 
 * {
   box-sizing: border-box;
@@ -9,4 +19,22 @@
 body {
   width: 100vw;
   min-height: 100vh;
+  padding-bottom: 20px;
+  // background: var(--background-color);
+}
+
+.container {
+  margin: 0 auto;
+}
+
+@include screen(desktop) {
+  .container {
+    padding-bottom: 40px;
+  }
+}
+
+@include screen(tablet) {
+  .container {
+    padding-bottom: 40px;
+  }
 }

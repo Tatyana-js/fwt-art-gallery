@@ -1,0 +1,32 @@
+$max-desktop-width: 1441px;
+$max-tablet-width: 768px;
+$max-mobile-width: 320px;
+
+@mixin screen($screen) {
+  @if $screen == desktop {
+    @media screen and (min-width: $max-tablet-width) {
+      @content;
+    }
+  } @else if $screen == tablet {
+    @media screen and (min-width: $max-mobile-width) and (max-width: $max-tablet-width) {
+      @content;
+    }
+  } @else if $screen == mobile {
+    @media screen and (max-width: $max-mobile-width) {
+      @content;
+    }
+  } @else {
+    @warn "Unknown screen size `#{$screen}` passed to screen mixin.";
+  }
+}
+
+@mixin painting-container {
+  padding: 20px;
+  width: 300px;
+}
+
+@mixin fonts($font-family, $font-fallback, $font-weight, $font-size) {
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-size: $font-size;
+}

@@ -1,16 +1,14 @@
-import type Artist from "../../types/types";
+import { FC } from "react";
+import type IArtist from "../../types/Artist";
 import styles from "./Card.module.scss";
-import "../../styles/global.scss";
+import getImageSrc from "@/utils/imageSrc";
 
-const Card = ({ mainPainting }: Artist) => {
-  const { name, yearOfCreation } = mainPainting;
+const Card: FC<IArtist> = ({ ...artist }) => {
+  const { name, yearOfCreation, image } = artist.mainPainting;
   return (
     <div className={styles.painting}>
       <a href="#" className={styles.linkboxOverlay}></a>
-      <img
-        src="https://internship-front.framework.team/images/6895b1b57f43dbbf6fcac008/image.jpg"
-        alt={name}
-      />
+      <img src={getImageSrc(image.src)} alt={name} />
       <div className={styles.container}>
         <div>
           <p>{name}</p>
