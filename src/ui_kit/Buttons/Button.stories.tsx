@@ -65,4 +65,3 @@ export const IconCircleButton: Story = {
     children: <ArrowIconLight />,
   },
 };
-
