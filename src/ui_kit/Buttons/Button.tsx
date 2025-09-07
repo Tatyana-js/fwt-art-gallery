@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { ReactNode } from "react";
+import clsx from 'clsx';
 import styles from "./Button.module.scss";
-// import clsx from 'clsx';
 
 type ButtonVariant = "defaultButton" | "text" | "icon" | "circleIcon";
 
@@ -10,15 +10,14 @@ export interface ButtonProps
   variant: ButtonVariant;
   children: ReactNode;
   type: "button" | "submit" | "reset";
-  // state: 'default' | 'hover' | 'disabled' | 'focus';
+  disabled?: boolean;
 }
 
 const Button: FC<ButtonProps> = ({
   variant,
   type,
   children,
-  // state,
-  ...props
+  disabled,
 }) => {
   const variantClass = {
     defaultButton: styles.defaultButton,
@@ -27,20 +26,15 @@ const Button: FC<ButtonProps> = ({
     circleIcon: styles.circleIcon,
   }[variant];
 
-  // const stateClass = {
-  //   default: styles.stateDefault,
-  //   hover: styles.stateHover,
-  //   disabled: styles.stateDisabled,
-  //   focus: styles.stateFocus,
-  // }[state];
-
-  // const buttonClass = clsx(
-  //   variantClass,
-  //   stateClass,
-  // );
+  const buttonClass = clsx(
+    variantClass,
+    {
+      [styles.disabled]: disabled,
+    }
+  );
 
   return (
-    <button type={type} className={variantClass} {...props}>
+    <button type={type} className={buttonClass} disabled = {disabled}>
       {children}
     </button>
   );

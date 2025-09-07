@@ -66,10 +66,3 @@ export const IconCircleButton: Story = {
   },
 };
 
-export const TestSpan: Story = {
-  args: {
-    variant: "text",
-    type: "button",
-    children: <span>Test Span</span>,
-  },
-};

@@ -2,7 +2,7 @@ import "./styles/global.scss";
 import "./styles/variables.scss";
 import "./styles/mixins.scss";
 import Card from "./ui_kit/Card/Card.tsx";
-import Icon from "./assets/icons/PlusIconLight.tsx";
+import Icon from "./assets/icons/ArrowIconLight.tsx";
 
 import Grid from "@/ui_kit/Grid/Grid.tsx";
 import artist from "./ui_kit/Card/mock";
@@ -18,9 +18,9 @@ function App() {
           <Card key={item._id} {...item} />
         ))}
       </Grid>
-      <Button variant="text" type="submit">
+      <Button variant="circleIcon" type="submit">
         <Icon />
-        BUTTON TEXT
+        {/* BUTTON */}
       </Button>
     </div>
   );

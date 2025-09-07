@@ -30,3 +30,10 @@ $max-mobile-width: 320px;
   font-weight: $font-weight;
   font-size: $font-size;
 }
+
+@mixin textDecoration ($color){
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 1px;
+  text-decoration-color: $color;
+}
