@@ -13,19 +13,27 @@
 
 .text {
   color: #dedede;
-  background-color: #121212;
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 1px;
   text-decoration-color: #dedede;
 
   @include fonts("Inter", sans-serif, 700, 12px);
+  
+  &:hover {
+    color: #ffffff;
+    background-color: aqua; //test
+  }
 
   & svg {
     width: 12px;
     height: 12px;
     margin-right: 12px;
     vertical-align: middle;
+
+    &:hover:not(:disabled) {
+      color: #ffffff;
+    }
   }
 }
 
@@ -35,9 +43,13 @@
   width: 28px;
   height: 28px;
 
+
   & svg {
     width: 24px;
     height: 24px;
+    // &.stateHover {
+    //   color: #ffffff;
+    // }
   }
 }
 
@@ -47,6 +59,9 @@
   width: 60px;
   height: 60px;
   border: none;
+    // &.stateHover {
+    //   background-color: #575757;
+    // }
 
   & svg {
     width: 24px;
