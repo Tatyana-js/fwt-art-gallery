@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Button from "./Button";
-import DeleteIconLight from '@/assets/icons/DeleteIconLight';
-import ArrowIconLight from '@/assets/icons/ArrowIconLight';
+import DeleteIconLight from "@/assets/icons/DeleteIconLight";
+import ArrowIconLight from "@/assets/icons/ArrowIconLight";
 
 const meta = {
   title: "Components/Button",
@@ -68,7 +68,7 @@ export const IconCircleButton: Story = {
 
 export const TestSpan: Story = {
   args: {
-    variant: "text", 
+    variant: "text",
     type: "button",
     children: <span>Test Span</span>,
   },

@@ -19,7 +19,7 @@
   text-decoration-color: #dedede;
 
   @include fonts("Inter", sans-serif, 700, 12px);
-  
+
   &:hover {
     color: #ffffff;
     background-color: aqua; //test
@@ -43,7 +43,6 @@
   width: 28px;
   height: 28px;
 
-
   & svg {
     width: 24px;
     height: 24px;
@@ -59,9 +58,9 @@
   width: 60px;
   height: 60px;
   border: none;
-    // &.stateHover {
-    //   background-color: #575757;
-    // }
+  // &.stateHover {
+  //   background-color: #575757;
+  // }
 
   & svg {
     width: 24px;

@@ -30,7 +30,7 @@ const Button: FC<ButtonProps> = ({
   // const stateClass = {
   //   default: styles.stateDefault,
   //   hover: styles.stateHover,
-  //   disabled: styles.stateDisabled, 
+  //   disabled: styles.stateDisabled,
   //   focus: styles.stateFocus,
   // }[state];
 
@@ -38,7 +38,6 @@ const Button: FC<ButtonProps> = ({
   //   variantClass,
   //   stateClass,
   // );
-
 
   return (
     <button type={type} className={variantClass} {...props}>
