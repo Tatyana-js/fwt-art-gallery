@@ -1,32 +1,21 @@
 import { FC } from "react";
-import { ReactNode } from "react";
-import clsx from "clsx";
 import styles from "./Button.module.scss";
+import clsx from "clsx";
 
 type ButtonVariant = "defaultButton" | "text" | "icon" | "circleIcon";
+type theme = "dark" | "light";
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: ButtonVariant;
-  children: ReactNode;
-  type: "button" | "submit" | "reset";
-  disabled?: boolean;
+  theme: theme;
 }
 
-const Button: FC<ButtonProps> = ({ variant, type, children, disabled }) => {
-  const variantClass = {
-    defaultButton: styles.defaultButton,
-    text: styles.text,
-    icon: styles.icon,
-    circleIcon: styles.circleIcon,
-  }[variant];
+const Button: FC<ButtonProps> = ({ variant, children, theme, ...props }) => {
+  const buttonClass = clsx(styles[variant], styles[`${variant}--${theme}`]);
 
-  const buttonClass = clsx(variantClass, {
-    [styles.disabled]: disabled,
-  });
-
-  return (
-    <button type={type} className={buttonClass} disabled={disabled}>
+  return (  
+    <button className={buttonClass} {...props}>
       {children}
     </button>
   );

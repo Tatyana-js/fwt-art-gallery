@@ -1,7 +1,7 @@
 import { FC } from "react";
 import type IArtist from "../../types/Artist";
 import styles from "./Card.module.scss";
-import getImageSrc from "@/utils/imageSrc";
+import getImageSrc from "@/utils/getImageSrc";
 
 const Card: FC<IArtist> = ({ ...artist }) => {
   const { name, yearOfCreation, image } = artist.mainPainting;

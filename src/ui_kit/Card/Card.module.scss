@@ -1,5 +1,10 @@
 @use "../../styles/mixins.scss" as *;
 
+@mixin painting-container {
+  padding: 20px;
+  width: 300px;
+}
+
 .painting {
   position: relative;
   aspect-ratio: 1.507;
@@ -45,16 +50,16 @@ img {
   padding: 8px 12px;
   // background: var(--background-color);
   // color: var(--text-color);
-  @include fonts("Cormorant SC", serif, 500, 12px);
+  @include fonts("Cormorant SC", serif, 500, 12px, 100%);
 
   @include screen(desktop) {
     @include painting-container;
-    @include fonts("Cormorant SC", serif, 500, 16px);
+    @include fonts("Cormorant SC", serif, 500, 16px, 100%);
   }
 
   @include screen(tablet) {
     @include painting-container;
-    @include fonts("Cormorant SC", serif, 500, 16px);
+    @include fonts("Cormorant SC", serif, 500, 16px, 100%);
   }
 }
 
@@ -62,5 +67,5 @@ img {
   // color: var(--accent-color);
   color: #ab8956;
   margin-top: 4px;
-  @include fonts("Inter", sans-serif, 700, 8px);
+  @include fonts("Inter", sans-serif, 700, 8px, 100%);
 }

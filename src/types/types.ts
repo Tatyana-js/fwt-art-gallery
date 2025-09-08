@@ -1,4 +1,4 @@
-interface Image {
+interface IImage {
   _id: string;
   src: string;
   webp: string;
@@ -8,9 +8,9 @@ interface Image {
 }
 
 export default interface IMainPainting {
-  _id?: string;
+  _id: string;
   name: string;
   yearOfCreation: string;
-  image: Image;
+  image: IImage;
   artist?: string;
 }

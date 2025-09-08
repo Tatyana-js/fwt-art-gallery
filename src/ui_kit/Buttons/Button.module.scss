@@ -1,58 +1,73 @@
 @use "@/styles/mixins.scss" as *;
+@use "@/styles/variables.scss" as *;
+
+@mixin textDecoration($color) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 1px;
+  text-decoration-color: $color;
+}
 
 .defaultButton {
-  width: 200px;
-  height: 47px;
-  background-color: #ab8956;
   border-radius: 30px;
   padding: 16px 20px;
   border: none;
   color: #ffffff;
-  @include fonts("Inter", sans-serif, 700, 12px);
+  @include fonts("Inter", sans-serif, 700, 12px, 100%);
 
-  &.disabled {
-    background-color: #ab8956; // Одинаковый цвет!!!
+  &--light {
+    background-color: $primary-black;
+  }
+
+  &--dark {
+    background-color: $accent-gold;
+  }
+
+  &:disabled {
+    opacity: 50%;
   }
 }
 
 .text {
-  display: inline-flex;
-  align-items: center;
+  border: none;
+  display: inline-flex; 
+  align-items: center; 
   gap: 12px;
-  color: #dedede;
-  background-color: #121212;
+  @include fonts("Inter", sans-serif, 700, 12px, 100%);
 
-  @include textDecoration(#dedede);
-  @include fonts("Inter", sans-serif, 700, 12px);
+  &--light {
+    color: $primary-dark-gray;
+    background-color: $primary-white;
+    &:hover {
+      color: $primary-black;
+      @include textDecoration($primary-black);
+    }
+    &:disabled {
+      @include textDecoration($primary-light-gray);
+    }
+  }
 
+  &--dark {
+    color: $primary-light-gray;
+    background-color: $primary-black;
+    @include textDecoration($primary-light-gray);
+    &:hover {
+      color: $primary-white;
+      @include textDecoration($primary-white);
+    }
+    &:disabled {
+      color: $primary-dark-gray;
+      @include textDecoration($primary-dark-gray);
+    }
+  }
+  
   svg {
     width: 12px;
     height: 12px;
   }
-
-  &:hover {
-    color: #ffffff;
-    @include textDecoration(#ffffff);
-    & svg {
-      fill: #ffffff;
-    }
-  }
-
-  &.disabled {
-    color: #9c9c9c; // Одинаковый цвет!!!
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 1px;
-    text-decoration-color: #9c9c9c;
-
-    & svg {
-      fill: #9c9c9c;
-    }
-  }
 }
 
 .icon {
-  background-color: #1a1818;
   border-radius: 4px;
   width: 28px;
   height: 28px;
@@ -65,36 +80,76 @@
   & svg {
     width: 24px;
     height: 24px;
-    fill: #dedede;
     flex-shrink: 0;
   }
 
-  &:hover {
+  &--light {
+    background-color: $secondary-white;
     & svg {
-      fill: #ffffff;
+      fill: $primary-dark-gray;
+    }
+    &:hover {
+      & svg {
+        fill: $primary-black;
+      }
+    }
+    &:disabled {
+      & svg {
+        fill: $primary-dark-gray;
+      }
     }
   }
 
-  &.disabled {
+    &--dark {
+    background-color: $secondary-black;
     & svg {
-      fill: #dedede;
+      fill: $primary-light-gray;
+    }
+    &:hover {
+      & svg {
+        fill: $primary-white;
+      }
+    }
+    &:disabled {
+      & svg {
+        fill: $primary-light-gray;
+      }
     }
   }
 }
 
 .circleIcon {
-  background-color: #1a1818;
   border-radius: 50px;
   width: 60px;
   height: 60px;
-  border: none;
 
   & svg {
     width: 24px;
     height: 24px;
   }
 
-  &:hover {
-    background-color: #242222; //как сделать другой цвет на белой теме ? и border!
+  &--light {
+    background-color: $secondary-white;
+    border: 1px solid $primary-light-gray;
+    & svg {
+      fill: $primary-dark-gray;
+    }
+    &:hover {
+      background-color: $primary-white;
+    }
   }
+
+  &--dark {
+  border: none;
+  background-color: $secondary-black;
+  & svg {
+    fill: $primary-light-gray;
+  }
+  &:hover {
+    background-color: #242222;
+    & svg {
+      fill: $primary-white;
+    }
+  }
+}
 }

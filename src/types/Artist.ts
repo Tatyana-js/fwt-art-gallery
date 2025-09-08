@@ -1,12 +1,12 @@
-import IMainPainting from "./MainPainting";
+import IMainPainting from "./types";
 
 export default interface IArtist {
-  yearOfCreation?: string;
-  _id?: string;
-  name?: string;
-  description?: string;
-  yearsOfLife?: string;
-  genres?: string[];
+  yearOfCreation: string;
+  _id: string;
+  name: string;
+  description: string;
+  yearsOfLife: string;
+  genres: string[];
   mainPainting: IMainPainting;
-  __v?: number;
+  __v: number;
 }

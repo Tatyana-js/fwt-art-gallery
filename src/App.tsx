@@ -2,11 +2,12 @@ import "./styles/global.scss";
 import "./styles/variables.scss";
 import "./styles/mixins.scss";
 import Card from "./ui_kit/Card/Card.tsx";
-import Icon from "./assets/icons/ArrowIconLight.tsx";
+import Icon from "./assets/icons/ArrowIcon.tsx";
 
 import Grid from "@/ui_kit/Grid/Grid.tsx";
 import artist from "./ui_kit/Card/mock";
 import Button from "./ui_kit/Buttons/Button.tsx";
+import InputForm from "./ui_kit/Input/InputForm.tsx";
 
 const artists = Array(6).fill(artist); //TODO: убрать
 
@@ -18,10 +19,11 @@ function App() {
           <Card key={item._id} {...item} />
         ))}
       </Grid>
-      <Button variant="circleIcon" type="submit">
+      <Button variant="circleIcon" theme="dark">
         <Icon />
-        {/* BUTTON */}
+        {/* BUTTON TEXT */}
       </Button>
+      <InputForm label="Field name"/>
     </div>
   );
 }
