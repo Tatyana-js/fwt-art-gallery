@@ -30,8 +30,8 @@
 
 .text {
   border: none;
-  display: inline-flex; 
-  align-items: center; 
+  display: inline-flex;
+  align-items: center;
   gap: 12px;
   @include fonts("Inter", sans-serif, 700, 12px, 100%);
 
@@ -60,7 +60,7 @@
       @include textDecoration($primary-dark-gray);
     }
   }
-  
+
   svg {
     width: 12px;
     height: 12px;
@@ -100,7 +100,7 @@
     }
   }
 
-    &--dark {
+  &--dark {
     background-color: $secondary-black;
     & svg {
       fill: $primary-light-gray;
@@ -140,16 +140,16 @@
   }
 
   &--dark {
-  border: none;
-  background-color: $secondary-black;
-  & svg {
-    fill: $primary-light-gray;
-  }
-  &:hover {
-    background-color: #242222;
+    border: none;
+    background-color: $secondary-black;
     & svg {
-      fill: $primary-white;
+      fill: $primary-light-gray;
+    }
+    &:hover {
+      background-color: #242222;
+      & svg {
+        fill: $primary-white;
+      }
     }
   }
-}
 }

@@ -8,7 +8,7 @@ import Card from "../Card/Card";
 const paintingsData: IGridProps = {
   children: Array(6)
     .fill(artist)
-    .map((artistData, index) => <Card key={index} {...artistData} />),
+    .map((artistData) => <Card key={artistData._id} {...artistData} />),
 };
 
 const meta = {

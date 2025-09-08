@@ -14,8 +14,8 @@ export interface ButtonProps
 const Button: FC<ButtonProps> = ({ variant, children, theme, ...props }) => {
   const buttonClass = clsx(styles[variant], styles[`${variant}--${theme}`]);
 
-  return (  
-    <button className={buttonClass} {...props}>
+  return (
+    <button className={buttonClass} type="submit" {...props}>
       {children}
     </button>
   );

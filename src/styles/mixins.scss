@@ -20,10 +20,15 @@ $max-mobile-width: 320px;
   }
 }
 
-@mixin fonts($font-family, $font-fallback, $font-weight, $font-size, $line-height) {
+@mixin fonts(
+  $font-family,
+  $font-fallback,
+  $font-weight,
+  $font-size,
+  $line-height
+) {
   font-family: $font-family;
   font-weight: $font-weight;
   font-size: $font-size;
   line-height: $line-height;
 }
-
