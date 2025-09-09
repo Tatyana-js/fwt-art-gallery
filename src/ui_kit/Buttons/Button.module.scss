@@ -12,7 +12,7 @@
     border-radius: 30px;
     padding: 16px 20px;
     border: none;
-    color: #ffffff;
+    color: $primary-white;
     @include fonts('Inter', sans-serif, 700, 12px, 100%);
 
     &--light {

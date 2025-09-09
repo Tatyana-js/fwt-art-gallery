@@ -7,16 +7,15 @@ interface IImage {
     original: string
 }
 
-export default interface IMainPainting {
+export interface IMainPainting {
     _id: string
     name: string
     yearOfCreation: string
     image: IImage
-    artist?: string
+    artist: string
 }
 
 export default interface IArtist {
-    yearOfCreation: string
     _id: string
     name: string
     description: string
