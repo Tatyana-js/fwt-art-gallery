@@ -1,14 +1,14 @@
-import { FC } from 'react'
-import clsx from 'clsx'
-import type { theme } from '@/types/types'
-import styles from './Button.module.scss'
+import { FC } from 'react';
+import clsx from 'clsx';
+import type { theme } from '@/types/types';
+import styles from './Button.module.scss';
 
-type ButtonVariant = 'defaultButton' | 'text' | 'icon' | 'circleIcon'
+type ButtonVariant = 'defaultButton' | 'text' | 'icon' | 'circleIcon';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: ButtonVariant
-  theme: theme
+  variant: ButtonVariant;
+  theme: theme;
 }
 
 const Button: FC<ButtonProps> = ({ variant, children, theme, ...props }) => (
@@ -19,6 +19,6 @@ const Button: FC<ButtonProps> = ({ variant, children, theme, ...props }) => (
   >
     {children}
   </button>
-)
+);
 
-export default Button
+export default Button;

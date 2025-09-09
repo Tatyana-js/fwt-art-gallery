@@ -20,7 +20,9 @@ const Card: FC<ICardProps> = ({ theme, artist }) => {
       <div className={clsx(styles.container, styles[`container--${theme}`])}>
         <div>
           <p>{name}</p>
-          <p className={clsx(styles.created, styles[`created--${theme}`])}>{yearOfCreation}</p>
+          <p className={clsx(styles.created, styles[`created--${theme}`])}>
+            {yearOfCreation}
+          </p>
         </div>
       </div>
     </div>

@@ -1,12 +1,12 @@
-import { ReactNode } from 'react'
-import styles from './Grid.module.scss'
+import { ReactNode } from 'react';
+import styles from './Grid.module.scss';
 
 export interface IGridProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 const Grid: React.FC<IGridProps> = ({ children }) => (
-    <div className={styles.galleryList}>{children}</div>
-)
+  <div className={styles.galleryList}>{children}</div>
+);
 
-export default Grid
+export default Grid;

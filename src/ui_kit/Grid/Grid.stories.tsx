@@ -1,32 +1,32 @@
-import type { Meta, StoryObj } from '@storybook/react-vite'
-import Grid from './Grid'
-import type { IGridProps } from './Grid'
-import artist from '../Card/mock'
-import Card from '../Card/Card'
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import Grid from './Grid';
+import type { IGridProps } from './Grid';
+import artist from '../Card/mock';
+import Card from '../Card/Card';
 
 // данные для историй
 const paintingsData: IGridProps = {
-    children: Array(6)
-        .fill(artist)
-        .map((artistData) => <Card key={artistData._id} {...artistData} />),
-}
+  children: Array(6)
+    .fill(artist)
+    .map((artistData) => <Card key={artistData._id} {...artistData} />),
+};
 
 const meta = {
-    title: 'Components/Grid',
-    component: Grid,
-    tags: ['autodocs'],
-    args: {
-        ...paintingsData,
-    },
-} satisfies Meta<typeof Grid>
+  title: 'Components/Grid',
+  component: Grid,
+  tags: ['autodocs'],
+  args: {
+    ...paintingsData,
+  },
+} satisfies Meta<typeof Grid>;
 
-export default meta
+export default meta;
 
-type Story = StoryObj<typeof meta>
+type Story = StoryObj<typeof meta>;
 
 // Базовая история
 export const Default: Story = {
-    args: {
-        ...paintingsData,
-    },
-}
+  args: {
+    ...paintingsData,
+  },
+};
