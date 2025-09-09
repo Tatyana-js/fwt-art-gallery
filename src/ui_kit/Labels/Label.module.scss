@@ -1,26 +1,26 @@
-@use "@/styles/variables.scss" as *;
-@use "@/styles/mixins.scss" as *;
+@use '@/styles/variables.scss' as *;
+@use '@/styles/mixins.scss' as *;
 
 .label {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-radius: 30px;
-  padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 30px;
+    padding: 8px 16px;
 
-  @include fonts("Inter", sans-serif, 500, 12px, 140%);
+    @include fonts('Inter', sans-serif, 500, 12px, 140%);
 
-  &--light {
-    color: $primary-dark-gray;
-    border: none;
-    background-color: rgba($color: $primary-black, $alpha: 5%);
-  }
+    &--light {
+        color: $primary-dark-gray;
+        border: none;
+        background-color: rgba($color: $primary-black, $alpha: 5%);
+    }
 
-  &--dark {
-    color: #ffffff;
-    background-color: $primary-black;
-    border: 1px solid $primary-white;
-  }
+    &--dark {
+        color: #ffffff;
+        background-color: $primary-black;
+        border: 1px solid $primary-white;
+    }
 }
 
 // #1212120D

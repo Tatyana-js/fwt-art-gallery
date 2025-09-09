@@ -1,40 +1,40 @@
-@use "../styles/mixins.scss" as *;
+@use '../styles/mixins.scss' as *;
 
 @font-face {
-  font-family: "Cormorant SC";
-  src: url("../fonts/CormorantSC.woff2");
+    font-family: 'Cormorant SC';
+    src: url('../fonts/CormorantSC.woff2');
 }
 
 @font-face {
-  font-family: "Iter";
-  src: url("../fonts/Inter.woff2");
+    font-family: 'Iter';
+    src: url('../fonts/Inter.woff2');
 }
 
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  width: 100vw;
-  min-height: 100vh;
-  padding-bottom: 20px;
-  background-color: #121212;
+    width: 100vw;
+    min-height: 100vh;
+    padding-bottom: 20px;
+    background-color: #ffffff;
 }
 
 .container {
-  margin: 0 auto;
+    margin: 0 auto;
 }
 
 @include screen(desktop) {
-  .container {
-    padding-bottom: 40px;
-  }
+    .container {
+        padding-bottom: 40px;
+    }
 }
 
 @include screen(tablet) {
-  .container {
-    padding-bottom: 40px;
-  }
+    .container {
+        padding-bottom: 40px;
+    }
 }
