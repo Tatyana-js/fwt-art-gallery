@@ -2,12 +2,12 @@ import "./styles/global.scss";
 import "./styles/variables.scss";
 import "./styles/mixins.scss";
 import Card from "./ui_kit/Card/Card.tsx";
-import Icon from "./assets/icons/ArrowIcon.tsx";
 
 import Grid from "@/ui_kit/Grid/Grid.tsx";
 import artist from "./ui_kit/Card/mock";
+// import Label from "./ui_kit/Labels/Label.tsx";
+import Checkbox from "./ui_kit/Checkbox/Checkbox.tsx";
 import Button from "./ui_kit/Buttons/Button.tsx";
-import InputForm from "./ui_kit/Input/InputForm.tsx";
 
 const artists = Array(6).fill(artist); //TODO: убрать
 
@@ -19,11 +19,9 @@ function App() {
           <Card key={item._id} {...item} />
         ))}
       </Grid>
-      <Button variant="circleIcon" theme="dark">
-        <Icon />
-        {/* BUTTON TEXT */}
-      </Button>
-      <InputForm label="Field name"/>
+      <Button variant="defaultButton" theme="light">Button</Button>
+      <Checkbox theme="light" />
+      {/* <InputForm label="Field name" /> */}
     </div>
   );
 }

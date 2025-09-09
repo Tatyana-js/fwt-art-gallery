@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import Button from "./Button";
 import PlusIconLight from "@/assets/icons/PlusIconLight";
 import DeleteIconLight from "@/assets/icons/DeleteIconLight";
-import ArrowIconLight from "@/assets/icons/ArrowIconLight";
+import ArrowIconLight from "@/assets/icons/ArrowIcon";
 
 describe("Button Component", () => {
   describe("render defaultButton", () => {

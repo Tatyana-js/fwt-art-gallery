@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import Button from "./Button";
 import DeleteIconLight from "@/assets/icons/DeleteIconLight";
-import ArrowIconLight from "@/assets/icons/ArrowIconLight";
+import ArrowIconLight from "@/assets/icons/ArrowIcon";
 
 const meta = {
   title: "Components/Button",

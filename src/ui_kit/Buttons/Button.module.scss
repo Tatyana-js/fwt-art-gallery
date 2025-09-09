@@ -17,10 +17,23 @@
 
   &--light {
     background-color: $primary-black;
+    &:hover {
+     box-shadow: 0px 4px 10px 0px #00000040; 
+    }
+    &:focus {
+      box-shadow: 0px 4px 10px 0px #00000040; 
+    }
   }
 
   &--dark {
     background-color: $accent-gold;
+    &:hover {
+      box-shadow: 0px 4px 10px 0px #AB895640;
+; 
+    }
+    &:focus {
+      box-shadow: 0px 4px 10px 0px #AB895640; 
+    }
   }
 
   &:disabled {
