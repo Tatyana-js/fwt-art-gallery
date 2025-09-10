@@ -1,0 +1,57 @@
+@use '@/styles/mixins.scss' as *;
+@use '@/styles/variables.scss' as *;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  
+}
+.label {
+  color: $primary-white;
+  @include fonts('Inter', sans-serif, 700, 12px, 100%)
+}
+
+.textarea {
+  width: 340px;
+  padding: 12px 16px 6px;
+  min-height: 150px;
+  max-height: 300px; 
+  overflow-y: scroll;
+  @include fonts('Inter', sans-serif, 300, 16px, 140%);
+
+    &--light {
+    background-color: $primary-white;
+    border: 1px solid $primary-light-gray;
+    color: $primary-black;
+      &:hover {
+        border: 1px solid $secondary-gray;
+      }
+      &:focus-visible {
+        outline: none;
+        border: 1px solid $primary-dark-gray;
+      }
+  }
+
+  &--dark {
+    background-color: $secondary-black;
+    color: $primary-light-gray;
+      &:hover {
+        border: 1px solid $primary-dark-gray;
+      }
+      &:focus-visible {
+        outline: none;
+        border: 1px solid $primary-light-gray;
+      }
+  }
+}
+.errorContainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.errorMessage {
+  color: $accept-error;
+  @include fonts('Inter', sans-serif, 300, 12px, 140%);
+}

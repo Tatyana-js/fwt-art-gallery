@@ -1,14 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Grid from './Grid';
 import type { IGridProps } from './Grid';
-import artist from '../Card/mock';
+import artists from './mock';
 import Card from '../Card/Card';
+import IArtist from '@/types/Artist';
 
 // данные для историй
 const paintingsData: IGridProps = {
-  children: Array(6)
-    .fill(artist)
-    .map((artistData) => <Card key={artistData._id} {...artistData} />),
+  children: artists.map((artistData: IArtist) => (
+    <Card key={artistData._id} artist={artistData} theme='dark'/>
+  )),
 };
 
 const meta = {

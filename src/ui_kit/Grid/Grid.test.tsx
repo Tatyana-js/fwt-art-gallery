@@ -1,11 +1,15 @@
 import { expect, test, describe } from 'vitest';
 import { render } from '@testing-library/react';
 import Grid from './Grid';
+import { Card } from '../Card';
 import type { IGridProps } from './Grid';
-import artist from '../Card/mock';
+import artists from './mock';
+import IArtist from '@/types/Artist';
 
-const mainPaintingsData: IGridProps = {
-  children: Array(6).fill(artist),
+const  mainPaintingsData: IGridProps = {
+  children: artists.map((artistData: IArtist) => (
+    <Card key={artistData._id} artist={artistData} theme='dark' />
+  )),
 };
 
 describe('GalleryList Component', () => {

@@ -9,11 +9,11 @@ $max-mobile-width: 320px;
     }
   } @else if $screen == tablet {
     @media screen and (min-width: $max-mobile-width) and (max-width: $max-tablet-width) {
-      @content;
+     @content;
     }
   } @else if $screen == mobile {
     @media screen and (max-width: $max-mobile-width) {
-      @content;
+     @content; 
     }
   } @else {
     @warn "Unknown screen size `#{$screen}` passed to screen mixin.";

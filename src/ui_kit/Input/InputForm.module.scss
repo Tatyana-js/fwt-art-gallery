@@ -1,0 +1,70 @@
+@use '@/styles/mixins.scss' as *;
+@use '@/styles/variables.scss' as *;
+
+.container {
+  width: 340px;
+}
+
+.label {
+  display: block;
+  @include fonts('Inter', sans-serif, 700, 12px, 100%);
+  margin-bottom: 8px;
+  &--light {
+    color: $primary-black;
+  }
+  &--dark {
+    color: $primary-white;
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 4px;
+  border: none;
+  &::placeholder {
+    color: $secondary-gray;
+    @include fonts('Inter', sans-serif, 300, 16px, 140%);
+  }
+  &::-webkit-input-placeholder {
+    color: $secondary-gray;
+    font-weight: 300;
+  }
+  &.inputError {
+    border: 1px solid $accept-error;
+  }
+
+  &--light {
+    background-color: $primary-white;
+    border: 1px solid $primary-light-gray;
+    &:hover {
+      border: 1px solid $secondary-gray;
+    }
+    &:focus-visible {
+      outline: none;
+      border: 1px solid $primary-dark-gray;
+    }
+  }
+
+  &--dark {
+    background-color: $secondary-black;
+    color: $primary-white;
+    &:hover {
+      border: 1px solid $primary-dark-gray;
+    }
+    &:focus-visible {
+      outline: none;
+      border: 1px solid $primary-light-gray;
+    }
+  }
+}
+.errorContainer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.errorMessage {
+  color: $accept-error;
+  @include fonts('Inter', sans-serif, 300, 12px, 140%);
+}

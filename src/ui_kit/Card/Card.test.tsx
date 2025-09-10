@@ -5,7 +5,7 @@ import artist from './mock';
 
 describe('Card Component', () => {
   describe('render card', () => {
-    const { container } = render(<Card artist={artist} theme="dark" />);
+    const { container } = render(<Card theme="dark" artist={artist} />);
     const card = container.firstChild;
 
     test('check Card', () => {
