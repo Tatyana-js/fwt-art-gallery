@@ -6,9 +6,9 @@ import type { IGridProps } from './Grid';
 import artists from './mock';
 import IArtist from '@/types/Artist';
 
-const  mainPaintingsData: IGridProps = {
+const mainPaintingsData: IGridProps = {
   children: artists.map((artistData: IArtist) => (
-    <Card key={artistData._id} artist={artistData} theme='dark' />
+    <Card key={artistData._id} artist={artistData} theme="dark" />
   )),
 };
 

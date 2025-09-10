@@ -8,7 +8,7 @@ import IArtist from '@/types/Artist';
 // данные для историй
 const paintingsData: IGridProps = {
   children: artists.map((artistData: IArtist) => (
-    <Card key={artistData._id} artist={artistData} theme='dark'/>
+    <Card key={artistData._id} artist={artistData} theme="dark" />
   )),
 };
 

@@ -1,4 +1,4 @@
-import IArtist from "@/types/Artist";
+import IArtist from '@/types/Artist';
 
 const artist: IArtist = {
   genres: ['66d70a64b123431edba12ccd'],
@@ -24,4 +24,4 @@ const artist: IArtist = {
   },
 };
 
-export default artist
+export default artist;

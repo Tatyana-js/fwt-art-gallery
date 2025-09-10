@@ -55,8 +55,7 @@ export const LightTheme: Story = {
   },
 };
 
-
-// С ошибкой 
+// С ошибкой
 export const WithErrorLight: Story = {
   args: {
     label: 'Email',
@@ -65,7 +64,6 @@ export const WithErrorLight: Story = {
     error: true,
   },
 };
-
 
 // Длинный текст
 export const WithLongText: Story = {
