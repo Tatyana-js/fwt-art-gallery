@@ -13,7 +13,7 @@ export interface ICardProps {
 const Card: FC<ICardProps> = ({ theme, artist }) => {
   const { mainPainting } = artist;
   const { name, yearOfCreation, image } = mainPainting;
-  console.log(artist);
+
   return (
     <div className={styles.painting}>
       <a href="#" className={styles.linkboxOverlay}></a>

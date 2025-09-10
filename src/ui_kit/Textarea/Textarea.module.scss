@@ -17,6 +17,8 @@
   min-height: 150px;
   max-height: 300px;
   overflow-y: scroll;
+  scrollbar-width: thin;
+
   @include fonts('Inter', sans-serif, 300, 16px, 140%);
 
   &--light {
@@ -35,12 +37,15 @@
   &--dark {
     background-color: $secondary-black;
     color: $primary-light-gray;
+    border: none;
     &:hover {
       border: 1px solid $primary-dark-gray;
+      border-radius: 4px;
     }
     &:focus-visible {
       outline: none;
       border: 1px solid $primary-light-gray;
+      border-radius: 4px;
     }
   }
 }

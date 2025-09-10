@@ -1,15 +1,15 @@
 import { expect, test, describe } from 'vitest';
 import { render } from '@testing-library/react';
-import InputForm from './InputForm';
+import Input from './Input';
 
-describe('Card InputForm', () => {
-  describe('render InputForm', () => {
+describe('Card Input', () => {
+  describe('render Input', () => {
     const { container } = render(
-      <InputForm label="text" theme="dark" error={true} />
+      <Input label="text" theme="dark" error={true} />
     );
     const inputForm = container.firstChild;
 
-    test('check InputForm', () => {
+    test('check Input', () => {
       expect(inputForm).toBeInTheDocument();
     });
   });

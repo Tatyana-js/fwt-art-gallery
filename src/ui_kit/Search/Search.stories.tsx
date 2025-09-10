@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Input from './Input';
+import Search from './Search';
 
 const meta = {
-  title: 'Components/Input',
-  component: Input,
+  title: 'Components/Search',
+  component: Search,
   tags: ['autodocs'],
   argTypes: {
     theme: {
@@ -11,28 +11,22 @@ const meta = {
       options: ['light', 'dark'],
       description: 'Цветовая тема компонента',
     },
-    label: {
-      control: 'text',
-      description: 'Текст лейбла',
-    },
     error: {
       control: 'boolean',
       description: 'Показать ошибку',
     },
   },
   args: {
-    label: 'Label',
     theme: 'light',
     error: false,
   },
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof Search>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // Базовая история
 export const DefaultDark: Story = {
   args: {
-    label: 'Имя художника',
     theme: 'dark',
     error: false,
   },
@@ -40,7 +34,6 @@ export const DefaultDark: Story = {
 
 export const DefaultLight: Story = {
   args: {
-    label: 'Имя художника',
     theme: 'light',
     error: false,
   },
@@ -48,7 +41,6 @@ export const DefaultLight: Story = {
 
 export const ErrorStory: Story = {
   args: {
-    label: 'Имя художника',
     theme: 'dark',
     error: true,
   },

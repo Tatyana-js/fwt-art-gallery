@@ -50,12 +50,21 @@
   &--light {
     color: $primary-dark-gray;
     background-color: $primary-white;
+    & svg {
+      fill: $primary-dark-gray;
+    }
     &:hover {
       color: $primary-black;
       @include textDecoration($primary-black);
+      & svg {
+        fill: $primary-black;
+      }
     }
     &:disabled {
       @include textDecoration($primary-light-gray);
+      & svg {
+        fill: $primary-light-gray;
+      }
     }
   }
 
@@ -63,13 +72,22 @@
     color: $primary-light-gray;
     background-color: $primary-black;
     @include textDecoration($primary-light-gray);
+    & svg {
+      fill: $primary-light-gray;
+    }
     &:hover {
       color: $primary-white;
       @include textDecoration($primary-white);
+      & svg {
+        fill: $primary-white;
+      }
     }
     &:disabled {
       color: $primary-dark-gray;
       @include textDecoration($primary-dark-gray);
+      & svg {
+        fill: $primary-dark-gray;
+      }
     }
   }
 

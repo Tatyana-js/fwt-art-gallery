@@ -3,14 +3,15 @@ import styles from './Textarea.module.scss';
 import clsx from 'clsx';
 import ErrorIcon from '@/assets/icons/ErrorIcon';
 
-export interface ITextareaProps {
+export interface ITextareaProps
+  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   text: string;
   theme: theme;
   error: boolean;
 }
 
-const TextArea = ({ label, text, theme, error }: ITextareaProps) => {
+const TextArea = ({ label, value, theme, error }: ITextareaProps) => {
   return (
     <div className={styles.container}>
       <label
@@ -21,7 +22,7 @@ const TextArea = ({ label, text, theme, error }: ITextareaProps) => {
       </label>
       <textarea
         id="textAreaId"
-        value={text}
+        value={value}
         className={clsx(
           styles.textarea,
           styles[`textarea--${theme}`],
