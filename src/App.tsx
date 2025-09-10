@@ -32,7 +32,7 @@ function App() {
       {/* <Checkbox theme="light" /> */}
       {/* <Input label="Field name" theme="dark" error={true}/> */}
       {/* <Textarea label="Description" text={text} theme="dark" error={false} /> */}
-      <Search theme='dark' error={true} />
+      <Search theme="dark" error={true} />
     </div>
   );
 }

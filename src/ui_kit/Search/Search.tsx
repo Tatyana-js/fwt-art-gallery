@@ -3,11 +3,11 @@ import styles from './Search.module.scss';
 import clsx from 'clsx';
 import ErrorIcon from '@/assets/icons/ErrorIcon';
 
-interface ISearchProps extends React.ButtonHTMLAttributes<HTMLButtonElement>{
+interface ISearchProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   theme: theme;
   error: boolean;
 }
-const value1 = 'deqw;lmdf'
+const value1 = 'deqw;lmdf';
 
 const Search = ({ theme, error }: ISearchProps) => {
   return (
