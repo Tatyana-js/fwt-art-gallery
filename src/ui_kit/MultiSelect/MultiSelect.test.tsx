@@ -7,7 +7,11 @@ import { selectedGenres } from './mock';
 describe('Card MultiSelect', () => {
   describe('render MultiSelect', () => {
     const { container } = render(
-      <MultiSelect  theme="dark" genres={genres} selectedGenres={selectedGenres} />
+      <MultiSelect
+        theme="dark"
+        genres={genres}
+        selectedGenres={selectedGenres}
+      />
     );
     const multiSelectEl = container.firstChild;
 

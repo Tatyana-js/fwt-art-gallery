@@ -1,7 +1,7 @@
 @use '@/styles/variables.scss' as *;
 @use '@/styles/mixins.scss' as *;
 
-.checkbox { 
+.checkbox {
   -webkit-appearance: none;
   -moz-appearance: none;
   -o-appearance: none;
@@ -16,7 +16,7 @@
   &--light {
     background-color: $secondary-white;
     border: 1px solid $primary-light-gray;
-     &:checked {
+    &:checked {
       &::before {
         content: '';
         position: absolute;
@@ -28,10 +28,10 @@
       }
     }
   }
-  
+
   &--dark {
     background-color: $primary-black;
-     &:checked {
+    &:checked {
       &::before {
         content: '';
         position: absolute;

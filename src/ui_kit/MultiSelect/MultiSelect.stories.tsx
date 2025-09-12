@@ -24,7 +24,7 @@ const meta = {
         category: 'Data',
       },
       description: 'Массив выбранных жанров',
-    }
+    },
   },
   args: {
     theme: 'light',

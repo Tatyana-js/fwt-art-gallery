@@ -35,7 +35,7 @@ export const DefaultDark: Story = {
     label: 'Имя художника',
     theme: 'dark',
     error: false,
-    placeholder: "Placeholder"
+    placeholder: 'Placeholder',
   },
 };
 

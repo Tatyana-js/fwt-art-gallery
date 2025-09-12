@@ -4,9 +4,7 @@ import Label from './Label';
 
 describe('Card Label', () => {
   describe('render Label', () => {
-    const { container } = render(
-      <Label  theme="dark" children="Romantism"/>
-    );
+    const { container } = render(<Label theme="dark" children="Romantism" />);
     const labelEl = container.firstChild;
 
     test('check Label', () => {

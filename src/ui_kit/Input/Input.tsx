@@ -33,7 +33,7 @@ const Input = ({ label, theme, error, ...props }: InputProps) => (
             styles.input,
             styles[`input--${theme}`],
             error && styles.inputError,
-            props.placeholder && styles.placeholder,
+            props.placeholder && styles.placeholder
           )}
           {...props}
         />
