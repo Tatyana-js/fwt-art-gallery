@@ -1,0 +1,120 @@
+@use '@/styles/mixins.scss' as *;
+@use '@/styles/variables.scss' as *;
+
+.container {
+  width: 340px;
+  height: 309px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: none;
+}
+
+.fieldName {
+  display: block;
+  margin-bottom: 8px;
+  @include fonts('Inter', sans-serif, 700, 12px, 100%);
+  &--light {
+    color: $primary-black;
+  }
+  &--dark {
+    color: $primary-white;
+  }
+}
+
+.containerMultiSelect {
+  width: 340px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #dedede;
+  border-radius: 4%;
+  &--dark {
+    background-color: $secondary-black;
+    border: none;
+  }
+}
+
+.showList {
+  width: 100%;
+  height: 46px;
+  padding: 6px 16px;
+
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+
+  &--light {
+    background-color: $primary-white;
+    border: 1px solid $primary-light-gray;
+
+    &:hover {
+      border: 1px solid $secondary-gray;
+    }
+    &.showListOpen {
+      border: 1px solid $primary-dark-gray;
+    }
+  }
+
+  &--dark {
+    background-color: $secondary-black;
+    &:hover {
+      border: 1px solid $primary-dark-gray;
+    }
+    &.showListOpen {
+      border: 1px solid $primary-light-gray;
+    }
+  }
+}
+
+.GenresListButton {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  &.GenresButtonClose {
+    transform: rotate(0.5turn);
+  }
+}
+
+.containerGenre {
+  display: flex;
+  gap: 12px;
+  border: none;
+  padding: 8px 15px;
+  @include fonts('Inter', sans-serif, 300, 16px, 140%);
+  &--light {
+    color: $primary-dark-gray;
+    &:hover {
+      background: #1212120d;
+    }
+  }
+
+  &--dark {
+    color: $primary-light-gray;
+    &:hover {
+      background: #cdcdcd0d;
+    }
+  }
+}
+
+.selectedGenres {
+  width: 100%;
+  display: inline-block;
+  gap: 12px;
+  padding-right: 50px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  &--light {
+    color: $primary-dark-gray;
+  }
+
+  &--dark {
+    color: $primary-white;
+  }
+}
+
+.selectedItem {
+  padding-right: 12px;
+  display: inline-block;
+}

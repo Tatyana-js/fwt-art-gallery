@@ -3,6 +3,17 @@
 
 .container {
   width: 340px;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputContainer {
+  &--light {
+    color: $primary-black;
+  }
+  &--dark {
+    background-color: $secondary-black;
+  }
 }
 
 .label {
@@ -22,9 +33,11 @@
   padding: 12px 16px;
   border-radius: 4px;
   border: none;
-  &::placeholder {
+
+  .placeholder {
     color: $secondary-gray;
     @include fonts('Inter', sans-serif, 300, 16px, 140%);
+    transition: opacity 0.2s ease;
   }
   &::-webkit-input-placeholder {
     color: $secondary-gray;
@@ -40,9 +53,12 @@
     &:hover {
       border: 1px solid $secondary-gray;
     }
-    &:focus-visible {
+    &:focus {
       outline: none;
       border: 1px solid $primary-dark-gray;
+      &.placeholder {
+        opacity: 0;
+      }
     }
   }
 
@@ -52,9 +68,12 @@
     &:hover {
       border: 1px solid $primary-dark-gray;
     }
-    &:focus-visible {
+    &:focus {
       outline: none;
       border: 1px solid $primary-light-gray;
+      &.placeholder {
+        opacity: 0;
+      }
     }
   }
 }

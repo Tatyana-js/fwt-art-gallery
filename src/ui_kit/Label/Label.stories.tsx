@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import Input from './Input';
+import Label from './Label';
 
 const meta = {
-  title: 'Components/Input',
-  component: Input,
+  title: 'Components/Label',
+  component: Label,
   tags: ['autodocs'],
   argTypes: {
     theme: {
@@ -11,46 +11,38 @@ const meta = {
       options: ['light', 'dark'],
       description: 'Цветовая тема компонента',
     },
-    label: {
+    children: {
       control: 'text',
       description: 'Текст лейбла',
     },
-    error: {
-      control: 'boolean',
-      description: 'Показать ошибку',
-    },
   },
   args: {
-    label: 'Label',
     theme: 'light',
-    error: false,
+    children: 'Romantism',
   },
-} satisfies Meta<typeof Input>;
+} satisfies Meta<typeof Label>;
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 // Базовая история
 export const DefaultDark: Story = {
   args: {
-    label: 'Имя художника',
     theme: 'dark',
-    error: false,
-    placeholder: "Placeholder"
+    children: 'Romantism',
   },
 };
 
 export const DefaultLight: Story = {
   args: {
-    label: 'Имя художника',
     theme: 'light',
-    error: false,
+    children: 'Romantism',
   },
 };
 
-export const ErrorStory: Story = {
+export const Clickable: Story = {
   args: {
-    label: 'Имя художника',
-    theme: 'dark',
-    error: true,
+    theme: 'light',
+    children: 'Click me',
+    onClick: () => console.log('Label clicked'),
   },
 };

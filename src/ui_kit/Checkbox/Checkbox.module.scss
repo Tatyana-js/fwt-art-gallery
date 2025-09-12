@@ -1,0 +1,46 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/mixins.scss' as *;
+
+.checkbox { 
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  position: relative;
+  transition: all 0.2s ease;
+
+  &--light {
+    background-color: $secondary-white;
+    border: 1px solid $primary-light-gray;
+     &:checked {
+      &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        @include icon(url('@/assets/icons/success_icon.svg'), 14px, 14px);
+      }
+    }
+  }
+  
+  &--dark {
+    background-color: $primary-black;
+     &:checked {
+      &::before {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: transparent;
+        @include icon(url('@/assets/icons/success_light_icon.svg'), 14px, 14px);
+      }
+    }
+  }
+}

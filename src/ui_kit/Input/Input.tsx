@@ -3,41 +3,49 @@ import type { theme } from '@/types/types.ts';
 import clsx from 'clsx';
 import ErrorIcon from '@/assets/icons/ErrorIcon';
 
-export interface InputFormProps
+export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   theme: theme;
-  error: boolean;
+  error?: boolean;
 }
 
-const InputForm = ({ label, theme, error }: InputFormProps) => (
+const Input = ({ label, theme, error, ...props }: InputProps) => (
   <div className={styles.container}>
-    <form className={styles.inputForm}>
+    <form>
       <label
         htmlFor="inputName"
         className={clsx(styles.label, styles[`label--${theme}`])}
       >
         {label}
       </label>
-      <input
-        id="inputName"
-        placeholder="Placeholder"
-        type="text"
-        value=""
+      <div
         className={clsx(
-          styles.input,
-          styles[`input--${theme}`],
-          error && styles.inputError
+          styles.inputContainer,
+          styles[`inputContainer--${theme}`]
         )}
-      />
-      {error && (
-        <div className={styles.errorContainer}>
-          <ErrorIcon />
-          <p className={styles.errorMessage}>This is an error message!</p>
-        </div>
-      )}
+      >
+        <input
+          id="inputName"
+          type="text"
+          value=""
+          className={clsx(
+            styles.input,
+            styles[`input--${theme}`],
+            error && styles.inputError,
+            props.placeholder && styles.placeholder,
+          )}
+          {...props}
+        />
+        {error && (
+          <div className={styles.errorContainer}>
+            <ErrorIcon />
+            <p className={styles.errorMessage}>This is an error message!</p>
+          </div>
+        )}
+      </div>
     </form>
   </div>
 );
 
-export default InputForm;
+export default Input;
