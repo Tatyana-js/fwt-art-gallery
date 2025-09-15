@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import Button from './Button';
-import DeleteIconLight from '@/assets/icons/DeleteIconLight';
-import ArrowIconLight from '@/assets/icons/ArrowIcon';
+import ArrowIcon from '@/assets/icons/ArrowIcon';
+import PlusIcon from '@/assets/icons/PlusIcon';
+import DeleteIcon from '@/assets/icons/DeleteIcon';
 
 const meta = {
   title: 'Components/Button',
@@ -47,7 +48,11 @@ export const TextButton: Story = {
   args: {
     variant: 'text',
     type: 'submit',
-    children: 'Button Text',
+    children: (
+      <>
+        <PlusIcon /> Button Text
+      </>
+    ),
     theme: 'dark',
   },
 };
@@ -56,7 +61,7 @@ export const IconButton: Story = {
   args: {
     variant: 'icon',
     type: 'submit',
-    children: <DeleteIconLight />,
+    children: <DeleteIcon />,
     theme: 'dark',
   },
 };
@@ -65,7 +70,7 @@ export const IconCircleButton: Story = {
   args: {
     variant: 'circleIcon',
     type: 'submit',
-    children: <ArrowIconLight />,
+    children: <ArrowIcon />,
     theme: 'dark',
   },
 };

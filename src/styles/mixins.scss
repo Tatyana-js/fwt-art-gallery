@@ -33,9 +33,9 @@ $max-mobile-width: 320px;
   line-height: $line-height;
 }
 
-@mixin icon($name, $size, $bs) {
-  position: absolute;
-  width: $size;
-  height: $size;
-  background: $name center/$bs no-repeat;
-}
+// @mixin iconAbsolute($name, $size, $bs) {
+//   position: absolute;
+//   width: $size;
+//   height: $size;
+//   background: $name center/$bs no-repeat;
+// }

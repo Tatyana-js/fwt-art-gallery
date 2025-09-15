@@ -1,3 +1,4 @@
+import { FC } from 'react'
 import type { theme } from '@/types/types.ts';
 import styles from './Textarea.module.scss';
 import clsx from 'clsx';
@@ -11,17 +12,17 @@ export interface ITextareaProps
   error: boolean;
 }
 
-const TextArea = ({ label, value, theme, error }: ITextareaProps) => {
+const TextArea: FC<ITextareaProps> = ({ label, value, theme, error }) => {
   return (
     <div className={styles.container}>
       <label
-        htmlFor="textAreaId"
+        htmlFor="label"
         className={clsx(styles.label, styles[`label--${theme}`])}
       >
         {label}
       </label>
       <textarea
-        id="textAreaId"
+        id="label"
         value={value}
         className={clsx(
           styles.textarea,

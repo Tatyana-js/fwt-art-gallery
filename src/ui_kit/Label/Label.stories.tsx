@@ -43,6 +43,5 @@ export const Clickable: Story = {
   args: {
     theme: 'light',
     children: 'Click me',
-    onClick: () => console.log('Label clicked'),
   },
 };

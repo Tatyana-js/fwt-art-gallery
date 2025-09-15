@@ -8,15 +8,6 @@
   padding: 8px 16px;
   border-radius: 4px;
 
-  .clear_icon {
-    position: absolute;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    transition: opacity 0.2s ease;
-  }
-
   &--light {
     background-color: $primary-white;
     border: 1px solid $primary-light-gray;
@@ -26,8 +17,6 @@
       left: 16px;
       top: 50%;
       transform: translateY(-50%);
-      @include icon(url('@/assets/icons/search_icon.svg'), 16px, 16px);
-    }
     &:hover {
       border-color: $secondary-gray;
     }
@@ -38,21 +27,19 @@
         color: transparent;
       }
     }
-    .clear_icon {
-      @include icon(url('@/assets/icons/clear_icon.svg'), 12px, 8px);
     }
   }
 
   &--dark {
     background-color: $secondary-black;
     border: 1px solid transparent;
+    color: $primary-light-gray;
     &::before {
       content: '';
       position: absolute;
       left: 16px;
       top: 50%;
       transform: translateY(-50%);
-      @include icon(url('@/assets/icons/search_light_icon.svg'), 16px, 16px);
     }
     &:hover {
       border: 1px solid $primary-dark-gray;
@@ -64,14 +51,19 @@
         color: transparent;
       }
     }
-    .clear_icon {
-      @include icon(url('@/assets/icons/clear_light_icon.svg'), 12px, 8px);
-    }
   }
-
   &.searchLineError {
     border-color: $accept-error;
   }
+}
+
+.clear_icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  transition: opacity 0.2s ease;
 }
 
 .input {
@@ -91,6 +83,8 @@
 }
 
 .errorContainer {
+  width: 340px;
+  position: relative;
   height: 24px;
   display: flex;
   gap: 8px;
