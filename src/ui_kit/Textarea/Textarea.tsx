@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC } from 'react';
 import type { theme } from '@/types/types.ts';
 import styles from './Textarea.module.scss';
 import clsx from 'clsx';

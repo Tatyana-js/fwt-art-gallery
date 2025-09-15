@@ -9,7 +9,7 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant: ButtonVariant;
   theme: theme;
-  children: ReactNode | string
+  children: ReactNode | string;
 }
 
 const Button: FC<ButtonProps> = ({ variant, children, theme, ...props }) => (
@@ -20,10 +20,9 @@ const Button: FC<ButtonProps> = ({ variant, children, theme, ...props }) => (
       type="button"
       {...props}
     >
-    {children}
-  </button>
+      {children}
+    </button>
   </div>
-
 );
 
 export default Button;

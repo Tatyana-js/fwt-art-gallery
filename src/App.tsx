@@ -70,10 +70,10 @@ function App() {
       {/* <Card artist={artist} theme='dark'/> */}
       {/* <Button variant="circleIcon" theme="dark">
         <ArrowIcon /> */}
-        {/* BUTTON */}
+      {/* BUTTON */}
       {/* </Button> */}
       {/* <Checkbox theme="light" /> */}
-      <Input label="Field name" theme="dark" error={false}/>
+      <Input label="Field name" theme="dark" error={false} />
       {/* <Textarea label="Description" text={text} theme="dark" error={false} /> */}
       <Search theme="light" error={true} />
       {/* <Label theme="dark">Romantism

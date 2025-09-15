@@ -23,7 +23,7 @@ const Search = ({ theme, error }: ISearchProps) => {
     >
       <Search_icon />
       <Input
-        label=''
+        label=""
         theme={theme}
         placeholder="Placeholder"
         type="text"

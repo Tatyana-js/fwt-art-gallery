@@ -8,10 +8,7 @@ export interface LabelProps extends React.HTMLAttributes<HTMLSpanElement> {
 }
 
 const Label: FC<LabelProps> = ({ theme, children, ...props }) => (
-  <span 
-    className={clsx(styles.label, styles[`label--${theme}`])} 
-    {...props}
-  >
+  <span className={clsx(styles.label, styles[`label--${theme}`])} {...props}>
     {children}
   </span>
 );

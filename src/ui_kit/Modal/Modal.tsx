@@ -38,9 +38,8 @@ const Modal = ({ theme }: IModalProps) => {
         <div className={styles.buttonContainer}>
           <Button variant="defaultButton" theme={theme}>
             LOG IN
-        </Button>
+          </Button>
         </div>
- 
       </div>
     </div>
   );

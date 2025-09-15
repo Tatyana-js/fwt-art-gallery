@@ -17,16 +17,16 @@
       left: 16px;
       top: 50%;
       transform: translateY(-50%);
-    &:hover {
-      border-color: $secondary-gray;
-    }
-    &:focus-within {
-      border-color: $primary-dark-gray;
-      caret-color: $primary-dark-gray;
-      ::placeholder {
-        color: transparent;
+      &:hover {
+        border-color: $secondary-gray;
       }
-    }
+      &:focus-within {
+        border-color: $primary-dark-gray;
+        caret-color: $primary-dark-gray;
+        ::placeholder {
+          color: transparent;
+        }
+      }
     }
   }
 

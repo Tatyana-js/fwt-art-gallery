@@ -3,7 +3,7 @@ type ClearIcon = {
   onClick: () => void;
 };
 
-const ClearIcon: React.FC<ClearIcon>  = ({ className, onClick }) => {
+const ClearIcon: React.FC<ClearIcon> = ({ className, onClick }) => {
   return (
     <svg
       width="12"

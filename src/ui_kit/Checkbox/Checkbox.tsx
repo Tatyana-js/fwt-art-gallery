@@ -21,9 +21,7 @@ const Checkbox: FC<CheckboxProps> = ({ theme, ...props }) => (
       className={clsx(styles.checkbox, styles[`checkbox--${theme}`])}
       {...props}
     />
-    {props.checked && (
-        <Success className={styles.checkboxIcon}/>
-    )}
+    {props.checked && <Success className={styles.checkboxIcon} />}
   </div>
 );
 
