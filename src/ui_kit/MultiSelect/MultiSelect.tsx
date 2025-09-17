@@ -23,7 +23,7 @@ interface IMultiSelectProps
 const isCheckedGenre = (selectedGenres: IGenre[], _id: string) => {
   const selectedIds = selectedGenres.map((item: IGenre) => item._id);
   return selectedIds.includes(_id);
-}
+};
 
 const MultiSelect: React.FC<IMultiSelectProps> = ({
   genres,
@@ -32,7 +32,11 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(true);
 
-  const renderSelect = (genres: IGenre[], theme: theme, selectedGenres: IGenre[]) => (
+  const renderSelect = (
+    genres: IGenre[],
+    theme: theme,
+    selectedGenres: IGenre[]
+  ) => (
     <>
       {genres.map(({ _id, name }) => (
         <div
@@ -42,7 +46,11 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
             styles[`containerGenre--${theme}`]
           )}
         >
-          <Checkbox theme={theme} text={name} checked={isCheckedGenre(selectedGenres, _id)}/>
+          <Checkbox
+            theme={theme}
+            text={name}
+            checked={isCheckedGenre(selectedGenres, _id)}
+          />
         </div>
       ))}
     </>
@@ -77,7 +85,10 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
         label="Field name"
         theme={theme}
         readOnly
-        className={clsx(styles.inputContainer, styles[`inputContainer--${theme}`])}
+        className={clsx(
+          styles.inputContainer,
+          styles[`inputContainer--${theme}`]
+        )}
       />
       <button
         type="button"

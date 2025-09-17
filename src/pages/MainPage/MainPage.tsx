@@ -5,13 +5,12 @@ import artists from '@/ui_kit/Grid/mock';
 import Grid from '@/ui_kit/Grid/Grid';
 import Card from '@/ui_kit/Card/Card';
 import IArtist from '@/types/Artist.ts';
-import Footer from '@/components/Footer/Footer';
 
 export interface IMainPage {
   theme: theme;
 }
 
-const MainPage:FC<IMainPage> = ({ theme }) => {
+const MainPage: FC<IMainPage> = ({ theme }) => {
   return (
     <div className={styles.container}>
       <Grid>
@@ -20,7 +19,7 @@ const MainPage:FC<IMainPage> = ({ theme }) => {
         ))}
       </Grid>
     </div>
-  )
-}
+  );
+};
 
 export default MainPage;

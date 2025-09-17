@@ -21,17 +21,30 @@ const Footer: FC<IFooter> = ({ theme }) => {
       <div className="container">
         <div className={clsx(styles.info, styles[`info--${theme}`])}>
           <div className={styles.footerContent}>
-            <p className={clsx(styles.footerText, styles[`footerText--${theme}`])}>
-              Проект реализован в рамках стажировки <br />для
-              Frontend-разработчиков от компании{' '}
-              <a href="#" className={styles.frameworkTeam}>Framework Team</a>
+            <p
+              className={clsx(
+                styles.footerText,
+                styles[`footerText--${theme}`]
+              )}
+            >
+              Проект реализован в рамках стажировки <br />
+              для Frontend-разработчиков от компании{' '}
+              <a href="#" className={styles.frameworkTeam}>
+                Framework Team
+              </a>
             </p>
-            <div className={styles.name}>Андреева Татьяна, 2025</div>  
+            <div className={styles.name}>Андреева Татьяна, 2025</div>
           </div>
           <div className={styles.connectionIcons}>
-            <div className={styles.iconContainer}><VkIcon /></div>
-            <div className={styles.iconContainer}><InstagrammIcon /></div>
-            <div className={styles.iconContainer}><FacebookIcon /></div>
+            <div className={styles.iconContainer}>
+              <VkIcon />
+            </div>
+            <div className={styles.iconContainer}>
+              <InstagrammIcon />
+            </div>
+            <div className={styles.iconContainer}>
+              <FacebookIcon />
+            </div>
           </div>
         </div>
       </div>

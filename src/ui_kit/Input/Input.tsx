@@ -9,36 +9,42 @@ export interface InputProps
   label: string;
   theme: theme;
   error?: boolean;
-  className?:  string;
+  className?: string;
 }
 
-const Input: FC<InputProps> = ({ label, theme, error, className, ...props }) => (
-  <div className={clsx(styles.container,className)}>
+const Input: FC<InputProps> = ({
+  label,
+  theme,
+  error,
+  className,
+  ...props
+}) => (
+  <div className={clsx(styles.container, className)}>
     <label
       htmlFor={label}
       className={clsx(styles.label, styles[`label--${theme}`])}
     >
       {label}
     </label>
-      <input
-        id={label}
-        value={props.value}
-        className={clsx(
-          styles.input,
-          styles[`input--${theme}`],
-          error && styles.inputError,
-          props.placeholder && styles.placeholder,
-          className
-        )}
-        {...props}
-      />
-      {error && (
-        <div className={styles.errorContainer}>
-          <ErrorIcon />
-          <p className={styles.errorMessage}>This is an error message!</p>
-        </div>
+    <input
+      id={label}
+      value={props.value}
+      className={clsx(
+        styles.input,
+        styles[`input--${theme}`],
+        error && styles.inputError,
+        props.placeholder && styles.placeholder,
+        className
       )}
-    </div>
+      {...props}
+    />
+    {error && (
+      <div className={styles.errorContainer}>
+        <ErrorIcon />
+        <p className={styles.errorMessage}>This is an error message!</p>
+      </div>
+    )}
+  </div>
 );
 
 export default Input;

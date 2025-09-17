@@ -69,10 +69,13 @@ function App() {
       <Header theme={theme} />
       <MainPage theme={theme} />
       <Footer theme={theme} />
-      <MultiSelect genres={genres} selectedGenres={selectedGenres} theme={theme} onChange={() => {}}/>
+      <MultiSelect
+        genres={genres}
+        selectedGenres={selectedGenres}
+        theme={theme}
+        onChange={() => {}}
+      />
     </>
-
-
   );
 }
 

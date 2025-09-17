@@ -11,23 +11,23 @@ export interface CheckboxProps
 }
 
 const Checkbox: FC<CheckboxProps> = ({ theme, text, ...props }) => (
-    <label
-      className={clsx(
-        styles.checkboxContainer,
-        styles[`checkboxContainer--${theme}`]
-      )}
-    >
-      <div className={styles.checkedContainer}>
-        <input
-          type="checkbox"
-          className={clsx(styles.checkbox, styles[`checkbox--${theme}`])}
-          {...props}
-        />
-        {props.checked && <Success />}
-      </div>
+  <label
+    className={clsx(
+      styles.checkboxContainer,
+      styles[`checkboxContainer--${theme}`]
+    )}
+  >
+    <div className={styles.checkedContainer}>
+      <input
+        type="checkbox"
+        className={clsx(styles.checkbox, styles[`checkbox--${theme}`])}
+        {...props}
+      />
+      {props.checked && <Success />}
+    </div>
 
-      {text && text}
-    </label>
-  );
+    {text && text}
+  </label>
+);
 
 export default Checkbox;

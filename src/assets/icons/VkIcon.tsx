@@ -14,4 +14,3 @@ const VkIcon = () => (
 );
 
 export default VkIcon;
-

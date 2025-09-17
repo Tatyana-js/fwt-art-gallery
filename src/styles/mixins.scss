@@ -1,5 +1,5 @@
 $min-desktop-width: 1280px;
-$max-tablet-width: 1024px; 
+$max-tablet-width: 1024px;
 $min-tablet-width: 768px;
 $min-mobile-width: 320px;
 
@@ -9,7 +9,7 @@ $min-mobile-width: 320px;
       @content;
     }
   } @else if $screen == tablet_lg {
-    @media screen and (min-width: $max-tablet-width)  {
+    @media screen and (min-width: $max-tablet-width) {
       @content;
     }
   } @else if $screen == tablet {
@@ -37,4 +37,3 @@ $min-mobile-width: 320px;
   font-size: $font-size;
   line-height: $line-height;
 }
-
