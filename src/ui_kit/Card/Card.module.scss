@@ -1,11 +1,6 @@
 @use '@/styles/mixins.scss' as *;
 @use '@/styles/variables.scss' as *;
 
-@mixin painting-container {
-  padding: 20px;
-  width: 300px;
-}
-
 .painting {
   position: relative;
   aspect-ratio: 1.507;
@@ -48,6 +43,7 @@ img {
   left: 0;
   border: none;
   padding: 8px 12px;
+  transition: all 0.5s ease;
   &--light {
     background-color: $primary-white;
     color: $primary-black;
@@ -56,36 +52,96 @@ img {
     background-color: $primary-black;
     color: $primary-white;
   }
-  @include fonts('Cormorant SC', serif, 500, 12px, 100%);
+  @include fonts('Cormorant SC', sans-serif, 500, 12px, 100%);
+}
 
-  @include screen(desktop) {
-    @include painting-container;
-    @include fonts('Cormorant SC', serif, 500, 16px, 100%);
+.line {
+  position: absolute;
+  width: 24px;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.5s ease;
+  &--light {
+    background-color: $accent-red;
   }
+  &--dark {
+    background-color: $accent-gold;
+  }
+}
+@include screen(tablet) {
+  .container {
+    width: 300px;
+    padding: 12px;
+    @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
+  }
+}
 
-  @include screen(tablet) {
-    @include painting-container;
-    @include fonts('Cormorant SC', serif, 500, 16px, 100%);
+@include screen(tablet_lg) {
+  .container {
+    width: 300px;
+    padding: 20px;
+    @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
+  }
+  .line {
+    position: absolute;
+    width: 2px;
+    height: 42px;
+    left: 0;
+    top: 20px;
+    transition: all 0.5s ease;
+    &--light {
+      background-color: $accent-red;
+    }
+    &--dark {
+      background-color: $accent-gold;
+    }
+  }
+}
+
+@include screen(desktop) {
+  .container {
+    width: 300px;
+    padding: 20px;
+    @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
+  }
+  .line {
+    position: absolute;
+    width: 2px;
+    height: 42px;
+    left: 0;
+    top: 20px;
+    transition: all 0.5s ease;
+    &--light {
+      background-color: $accent-red;
+    }
+    &--dark {
+      background-color: $accent-gold;
+    }
   }
 }
 
 .created {
   margin-top: 4px;
-  @include screen(desktop) {
-    margin-top: 8px;
-    @include fonts('Inter', sans-serif, 700, 12px, 100%);
+  @include fonts('Inter', sans-serif, 700, 8px, 100%);
+  transition: all 0.5s ease;
+  &--light {
+    color: $accent-red;
+  }
+  &--dark {
+    color: $accent-gold;
   }
 
   @include screen(tablet) {
     margin-top: 8px;
     @include fonts('Inter', sans-serif, 700, 12px, 100%);
   }
-
-  @include fonts('Inter', sans-serif, 700, 8px, 100%);
-  &--light {
-    color: $accent-red;
-  }
-  &--dark {
-    color: $accent-gold;
+  @include screen(desktop) {
+    margin-top: 8px;
+    @include fonts('Inter', sans-serif, 700, 12px, 100%);
   }
 }

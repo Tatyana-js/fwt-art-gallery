@@ -2,11 +2,21 @@
 @use '@/styles/mixins.scss' as *;
 
 .checkboxContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 12px;
+  position: relative;
+}
+
+.checkbox {
+  all: unset;
+  position: relative;
   width: 24px;
   height: 24px;
   border-radius: 4px;
-  position: relative;
   transition: all 0.2s ease;
+  
   &--light {
     background-color: $secondary-white;
     border: 1px solid $primary-light-gray;
@@ -19,17 +29,15 @@
   }
 }
 
-.checkbox {
-  width: 100%;
-  height: 100%;
-  background-color: transparent;
-  position: absolute;
-  opacity: 0;
-}
-
-.checkboxIcon {
+svg {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.checkedContainer {
+  width: 24px;
+  position: relative;
+}
+

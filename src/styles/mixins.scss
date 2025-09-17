@@ -1,18 +1,23 @@
-$max-desktop-width: 1441px;
-$max-tablet-width: 768px;
-$max-mobile-width: 320px;
+$min-desktop-width: 1280px;
+$max-tablet-width: 1024px; 
+$min-tablet-width: 768px;
+$min-mobile-width: 320px;
 
 @mixin screen($screen) {
   @if $screen == desktop {
-    @media screen and (min-width: $max-tablet-width) {
+    @media screen and (min-width: $min-desktop-width) {
+      @content;
+    }
+  } @else if $screen == tablet_lg {
+    @media screen and (min-width: $max-tablet-width)  {
       @content;
     }
   } @else if $screen == tablet {
-    @media screen and (min-width: $max-mobile-width) and (max-width: $max-tablet-width) {
+    @media screen and (min-width: $min-tablet-width) {
       @content;
     }
   } @else if $screen == mobile {
-    @media screen and (max-width: $max-mobile-width) {
+    @media screen and (min-width: $min-mobile-width) {
       @content;
     }
   } @else {
@@ -27,15 +32,9 @@ $max-mobile-width: 320px;
   $font-size,
   $line-height
 ) {
-  font-family: $font-family;
+  font-family: $font-family, $font-fallback;
   font-weight: $font-weight;
   font-size: $font-size;
   line-height: $line-height;
 }
 
-// @mixin iconAbsolute($name, $size, $bs) {
-//   position: absolute;
-//   width: $size;
-//   height: $size;
-//   background: $name center/$bs no-repeat;
-// }

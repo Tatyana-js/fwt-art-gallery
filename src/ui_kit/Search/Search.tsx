@@ -6,11 +6,10 @@ import ClearIcon from '@/assets/icons/ClearIcon';
 import Search_icon from '@/assets/icons/Search_icon';
 import Input from '../Input/Input';
 
-interface ISearchProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ISearchProps extends React.InputHTMLAttributes<HTMLInputElement> {
   theme: theme;
   error: boolean;
 }
-const value1 = 'rewae';
 
 const Search = ({ theme, error }: ISearchProps) => {
   return (
@@ -34,7 +33,7 @@ const Search = ({ theme, error }: ISearchProps) => {
           error && styles.inputError
         )}
       />
-      {value1 && <ClearIcon className={styles.clear_icon} onClick={() => {}} />}
+      {value1 && <ClearIcon />}
       {error && (
         <div className={styles.errorContainer}>
           <ErrorIcon />

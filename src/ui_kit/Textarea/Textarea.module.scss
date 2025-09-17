@@ -8,6 +8,7 @@
 }
 .label {
   color: $primary-white;
+  transition: all 0.5s ease;
   @include fonts('Inter', sans-serif, 700, 12px, 100%);
 }
 
@@ -18,6 +19,7 @@
   max-height: 300px;
   overflow-y: scroll;
   scrollbar-width: thin;
+  transition: all 0.5s ease;
 
   @include fonts('Inter', sans-serif, 300, 16px, 140%);
 

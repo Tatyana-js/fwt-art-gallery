@@ -20,22 +20,39 @@ body {
   width: 100vw;
   min-height: 100vh;
   padding-bottom: 20px;
-  background-color: #ffffff;
-  // background-color: #121212;
+  // background-color: #ffffff;
+  background-color: #121212;
 }
 
 .container {
+  width: 100%;
+  max-width: 768px;
   margin: 0 auto;
-}
-
-@include screen(desktop) {
-  .container {
-    padding-bottom: 40px;
-  }
+  padding: 0 20px;
 }
 
 @include screen(tablet) {
   .container {
+    max-width: 1024px;
     padding-bottom: 40px;
   }
 }
+
+@include screen(tablet_lg) {
+  .container {
+    max-width: 1280px;
+    padding-bottom: 40px;
+    padding: 0 32px;
+  }
+}
+
+@include screen(desktop) {
+  .container {
+    width: 1280px;
+    max-width: 1440px;
+    padding: 0 32px;
+    margin: 0 auto;
+  }
+}
+
+

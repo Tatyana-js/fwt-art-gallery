@@ -7,22 +7,27 @@ import Success from '@/assets/icons/Success';
 export interface CheckboxProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   theme: theme;
+  text?: string;
 }
 
-const Checkbox: FC<CheckboxProps> = ({ theme, ...props }) => (
-  <div
-    className={clsx(
-      styles.checkboxContainer,
-      styles[`checkboxContainer--${theme}`]
-    )}
-  >
-    <input
-      type="checkbox"
-      className={clsx(styles.checkbox, styles[`checkbox--${theme}`])}
-      {...props}
-    />
-    {props.checked && <Success className={styles.checkboxIcon} />}
-  </div>
-);
+const Checkbox: FC<CheckboxProps> = ({ theme, text, ...props }) => (
+    <label
+      className={clsx(
+        styles.checkboxContainer,
+        styles[`checkboxContainer--${theme}`]
+      )}
+    >
+      <div className={styles.checkedContainer}>
+        <input
+          type="checkbox"
+          className={clsx(styles.checkbox, styles[`checkbox--${theme}`])}
+          {...props}
+        />
+        {props.checked && <Success />}
+      </div>
+
+      {text && text}
+    </label>
+  );
 
 export default Checkbox;

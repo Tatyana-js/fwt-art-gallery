@@ -6,7 +6,10 @@ export interface IGridProps {
 }
 
 const Grid: React.FC<IGridProps> = ({ children }) => (
-  <div className={styles.galleryList}>{children}</div>
+  <div className='container'>
+    <div className={styles.galleryList}>{children}</div>
+  </div>
+  
 );
 
 export default Grid;

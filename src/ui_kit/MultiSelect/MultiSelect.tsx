@@ -3,8 +3,9 @@ import clsx from 'clsx';
 import type { theme } from '@/types/types';
 import { Checkbox } from '../Checkbox';
 import styles from './MultiSelect.module.scss';
-import GenresListButton from '@/assets/icons/GenresListButton';
+import SelectButton from '@/assets/icons/SelectButton';
 import Label from '../Label/Label';
+import Input from '../Input/Input';
 
 export interface IGenre {
   _id: string;
@@ -16,6 +17,12 @@ interface IMultiSelectProps
   genres: IGenre[];
   theme: theme;
   selectedGenres: IGenre[];
+  onChange: () => void;
+}
+
+const isCheckedGenre = (selectedGenres: IGenre[], _id: string) => {
+  const selectedIds = selectedGenres.map((item: IGenre) => item._id);
+  return selectedIds.includes(_id);
 }
 
 const MultiSelect: React.FC<IMultiSelectProps> = ({
@@ -25,7 +32,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(true);
 
-  const renderSelect = (genres: IGenre[], theme: theme) => (
+  const renderSelect = (genres: IGenre[], theme: theme, selectedGenres: IGenre[]) => (
     <>
       {genres.map(({ _id, name }) => (
         <div
@@ -35,8 +42,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
             styles[`containerGenre--${theme}`]
           )}
         >
-          <Checkbox theme={theme} />
-          <p className={styles.genreName}>{name}</p>
+          <Checkbox theme={theme} text={name} checked={isCheckedGenre(selectedGenres, _id)}/>
         </div>
       ))}
     </>
@@ -60,34 +66,29 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
   );
 
   return (
-    <div className={styles.container}>
-      <span className={clsx(styles.fieldName, styles[`fieldName--${theme}`])}>
-        Field name
-      </span>
+    <div className={styles.multiContainer}>
       <div
         className={clsx(
-          styles.containerMultiSelect,
-          styles[`containerMultiSelect--${theme}`]
+          styles.containerTheme,
+          styles[`containerTheme--${theme}`]
         )}
+      ></div>
+      <Input
+        label="Field name"
+        theme={theme}
+        readOnly
+        className={clsx(styles.inputContainer, styles[`inputContainer--${theme}`])}
+      />
+      <button
+        type="button"
+        aria-label="Toggle dropdown menu"
+        className={clsx(styles.selectButton, isOpen && styles.rotated)}
+        onClick={() => setIsOpen(!isOpen)}
       >
-        <div
-          className={clsx(
-            styles.showList,
-            styles[`showList--${theme}`],
-            isOpen && styles.showListOpen
-          )}
-        >
-          {renderSelectedLabel(selectedGenres, theme)}
-          <GenresListButton
-            className={clsx(
-              styles.GenresListButton,
-              isOpen && styles.GenresButtonClose
-            )}
-            onClick={() => setIsOpen(!isOpen)}
-          />
-        </div>
-        {isOpen && renderSelect(genres, theme)}
-      </div>
+        <SelectButton />
+      </button>
+      {renderSelectedLabel(selectedGenres, theme)}
+      {isOpen && renderSelect(genres, theme, selectedGenres)}
     </div>
   );
 };

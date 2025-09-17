@@ -1,0 +1,103 @@
+@use '@/styles/mixins.scss' as *;
+@use '@/styles/variables.scss' as *;
+
+.containerBorder {
+  border-top: 1px solid $primary-light-gray;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+  margin-bottom: 32px;
+  transition: all 0.5s ease;
+  display: flex;
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
+  }
+}
+
+.footerContent {
+  width: 267px;
+  margin-bottom: 20px;
+}
+
+.footerText {
+  @include fonts('Inter', sans-serif, 300, 12px, 140%);
+}
+
+.frameworkTeam {
+  @include fonts('Inter', sans-serif, 500, 12px, 140%);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  color: currentColor;
+}
+
+.name {
+  margin-top: 9px;
+  @include fonts('Inter', sans-serif, 300, 12px, 140%);
+  color: $secondary-gray;
+}
+
+.connectionIcons {
+  width: 112px;
+  height: 24px;
+  display: flex;
+  gap: 20px;
+}
+.iconContainer {
+  color: $primary-dark-gray;
+  width: 24px;
+  height: 24px;
+  position: relative;
+  svg {
+    position: absolute;
+  }
+}
+
+@include screen(tablet) {
+  .info {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .footerContent {
+    width: 485px;
+  }
+  .footerText {
+    @include fonts('Inter', sans-serif, 300, 16px, 140%);
+  }
+  .frameworkTeam {
+    @include fonts('Inter', sans-serif, 500, 16px, 140%);
+  }
+  .name {
+    margin-top: 12px;
+    @include fonts('Inter', sans-serif, 300, 16px, 140%);
+  }
+}
+
+@include screen(desktop) {
+  .info {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .footerContent {
+    width: 485px;
+  }
+  .footerText {
+    @include fonts('Inter', sans-serif, 300, 16px, 140%);
+  }
+  .frameworkTeam {
+    @include fonts('Inter', sans-serif, 500, 16px, 140%);
+  }
+  .name {
+    margin-top: 40px;
+    @include fonts('Inter', sans-serif, 300, 16px, 140%);
+  }
+}

@@ -3,11 +3,13 @@
 
 .label {
   width: fit-content;
+  height: 33px;
   display: flex;
   align-items: center;
   gap: 8px;
   border-radius: 30px;
   padding: 8px 16px;
+  transition: all 0.5s ease;
 
   @include fonts('Inter', sans-serif, 500, 12px, 140%);
 

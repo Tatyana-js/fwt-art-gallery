@@ -9,29 +9,26 @@ export interface InputProps
   label: string;
   theme: theme;
   error?: boolean;
+  className?:  string;
 }
 
-const Input: FC<InputProps> = ({ label, theme, error, ...props }) => (
-  <div className={styles.container}>
+const Input: FC<InputProps> = ({ label, theme, error, className, ...props }) => (
+  <div className={clsx(styles.container,className)}>
     <label
-      htmlFor="inputName"
+      htmlFor={label}
       className={clsx(styles.label, styles[`label--${theme}`])}
     >
       {label}
     </label>
-    <div
-      className={clsx(
-        styles.inputContainer,
-        styles[`inputContainer--${theme}`]
-      )}
-    >
       <input
+        id={label}
         value={props.value}
         className={clsx(
           styles.input,
           styles[`input--${theme}`],
           error && styles.inputError,
-          props.placeholder && styles.placeholder
+          props.placeholder && styles.placeholder,
+          className
         )}
         {...props}
       />
@@ -42,7 +39,6 @@ const Input: FC<InputProps> = ({ label, theme, error, ...props }) => (
         </div>
       )}
     </div>
-  </div>
 );
 
 export default Input;
