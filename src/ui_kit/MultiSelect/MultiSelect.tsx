@@ -17,7 +17,6 @@ interface IMultiSelectProps
   genres: IGenre[];
   theme: theme;
   selectedGenres: IGenre[];
-  onChange: () => void;
 }
 
 const isCheckedGenre = (selectedGenres: IGenre[], _id: string) => {
@@ -30,7 +29,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
   selectedGenres,
   theme,
 }) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
   const renderSelect = (
     genres: IGenre[],
@@ -65,7 +64,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
     >
       {selectedGenres.map(({ _id, name }) => (
         <div key={_id} className={styles.selectedItem}>
-          <Label theme={theme} onClick={() => {}}>
+          <Label theme={theme} onClick={() => {}} showCloseButton={true}>
             {name}
           </Label>
         </div>

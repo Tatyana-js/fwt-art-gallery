@@ -49,12 +49,17 @@
   gap: 20px;
 }
 .iconContainer {
-  color: $primary-dark-gray;
   width: 24px;
   height: 24px;
   position: relative;
   svg {
     position: absolute;
+  }
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
   }
 }
 

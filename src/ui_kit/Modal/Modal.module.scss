@@ -1,80 +1,68 @@
 @use '@/styles/variables.scss' as *;
 @use '@/styles/mixins.scss' as *;
 
-.container {
-  display: block;
-  width: 268px;
-  height: 426px;
-  margin: 0 auto;
-  border: none;
-  @include screen(desktop) {
-    &--light {
-      background-color: $secondary-white;
-      border: 1px solid $primary-dark-gray;
-    }
-    &--dark {
-      background-color: $secondary-white;
-      border: 1px solid $primary-light-gray;
-    }
-  }
-}
+.modal_overlay {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
 
-.desktopImage {
-  display: none;
-}
-
-.desktopImage {
-  @include screen(desktop) {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-}
-
-.formContainer {
+  transition: all 0.3s ease;
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch; // растягиваем на всю высоту
+  &--light {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  &--dark {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+}
+.modalContainer {
+  width: 252px;
+  height: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin: 0 auto;
-  width: 358px;
-  height: 435px;
-  margin-top: 110px;
+
+  &--light {
+    color: $primary-dark-gray;
+    background-color: $secondary-white;
+  }
+  &--dark {
+    color: $primary-light-gray;
+    background-color: $primary-black;
+  }
+}
+.clearButton {
+  width: 24px;
+  height: 24px;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  padding: 0;
+  svg {
+    width: 16px;
+    height: 16px;
+  }
   &--light {
     color: $primary-dark-gray;
   }
   &--dark {
-    color: $primary-white;
-  }
-
-  .formTitle {
-    margin: 0 auto;
-    text-align: center;
-    @include fonts('Cormorant SC', sans-serif, 500, 48px, 100%);
-  }
-
-  .signUpMessage {
-    text-align: center;
-    @include fonts('Inter', sans-serif, 300, 16px, 140%);
-  }
-
-  .signUpLink {
-    @include fonts('Inter', sans-serif, 500, 16px, 140%);
-    &--light {
-      color: $primary-dark-gray;
-    }
-    &--dark {
-      color: $primary-white;
-    }
+    color: $primary-light-gray;
   }
 }
-
-.inputContainer {
-  display: flex;
-  flex-direction: column;
-  margin: 32px 30px;
-  gap: 40px;
-}
-
-.buttonContainer {
-  margin-top: 10px;
+@include screen(tablet) {
+  .modalContainer {
+    width: 466px;
+  }
+  .clearButton {
+    right: 24px;
+    top: 36px;
+  }
 }

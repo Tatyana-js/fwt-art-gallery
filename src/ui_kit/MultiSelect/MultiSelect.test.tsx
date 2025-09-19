@@ -1,6 +1,6 @@
 import { expect, test, describe } from 'vitest';
 import { render } from '@testing-library/react';
-import MultiSelect from './MultiSelect';
+import MultiSelect from './Registration';
 import { genres } from './mock';
 import { selectedGenres } from './mock';
 

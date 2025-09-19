@@ -26,7 +26,7 @@ const Checkbox: FC<CheckboxProps> = ({ theme, text, ...props }) => (
       {props.checked && <Success />}
     </div>
 
-    {text && text}
+    {text}
   </label>
 );
 

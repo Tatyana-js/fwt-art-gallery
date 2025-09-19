@@ -61,7 +61,6 @@ img {
   height: 100%;
   top: 0;
   right: 0;
-  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,6 +93,9 @@ img {
     left: 0;
     top: 20px;
     transition: all 0.5s ease;
+    svg {
+      display: none;
+    }
     &--light {
       background-color: $accent-red;
     }
@@ -116,6 +118,9 @@ img {
     left: 0;
     top: 20px;
     transition: all 0.5s ease;
+    svg {
+      display: none;
+    }
     &--light {
       background-color: $accent-red;
     }

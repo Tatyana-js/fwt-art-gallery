@@ -36,13 +36,13 @@ const Footer: FC<IFooter> = ({ theme }) => {
             <div className={styles.name}>Андреева Татьяна, 2025</div>
           </div>
           <div className={styles.connectionIcons}>
-            <div className={styles.iconContainer}>
+            <div className={clsx(styles.iconContainer, styles[`iconContainer--${theme}`])}>
               <VkIcon />
             </div>
-            <div className={styles.iconContainer}>
+            <div className={clsx(styles.iconContainer, styles[`iconContainer--${theme}`])}>
               <InstagrammIcon />
             </div>
-            <div className={styles.iconContainer}>
+            <div className={clsx(styles.iconContainer, styles[`iconContainer--${theme}`])}>
               <FacebookIcon />
             </div>
           </div>

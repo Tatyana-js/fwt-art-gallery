@@ -3,13 +3,14 @@ import styles from './Search.module.scss';
 import clsx from 'clsx';
 import ErrorIcon from '@/assets/icons/ErrorIcon';
 import ClearIcon from '@/assets/icons/ClearIcon';
-import Search_icon from '@/assets/icons/Search_icon';
+import SearchIcon from '@/assets/icons/SearchIcon';
 import Input from '../Input/Input';
 
 interface ISearchProps extends React.InputHTMLAttributes<HTMLInputElement> {
   theme: theme;
   error: boolean;
 }
+const value1 = 'ffw' //без него выходит ошибка и стори не загружается
 
 const Search = ({ theme, error }: ISearchProps) => {
   return (
@@ -20,7 +21,7 @@ const Search = ({ theme, error }: ISearchProps) => {
         error && styles.searchLineError
       )}
     >
-      <Search_icon />
+      <SearchIcon />
       <Input
         label=""
         theme={theme}

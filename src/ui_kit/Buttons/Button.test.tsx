@@ -1,8 +1,8 @@
 import { expect, test, describe } from 'vitest';
 import { render } from '@testing-library/react';
 import Button from './Button';
-import PlusIconLight from '@/assets/icons/PlusIconLight';
-import DeleteIconLight from '@/assets/icons/DeleteIconLight';
+import PlusIcon from '@/assets/icons/PlusIcon';
+import DeleteIcon from '@/assets/icons/DeleteIcon';
 import ArrowIconLight from '@/assets/icons/ArrowIcon';
 
 describe('Button Component', () => {
@@ -22,7 +22,7 @@ describe('Button Component', () => {
   describe('render text', () => {
     const { container } = render(
       <Button variant="text" type="button" theme="dark">
-        <PlusIconLight />
+        <PlusIcon />
         TEXT
       </Button>
     );
@@ -36,7 +36,7 @@ describe('Button Component', () => {
   describe('render icon', () => {
     const { container } = render(
       <Button variant="icon" type="button" theme="dark">
-        <DeleteIconLight />
+        <DeleteIcon />
       </Button>
     );
     const button = container.firstChild;
