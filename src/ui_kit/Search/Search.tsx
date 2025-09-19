@@ -1,7 +1,7 @@
 import { theme } from '@/types/types';
 import styles from './Search.module.scss';
 import clsx from 'clsx';
-import ErrorIcon from '@/assets/icons/ErrorIcon';
+// import ErrorIcon from '@/assets/icons/ErrorIcon';
 import ClearIcon from '@/assets/icons/ClearIcon';
 import SearchIcon from '@/assets/icons/SearchIcon';
 import Input from '../Input/Input';
@@ -21,24 +21,20 @@ const Search = ({ theme, error }: ISearchProps) => {
         error && styles.searchLineError
       )}
     >
-      <SearchIcon />
+      <div className={clsx(styles.searchIcon, styles[`searchIcon--${theme}`])}>
+        <SearchIcon />
+      </div>
       <Input
-        label=""
         theme={theme}
-        placeholder="Placeholder"
         type="text"
         value=""
-        className={clsx(
-          styles.input,
-          styles[`input--${theme}`],
-          error && styles.inputError
-        )}
+        placeholder="Placeholder"
+        error={error}
+        className={styles.input}
       />
-      {value1 && <ClearIcon />}
-      {error && (
-        <div className={styles.errorContainer}>
-          <ErrorIcon />
-          <p className={styles.errorMessage}>This is an error message!</p>
+      {value1 && (
+        <div className={clsx(styles.clearIcon, styles[`clearIcon--${theme}`])}>
+          <ClearIcon />
         </div>
       )}
     </div>

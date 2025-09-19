@@ -5,14 +5,18 @@
   width: 340px;
   display: flex;
   flex-direction: column;
+  position: relative;
   &--light {
     color: $primary-black;
   }
   &--dark {
     background-color: $secondary-black;
   }
+  &:focus {
+    border: 1px solid $primary-dark-gray;
+    z-index: 999;
+  }
 }
-
 .label {
   display: block;
   @include fonts('Inter', sans-serif, 700, 12px, 100%);
@@ -25,26 +29,17 @@
     color: $primary-white;
   }
 }
-
 .input {
   width: 100%;
-  padding: 12px 16px;
+  height: 46px;
   border-radius: 4px;
   border: none;
-
-  .placeholder {
+  padding: 7px 16px;
+  &::placeholder {
     color: $secondary-gray;
     @include fonts('Inter', sans-serif, 300, 16px, 140%);
     transition: opacity 0.2s ease;
   }
-  &::-webkit-input-placeholder {
-    color: $secondary-gray;
-    font-weight: 300;
-  }
-  &.inputError {
-    border: 1px solid $accept-error;
-  }
-
   &--light {
     background-color: $primary-white;
     border: 1px solid $primary-light-gray;
@@ -54,12 +49,9 @@
     &:focus {
       outline: none;
       border: 1px solid $primary-dark-gray;
-      &.placeholder {
-        opacity: 0;
-      }
+
     }
   }
-
   &--dark {
     background-color: $secondary-black;
     color: $primary-white;
@@ -77,10 +69,20 @@
 }
 .errorContainer {
   display: flex;
+  justify-content: flex-start;
   gap: 8px;
   align-items: center;
+  position: absolute;
+  top: 100%;
+  left: 0;
 }
-
+.errorIcon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .errorMessage {
   color: $accept-error;
   @include fonts('Inter', sans-serif, 300, 12px, 140%);

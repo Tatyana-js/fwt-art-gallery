@@ -3,97 +3,66 @@
 
 .searchLine {
   width: 340px;
-  height: 32px;
   position: relative;
-  padding: 8px 16px;
   border-radius: 4px;
   transition: all 0.5s ease;
-
+  display: flex;
   &--light {
     background-color: $primary-white;
-    border: 1px solid $primary-light-gray;
-    &::before {
-      content: '';
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-      &:hover {
-        border-color: $secondary-gray;
-      }
-      &:focus-within {
-        border-color: $primary-dark-gray;
-        caret-color: $primary-dark-gray;
-        ::placeholder {
-          color: transparent;
-        }
-      }
+    &:hover {
+      border-color: $secondary-gray;
     }
   }
-
   &--dark {
     background-color: $secondary-black;
     border: 1px solid transparent;
     color: $primary-light-gray;
-    &::before {
-      content: '';
-      position: absolute;
-      left: 16px;
-      top: 50%;
-      transform: translateY(-50%);
-    }
     &:hover {
       border: 1px solid $primary-dark-gray;
-    }
-    &:focus-within {
-      border: 1px solid $primary-light-gray;
-      caret-color: $primary-light-gray;
-      ::placeholder {
-        color: transparent;
-      }
     }
   }
   &.searchLineError {
     border-color: $accept-error;
   }
 }
-
-.clear_icon {
+.iconContainer {
   position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  border: none;
-  transition: opacity 0.2s ease;
-}
-
-.input {
   width: 100%;
-  height: 100%;
-  background: transparent;
-  outline: none;
-  border: none;
+  height: 46px;
+  z-index: 999;
+  margin-top: 23px;
+}
+.searchIcon {
+  width: 24px;
+  height: 24px;
+  z-index: 1;
   position: absolute;
-  inset: 0;
-  padding-left: 52px;
-  padding-right: 52px;
-  &::placeholder {
-    color: $secondary-gray;
-    @include fonts('Inter', sans-serif, 300, 12px, 140%);
+  top: 60%;
+  left: 16px;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
   }
 }
 
-.errorContainer {
-  width: 340px;
-  position: relative;
+.clearIcon {
+  width: 24px;
   height: 24px;
+  position: absolute;
+  right: 16px;
+  top: 60%;
   display: flex;
-  gap: 8px;
   align-items: center;
-  margin-top: 4px;
+  justify-content: center;
+  transform: translateY(-50%);
 }
 
-.errorMessage {
-  color: $accept-error;
-  @include fonts('Inter', sans-serif, 300, 12px, 140%);
+.input {
+  padding-left: 52px !important;
 }

@@ -18,7 +18,9 @@ const Label: FC<LabelProps> = ({
   ...props
 }) => (
   <div className={clsx(styles.label, styles[`label--${theme}`])} {...props}>
-    {children}
+    <span className={clsx(styles.labelText, styles[`labelText--${theme}`])}>
+      {children}
+    </span>
     {showCloseButton && (
       <button
         type="button"
