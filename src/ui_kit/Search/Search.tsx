@@ -10,7 +10,7 @@ interface ISearchProps extends React.InputHTMLAttributes<HTMLInputElement> {
   theme: theme;
   error: boolean;
 }
-const value1 = 'ffw' //без него выходит ошибка и стори не загружается
+const value1 = 'ffw'; //без него выходит ошибка и стори не загружается
 
 const Search = ({ theme, error }: ISearchProps) => {
   return (

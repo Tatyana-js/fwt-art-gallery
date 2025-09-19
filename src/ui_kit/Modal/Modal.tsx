@@ -10,7 +10,9 @@ export interface IModal {
 
 const Modal: React.FC<IModal> = ({ children, theme }) => {
   return (
-    <div className={clsx(styles.modal_overlay, styles[`modal_overlay--${theme}`])}>
+    <div
+      className={clsx(styles.modal_overlay, styles[`modal_overlay--${theme}`])}
+    >
       <div
         className={clsx(
           styles.modalContainer,

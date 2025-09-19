@@ -10,7 +10,13 @@ export interface LabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   showCloseButton: boolean;
 }
 
-const Label: FC<LabelProps> = ({ theme, children, onClick, showCloseButton, ...props }) => (
+const Label: FC<LabelProps> = ({
+  theme,
+  children,
+  onClick,
+  showCloseButton,
+  ...props
+}) => (
   <div className={clsx(styles.label, styles[`label--${theme}`])} {...props}>
     {children}
     {showCloseButton && (

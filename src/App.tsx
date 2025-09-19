@@ -7,7 +7,6 @@ import Footer from '@/components/Footer/Footer';
 import Modal from './ui_kit/Modal/Modal.tsx';
 import ModalInfo from './ui_kit/ModalInfo/ModalInfo.tsx';
 
-
 // const genres = [
 //   {
 //     _id: '66d70a64b123431edba12cc3',
@@ -53,7 +52,7 @@ function App() {
       <MainPage theme={theme} />
       <Footer theme={theme} />
       <Modal theme={theme}>
-        <ModalInfo theme={theme} onClick={() => {}}/>
+        <ModalInfo theme={theme} onClick={() => {}} />
       </Modal>
     </>
   );
