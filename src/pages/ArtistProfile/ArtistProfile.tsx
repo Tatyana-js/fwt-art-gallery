@@ -97,12 +97,7 @@ const ArtistProfile: FC<IArtistProfile> = ({ theme, onClick, artist }) => {
             ))}
           </div>
         </div>
-        <h3
-          className={clsx(
-            styles.workTitle,
-            styles[`workTitle--${theme}`]
-          )}
-        >
+        <h3 className={clsx(styles.workTitle, styles[`workTitle--${theme}`])}>
           Artworks
         </h3>
       </div>
