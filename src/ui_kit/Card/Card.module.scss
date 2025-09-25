@@ -6,6 +6,9 @@
   aspect-ratio: 1.507;
   overflow: hidden;
   border: none;
+  transition: all 0.5s ease;
+  clip-path: inset(0 0 1px 1px);
+  transform: translateZ(0);
   &:hover {
     img {
       transform: scale(1.03);
@@ -13,36 +16,31 @@
     }
   }
 }
-
 img {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
-
 .linkboxOverlay {
   position: static;
-
   &::before {
     content: '';
     cursor: inherit;
     display: block;
     position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%;
   }
 }
-
 .container {
-  width: 236px;
+  max-width: 100%;
+  min-width: 236px;
   position: absolute;
+  display: flex;
+  flex-direction: column;
   bottom: 0;
   left: 0;
   border: none;
   padding: 8px 12px;
+  padding-right: 36px;
   transition: all 0.5s ease;
   &--light {
     background-color: $primary-white;
@@ -54,7 +52,6 @@ img {
   }
   @include fonts('Cormorant SC', sans-serif, 500, 12px, 100%);
 }
-
 .line {
   position: absolute;
   width: 24px;
@@ -63,6 +60,7 @@ img {
   right: 0;
   display: flex;
   justify-content: center;
+  gap: 4px;
   align-items: center;
   transition: all 0.5s ease;
   &--light {
@@ -72,65 +70,10 @@ img {
     background-color: $accent-gold;
   }
 }
-@include screen(tablet) {
-  .container {
-    width: 300px;
-    padding: 12px;
-    @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
-  }
+.name {
+  word-wrap: break-word;
 }
-
-@include screen(tablet_lg) {
-  .container {
-    width: 300px;
-    padding: 20px;
-    @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
-  }
-  .line {
-    position: absolute;
-    width: 2px;
-    height: 42px;
-    left: 0;
-    top: 20px;
-    transition: all 0.5s ease;
-    svg {
-      display: none;
-    }
-    &--light {
-      background-color: $accent-red;
-    }
-    &--dark {
-      background-color: $accent-gold;
-    }
-  }
-}
-
-@include screen(desktop) {
-  .container {
-    width: 300px;
-    padding: 20px;
-    @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
-  }
-  .line {
-    position: absolute;
-    width: 2px;
-    height: 42px;
-    left: 0;
-    top: 20px;
-    transition: all 0.5s ease;
-    svg {
-      display: none;
-    }
-    &--light {
-      background-color: $accent-red;
-    }
-    &--dark {
-      background-color: $accent-gold;
-    }
-  }
-}
-
-.created {
+.details {
   margin-top: 4px;
   @include fonts('Inter', sans-serif, 700, 8px, 100%);
   transition: all 0.5s ease;
@@ -140,13 +83,109 @@ img {
   &--dark {
     color: $accent-gold;
   }
+}
 
-  @include screen(tablet) {
+.containerArtist {
+  min-width: 300px;
+  padding: 20px;
+  gap: 8px;
+  border: none;
+  .line {
+    display: none;
+  }
+  .name {
+    order: 2;
+    @include fonts('Cormorant SC', sans-serif, 600, 32px, 100%);
+    &--light {
+      color: $accent-red;
+    }
+    &--dark {
+      color: $accent-gold;
+    }
+  }
+  .details {
+    order: 1;
+    @include fonts('Cormorant SC', sans-serif, 500, 12px, 100%);
+    &--light {
+      color: $primary-dark-gray;
+    }
+    &--dark {
+      color: $secondary-gray;
+    }
+  }
+}
+
+@include screen(tablet) {
+  .container {
+    min-width: 300px;
+    padding: 12px;
+    @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
+    .name {
+      word-wrap: break-word;
+      padding-right: 20px;
+    }
+  }
+  .containerArtist {
+    width: 500px;
+    padding: 20px;
+    .line {
+      display: flex;
+      position: absolute;
+      width: 2px;
+      height: 48px;
+      left: 0;
+      top: 40px;
+      transition: all 0.5s ease;
+      svg {
+        display: none;
+      }
+      &--light {
+        background-color: $accent-red;
+      }
+      &--dark {
+        background-color: $accent-gold;
+      }
+    }
+  }
+  .details {
     margin-top: 8px;
     @include fonts('Inter', sans-serif, 700, 12px, 100%);
   }
-  @include screen(desktop) {
-    margin-top: 8px;
-    @include fonts('Inter', sans-serif, 700, 12px, 100%);
+}
+
+@include screen(tablet_lg) {
+  .paintingArtist {
+    position: relative;
+    margin-top: 100px;
+    margin-left: 440px;
+    overflow: visible;
+  }
+  .container {
+    width: 300px;
+    padding: 20px;
+    @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
+  }
+
+  .containerArtist {
+    display: none;
+  }
+
+    .line {
+    display: flex;
+    position: absolute;
+    width: 3px;
+    height: 42px;
+    left: 0;
+    top: 20px;
+    transition: all 0.5s ease;
+    svg {
+      display: none;
+    }
+    &--light {
+      background-color: $accent-red;
+    }
+    &--dark {
+      background-color: $accent-gold;
+    }
   }
 }

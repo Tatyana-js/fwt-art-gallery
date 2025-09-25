@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import styles from './Grid.module.scss';
 
 export interface IGridProps {
-  children: ReactNode;
+  children: ReactNode[];
 }
 
 const Grid: React.FC<IGridProps> = ({ children }) => (

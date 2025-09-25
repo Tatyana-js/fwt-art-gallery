@@ -6,11 +6,7 @@ import styles from './MultiSelect.module.scss';
 import SelectButton from '@/assets/icons/SelectButton';
 import Label from '../Label/Label';
 import Input from '../Input/Input';
-
-export interface IGenre {
-  _id: string;
-  name: string;
-}
+import type { IGenre } from '@/types/Artist';
 
 interface IMultiSelectProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

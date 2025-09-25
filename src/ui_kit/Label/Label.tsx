@@ -7,7 +7,7 @@ import ClearIcon from '@/assets/icons/ClearIcon';
 export interface LabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   theme: theme;
   onClick?: () => void;
-  showCloseButton: boolean;
+  showCloseButton?: boolean;
 }
 
 const Label: FC<LabelProps> = ({

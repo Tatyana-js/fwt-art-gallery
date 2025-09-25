@@ -1,0 +1,205 @@
+@use '@/styles/mixins.scss' as *;
+@use '@/styles/variables.scss' as *;
+
+.buttonBack {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  transition: transform 0.3s ease;
+  margin: 16px 20px;
+  background-color: transparent;
+  border: none;
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
+  }
+}
+
+.rotated {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(180deg);
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
+  }
+}
+
+.tablet {
+  display: none;
+}
+
+.tabletLgOnly {
+  display: none;
+}
+
+.description {
+  width: 100%;
+  background-color: transparent;
+  text-align: justify;
+  margin: 20px 0;
+  display: block;
+  @include fonts('Inter', sans-serif, 300, 16px, 140%);
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
+  }
+  &.gradient {
+    &--light {
+      background: linear-gradient(
+        180deg,
+        $primary-dark-gray 0%,
+        rgba(222, 222, 222, 0.4) 100%
+      );
+      background-clip: text;
+      color: transparent;
+    }
+    &--dark {
+      background: linear-gradient(
+        180deg,
+        $primary-light-gray 0%,
+        rgba(222, 222, 222, 0.4) 100%
+      );
+      background-clip: text;
+      color: transparent;
+    }
+  }
+}
+
+.selectButton {
+  display: flex;
+  justify-content: space-between;
+  width: 96px;
+  gap: 8px;
+  border: none;
+  background-color: transparent;
+}
+
+.genresContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  gap: 8px;
+}
+
+.workTitle {
+  width: fit-content;
+  margin: 60px 20px;
+  @include fonts('Cormorant SC', sans-serif, 600, 32px, 100%);
+  &--light {
+    color: $accent-red;
+  }
+  &--dark {
+    color: $accent-gold;
+  }
+}
+// .containerArtist {
+//   border: none;
+// }
+@include screen(tablet) {
+  .workTitle {
+    margin-top: 60px;
+  }
+  .buttonBack {
+    width: 70px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    margin: 40px 20px;
+    gap: 12px;
+    .tablet {
+      display: flex;
+      width: 34px;
+      height: 16px;
+      &--light {
+        color: $primary-dark-gray;
+      }
+      &--dark {
+        color: $primary-light-gray;
+      }
+    }
+  }
+}
+
+@include screen(tablet_lg) {
+  .buttonBack {
+    margin-top: 52px;
+    margin-left: 100px;
+    display: flex;
+    gap: 12px;
+  }
+  .containerArtist {
+    position: relative;
+    width: 1280px;
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+  .container {
+    width: 100%;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 604px;
+    top: 160px;
+    left: 100px;
+    padding: 60px 80px;
+    &--light {
+      background-color: $primary-white;
+    }
+    &--dark {
+      background-color: $primary-black;
+    }
+  }
+  .tabletLgOnly {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .line {
+    display: flex;
+    position: absolute;
+    width: 2px;
+    height: 73px;
+    left: 0;
+    top: 110px;
+    transition: all 0.5s ease;
+    &--light {
+      background-color: $accent-red;
+    }
+    &--dark {
+      background-color: $accent-gold;
+    }
+  }
+  .details {
+    @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
+    &--light {
+      color: $primary-dark-gray;
+    }
+    &--dark {
+      color: $secondary-gray;
+    }
+  }
+  .name {
+    @include fonts('Cormorant SC', sans-serif, 500, 60px, 100%);
+    &--light {
+      color: $accent-red;
+    }
+    &--dark {
+      color: $accent-gold;
+    }
+  }
+  .workTitle {
+    margin-top: 160px;
+    margin-left: 180px;
+  }
+}
