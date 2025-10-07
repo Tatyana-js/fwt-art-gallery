@@ -1,1 +1,1 @@
-export { default as ArtistProfile } from './ArtistProfile';
+export { default } from './ArtistProfile';

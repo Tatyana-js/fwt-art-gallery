@@ -15,6 +15,13 @@ export interface IMainPainting {
   artist: string;
 }
 
+export interface IPainting {
+  _id: string;
+  name: string;
+  yearOfCreation: string;
+  image: IImage;
+}
+
 export interface IAvatar {
   _id: string;
   src: string;
@@ -36,7 +43,7 @@ export default interface IArtist {
   name: string;
   description: string;
   yearsOfLife: string;
-  mainPainting?: IMainPainting;
-  avatar?: IAvatar;
+  mainPainting: IMainPainting;
+  avatar: IAvatar;
   __v?: number;
 }

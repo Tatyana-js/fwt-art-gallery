@@ -1,15 +1,22 @@
 @use '@/styles/mixins.scss' as *;
 @use '@/styles/variables.scss' as *;
 
+.footer {
+  &--light {
+    background-color: $primary-white;
+  }
+  &--dark {
+    background-color: $primary-black;
+  }
+}
 .containerBorder {
   border-top: 1px solid $primary-light-gray;
 }
-
 .info {
   display: flex;
   flex-direction: column;
   margin-top: 32px;
-  margin-bottom: 32px;
+  padding-bottom: 32px;
   transition: all 0.5s ease;
   display: flex;
   &--light {
@@ -48,14 +55,14 @@
   display: flex;
   gap: 20px;
 }
-.iconContainer {
-  width: 24px;
+.iconLink {
+    width: 24px;
   height: 24px;
   position: relative;
   svg {
     position: absolute;
   }
-  &--light {
+    &--light {
     color: $primary-dark-gray;
   }
   &--dark {
@@ -66,6 +73,7 @@
 @include screen(tablet) {
   .info {
     margin-top: 40px;
+    padding-bottom: 48px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -89,6 +97,7 @@
   .info {
     margin-top: 40px;
     display: flex;
+    padding-bottom: 40px;
     flex-direction: row;
     justify-content: space-between;
   }

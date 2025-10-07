@@ -1,33 +1,41 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
+import clsx from 'clsx';
+import router from '@/utils/routes';
 import styles from './MainPage.module.scss';
-import type { theme } from '@/types/types';
-import artists from '@/ui_kit/Grid/mock';
+import useTheme from '@/hooks/index';
 import Grid from '@/ui_kit/Grid/Grid';
 import Card from '@/ui_kit/Card/Card';
-import type { IMainPainting } from '@/types/Artist.ts';
+import type IArtist from '@/types/Artist.ts';
+import { useGetArtistsQuery } from '@/api/artistsApi';
 
-export interface IMainPage {
-  theme: theme;
-}
+const MainPage: FC = () => {
+  const { theme } = useTheme();
+  const navigate = useNavigate();
 
-const MainPage: FC<IMainPage> = ({ theme }) => {
-  const mainPaintings = artists.map((artist) => artist.mainPainting);
+  const handleCardClick = (artistId: string) => {
+    navigate(router.artist_profile(artistId));
+  };
+
+  const { data: artists } = useGetArtistsQuery();
+
   return (
-    <div className={styles.container}>
-      <Grid>
-        {mainPaintings.map(
-          ({ _id, name, yearOfCreation, image }: IMainPainting) => (
+    <div className={clsx(styles.mainPage, styles[`mainPage--${theme}`])}>
+      <div className="container">
+        <Grid>
+          {artists?.map(({ _id, mainPainting }: IArtist) => (
             <Card
-              key={_id}
+              key={mainPainting._id}
               theme={theme}
-              name={name}
-              details={yearOfCreation}
-              imageSrc={image.src}
+              name={mainPainting.name}
+              details={mainPainting.yearOfCreation}
+              imageSrc={mainPainting.image.src}
               type="painting"
+              onClick={() => handleCardClick(_id)}
             />
-          )
-        )}
-      </Grid>
+          ))}
+        </Grid>
+      </div>
     </div>
   );
 };

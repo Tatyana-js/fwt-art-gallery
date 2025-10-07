@@ -2,17 +2,20 @@
 @use '@/styles/mixins.scss' as *;
 
 .modal_overlay {
-  width: 100%;
-  height: 100%;
+  z-index: 1;
   position: fixed;
   top: 0;
-  right: 0;
-  bottom: 0;
-
-  transition: all 0.3s ease;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   display: flex;
   justify-content: flex-end;
-  align-items: stretch; // растягиваем на всю высоту
+  align-items: stretch;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.active {
+  opacity: 1;
   &--light {
     background-color: rgba(0, 0, 0, 0.3);
   }
@@ -20,14 +23,18 @@
     background-color: rgba(0, 0, 0, 0.6);
   }
 }
-.modalContainer {
+
+.modalInfo {
   width: 252px;
   height: 100%;
-  position: relative;
+  position: fixed;
+  right: 0;
   display: flex;
   justify-content: center;
   align-items: center;
-
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 10;
   &--light {
     color: $primary-dark-gray;
     background-color: $secondary-white;
@@ -37,6 +44,10 @@
     background-color: $primary-black;
   }
 }
+.activeModalInfo {
+  transform: translateX(0);
+}
+
 .clearButton {
   width: 24px;
   height: 24px;
@@ -58,7 +69,7 @@
   }
 }
 @include screen(tablet) {
-  .modalContainer {
+  .modalInfo {
     width: 466px;
   }
   .clearButton {
@@ -66,3 +77,30 @@
     top: 36px;
   }
 }
+.authorization {
+  width: 100%;
+  height: 100%;
+  &--light {
+    background-color: $primary-white;
+  }
+  &--dark {
+    background-color: $primary-black;
+  }
+}
+
+// @keyframes modalSlideOpen {
+//   from {
+//     transform: translateX(100%);
+//   }
+//   to {
+//     transform: translateX(0);
+//   }
+// }
+// @keyframes modalSlideHidden {
+//   from {
+//     transform: translateX(0);
+//   }
+//   to {
+//     transform: translateX(100%);
+//   }
+// }

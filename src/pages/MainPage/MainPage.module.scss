@@ -1,2 +1,17 @@
-@use '@/styles/mixins.scss' as *;
 @use '@/styles/variables.scss' as *;
+@use '@/styles/mixins.scss' as *;
+
+.mainPage {
+  padding: 20px 0;
+  &--light {
+    background-color: $primary-white;
+  }
+  &--dark {
+    background-color: $primary-black;
+  }
+}
+@include screen(tablet) {
+  .mainPage {
+    padding: 40px 0;
+  }
+}

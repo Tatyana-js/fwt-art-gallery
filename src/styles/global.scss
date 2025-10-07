@@ -1,4 +1,5 @@
 @use '../styles/mixins.scss' as *;
+@use '@/styles/variables.scss' as *;
 
 @font-face {
   font-family: 'Cormorant SC';
@@ -20,26 +21,16 @@ body {
   width: 100vw;
   min-height: 100vh;
   padding-bottom: 20px;
-  background-color: #ffffff;
-  // background-color: #121212;
 }
 
 .container {
   width: 100%;
-  max-width: 768px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
-@include screen(tablet) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
 @include screen(tablet_lg) {
   .container {
-    max-width: 1280px;
     padding-bottom: 40px;
     padding: 0 100px;
   }
@@ -47,9 +38,7 @@ body {
 
 @include screen(desktop) {
   .container {
-    width: 1280px;
     max-width: 1440px;
     padding: 0 100px;
-    margin: 0 auto;
   }
 }

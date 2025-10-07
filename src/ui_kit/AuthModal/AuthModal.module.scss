@@ -1,0 +1,62 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/mixins.scss' as *;
+
+.containerInfo {
+  height: 100%;
+  padding: 130px 26px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+.title {
+  @include fonts('Cormorant SC', sans-serif, 600, 32px, 100%);
+  color: $primary-white;
+}
+.inputContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+}
+.signUpMessage {
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  margin-top: 20px;
+  @include fonts('Inter', sans-serif, 300, 12px, 140%);
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
+  }
+}
+.signUpLink {
+  @include fonts('Inter', sans-serif, 500, 16px, 140%);
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-white;
+  }
+}
+@include screen(tablet) {
+  .title {
+    order: 1;
+  }
+  .signUpMessage {
+    order: 2;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  .inputContainer {
+    order: 3;
+  }
+  .buttonContainer {
+    order: 4;
+  }
+}

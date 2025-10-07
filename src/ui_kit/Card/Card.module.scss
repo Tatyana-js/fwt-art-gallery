@@ -6,7 +6,6 @@
   aspect-ratio: 1.507;
   overflow: hidden;
   border: none;
-  transition: all 0.5s ease;
   clip-path: inset(0 0 1px 1px);
   transform: translateZ(0);
   &:hover {
@@ -41,7 +40,6 @@ img {
   border: none;
   padding: 8px 12px;
   padding-right: 36px;
-  transition: all 0.5s ease;
   &--light {
     background-color: $primary-white;
     color: $primary-black;
@@ -76,7 +74,6 @@ img {
 .details {
   margin-top: 4px;
   @include fonts('Inter', sans-serif, 700, 8px, 100%);
-  transition: all 0.5s ease;
   &--light {
     color: $accent-red;
   }
@@ -156,9 +153,7 @@ img {
 @include screen(tablet_lg) {
   .paintingArtist {
     position: relative;
-    margin-top: 100px;
     margin-left: 440px;
-    overflow: visible;
   }
   .container {
     width: 300px;

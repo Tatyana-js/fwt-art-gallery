@@ -2,7 +2,7 @@
 @use '@/styles/variables.scss' as *;
 
 .container {
-  width: 340px;
+  min-width: 260px;
   display: flex;
   flex-direction: column;
   position: relative;

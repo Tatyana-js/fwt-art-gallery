@@ -3,7 +3,7 @@ import styles from './Modal.module.scss';
 import Input from '../Input/Input';
 import type { theme } from '@/types/types.ts';
 import SingFormImage from '@/assets/SingFormImage';
-import { Button } from '../Buttons';
+import Button from '../Buttons';
 
 interface IModalProps {
   theme: theme;

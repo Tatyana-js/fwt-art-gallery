@@ -1,24 +1,22 @@
 import { FC } from 'react';
-import type { theme } from '@/types/types';
 import clsx from 'clsx';
 import styles from './Footer.module.scss';
+import useTheme from '@/hooks/index';
 import VkIcon from '@/assets/icons/VkIcon';
 import InstagrammIcon from '@/assets/icons/InstagrammIcon';
 import FacebookIcon from '@/assets/icons/FacebookIcon';
 
-export interface IFooter {
-  theme: theme;
-}
-
-const Footer: FC<IFooter> = ({ theme }) => {
+const Footer: FC = () => {
+  const { theme } = useTheme();
   return (
-    <div
-      className={clsx(
-        styles.containerBorder,
-        styles[`containerBorder--${theme}`]
-      )}
-    >
-      <div className="container">
+    <footer className={clsx(styles.footer, styles[`footer--${theme}`])}>
+      <div
+        className={clsx(
+          styles.containerBorder,
+          styles[`containerBorder--${theme}`]
+        )}
+      ></div>
+      <div className={clsx('container', `container--${theme}`, 'position')}>
         <div className={clsx(styles.info, styles[`info--${theme}`])}>
           <div className={styles.footerContent}>
             <p
@@ -29,41 +27,47 @@ const Footer: FC<IFooter> = ({ theme }) => {
             >
               Проект реализован в рамках стажировки <br />
               для Frontend-разработчиков от компании{' '}
-              <a href="#" className={styles.frameworkTeam}>
+              <a
+                href="https://framework.team/"
+                className={styles.frameworkTeam}
+              >
                 Framework Team
               </a>
             </p>
             <div className={styles.name}>Андреева Татьяна, 2025</div>
           </div>
           <div className={styles.connectionIcons}>
-            <div
-              className={clsx(
-                styles.iconContainer,
-                styles[`iconContainer--${theme}`]
-              )}
+            <a
+              href="https://vk.com/frameworkteam?from=groups"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="VK Framework Team"
+              className={clsx(styles.iconLink, styles[`iconLink--${theme}`])}
             >
               <VkIcon />
-            </div>
-            <div
-              className={clsx(
-                styles.iconContainer,
-                styles[`iconContainer--${theme}`]
-              )}
+            </a>
+            <a
+              href="https://vk.com/frameworkteam?from=groups"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="VK Framework Team"
+              className={clsx(styles.iconLink, styles[`iconLink--${theme}`])}
             >
               <InstagrammIcon />
-            </div>
-            <div
-              className={clsx(
-                styles.iconContainer,
-                styles[`iconContainer--${theme}`]
-              )}
+            </a>
+            <a
+              href="https://vk.com/frameworkteam?from=groups"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="VK Framework Team"
+              className={clsx(styles.iconLink, styles[`iconLink--${theme}`])}
             >
               <FacebookIcon />
-            </div>
+            </a>
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 

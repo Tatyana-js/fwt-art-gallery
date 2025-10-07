@@ -1,4 +1,9 @@
-import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
+import { createRoot } from "react-dom/client";
+import init from "./init";
 
-createRoot(document.getElementById('root')!).render(<App />);
+const app = async () => {
+  const root = createRoot(document.getElementById("root")!);
+  root.render(await init());
+};
+
+app();

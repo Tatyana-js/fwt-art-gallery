@@ -1,71 +1,74 @@
 import './styles/global.scss';
 import './styles/variables.scss';
 import './styles/mixins.scss';
-
-// import MainPage from './pages/MainPage/MainPage.tsx';
-import ArtistProfile from './pages/ArtistProfile/ArtistProfile.tsx';
-import artist from './pages/ArtistProfile/mock.ts';
-import Header from './components/Header/Header.tsx';
-import Footer from '@/components/Footer/Footer';
-// import MultiSelect from './ui_kit/MultiSelect/MultiSelect.tsx';
-// import Label from './ui_kit/Label/Label.tsx';
-// import Modal from './ui_kit/Modal/Modal.tsx';
-// import ModalInfo from './ui_kit/ModalInfo/ModalInfo.tsx';
-// import Search from './ui_kit/Search/Search';
-// import Input from './ui_kit/Input/Input.tsx';
-
-// const genres = [
-//   {
-//     _id: '66d70a64b123431edba12cc3',
-//     name: 'Realism',
-//   },
-//   {
-//     _id: '66d70a64b123431edba12cd7',
-//     name: 'Modernism',
-//   },
-//   {
-//     _id: '66d70a64b123431edba12cd9',
-//     name: 'Expressionism',
-//   },
-//   {
-//     _id: '66d70a64b123431edba12cdb',
-//     name: 'Cubism',
-//   },
-// ];
-// const selectedGenres = [
-//   {
-//     _id: '66d70a64b123431edba12cc3',
-//     name: 'Realism',
-//   },
-//   {
-//     _id: '66d70a64b123431edba12cd7',
-//     name: 'Modernism',
-//   },
-//   {
-//     _id: '66d70a64b123431edba12cd9',
-//     name: 'Expressionism',
-//   },
-//   //   {
-//   //   _id: '66d70a64b123431edba12cdb',
-//   //   name: 'Cubism',
-//   // },
-// ];
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  useLocation,
+  Outlet,
+} from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import ArtistProfile from './pages/ArtistProfile';
+import Header from './components/Header';
+import Footer from '@/components/Footer';
+import router from './utils/routes';
+import AuthModal from './ui_kit/AuthModal';
+import useTheme from '@/hooks/index';
+import Modal from '@/ui_kit/Modal';
 
 function App() {
-  const theme = 'light';
+  return (
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
+  );
+}
+
+function AppRouter() {
+  const location = useLocation();
+  const background = location.state?.background;
+  const { theme } = useTheme();
+
   return (
     <>
-      <Header theme={theme} />
-      {/* <MainPage theme={theme} /> */}
-      <ArtistProfile theme={theme} onClick={() => {}} artist={artist} />
-      <Footer theme={theme} />
-      {/* <Modal theme={theme}>
-        <ModalInfo theme={theme} onClick={() => {}} />
-      </Modal> */}
-      {/* <Search theme={theme} error={false} />
-<Input theme={theme} placeholder='placefolder' error={true} /> */}
+      <Routes location={background || location}>
+        <Route path="/" element={<Layout />}>
+          <Route path={router.artists()} element={<MainPage />} />
+          <Route
+            path={router.artist_profile(':id')}
+            element={<ArtistProfile />}
+          />
+        </Route>
+      </Routes>
+      {background && (
+        <Routes>
+          <Route
+            path="/auth/login"
+            element={
+              <Modal
+                theme={theme}
+                variant="authorization"
+                closeModal={() => window.history.back()}
+                isOpen={true}
+              >
+                <AuthModal theme={theme} />
+              </Modal>
+            }
+          />
+        </Routes>
+      )}
     </>
   );
 }
 
+const Layout = () => {
+  return (
+    <>
+      <Header />
+      <Outlet />
+      <Footer />
+    </>
+  );
+};
 export default App;

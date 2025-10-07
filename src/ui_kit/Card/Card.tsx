@@ -11,10 +11,12 @@ export interface ICardProps {
   details: string;
   theme: theme;
   type: 'painting' | 'artist';
+  onClick?: () => void;
 }
 
-const Card: FC<ICardProps> = ({ theme, name, imageSrc, details, type }) => (
+const Card: FC<ICardProps> = ({ theme, name, imageSrc, details, type, onClick }) => (
   <div
+    onClick={onClick}
     className={clsx(
       styles.painting,
       type === 'artist' && styles.paintingArtist
