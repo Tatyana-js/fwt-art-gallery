@@ -14,7 +14,14 @@ export interface ICardProps {
   onClick?: () => void;
 }
 
-const Card: FC<ICardProps> = ({ theme, name, imageSrc, details, type, onClick }) => (
+const Card: FC<ICardProps> = ({
+  theme,
+  name,
+  imageSrc,
+  details,
+  type,
+  onClick,
+}) => (
   <div
     onClick={onClick}
     className={clsx(

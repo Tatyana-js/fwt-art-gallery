@@ -26,7 +26,12 @@ const Authorization: FC<IAuthModal> = ({ theme }) => {
           LOG IN
         </Button>
       </div>
-      <p className={clsx(styles.signUpMessage, styles[`signUpMessage--${theme}`])}>
+      <p
+        className={clsx(
+          styles.signUpMessage,
+          styles[`signUpMessage--${theme}`]
+        )}
+      >
         If you don't have an account yet, please{' '}
         <a
           href="#"

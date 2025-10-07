@@ -56,13 +56,13 @@
   gap: 20px;
 }
 .iconLink {
-    width: 24px;
+  width: 24px;
   height: 24px;
   position: relative;
   svg {
     position: absolute;
   }
-    &--light {
+  &--light {
     color: $primary-dark-gray;
   }
   &--dark {

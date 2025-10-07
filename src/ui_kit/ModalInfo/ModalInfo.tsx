@@ -11,23 +11,28 @@ export interface IModalInfo {
 }
 
 const ModalInfo: FC<IModalInfo> = ({ theme, onClick }) => {
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation();
   return (
     <div
       className={clsx(styles.containerInfo, styles[`containerInfo--${theme}`])}
     >
-      <ToggleTheme theme={theme} toggleTheme={(e) => {
-         e.stopPropagation();
-         onClick(e)
-      }} />
+      <ToggleTheme
+        theme={theme}
+        toggleTheme={(e) => {
+          e.stopPropagation();
+          onClick(e);
+        }}
+      />
       <div className={clsx(styles.loginbuttons, styles[`login--${theme}`])}>
-        <a onClick={() => navigate('/auth/login', { state: { background: location }})}>
+        <a
+          onClick={() =>
+            navigate('/auth/login', { state: { background: location } })
+          }
+        >
           LOG IN
         </a>
-        <a onClick={() => {}}>
-          SIGN UP
-        </a>
+        <a onClick={() => {}}>SIGN UP</a>
       </div>
     </div>
   );

@@ -59,7 +59,7 @@ const Artist: FC<IArtistsProps> = ({ artist, theme }) => {
         <p className={clsx(styles.name, styles[`name--${theme}`])}>{name}</p>
         <ArtistInfo theme={theme} description={description} genres={genres} />
       </div>
-      <div className={clsx("container", styles.notDesctop)}>
+      <div className={clsx('container', styles.notDesctop)}>
         <ArtistInfo theme={theme} description={description} genres={genres} />
       </div>
     </div>

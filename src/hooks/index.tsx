@@ -1,4 +1,4 @@
-import { use } from "react";
+import { use } from 'react';
 
 import { IThemeContext, ThemeContext } from '../Context/context';
 
