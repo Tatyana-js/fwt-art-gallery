@@ -40,6 +40,7 @@ img {
   border: none;
   padding: 8px 12px;
   padding-right: 36px;
+  @include fonts('Cormorant SC', sans-serif, 500, 12px, 100%);
   &--light {
     background-color: $primary-white;
     color: $primary-black;
@@ -48,7 +49,6 @@ img {
     background-color: $primary-black;
     color: $primary-white;
   }
-  @include fonts('Cormorant SC', sans-serif, 500, 12px, 100%);
 }
 .line {
   position: absolute;

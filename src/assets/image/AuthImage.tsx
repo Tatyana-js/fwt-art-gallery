@@ -1,4 +1,4 @@
-const SingFormImage = () => (
+const AuthImage = () => (
   <svg
     width="498"
     height="700"
@@ -8,7 +8,7 @@ const SingFormImage = () => (
     xmlnsXlink="http://www.w3.org/1999/xlink"
   >
     <rect width="498" height="700" fill="url(#pattern0_2734_7372)" />
-    <rect width="498" height="700" fill="black" fill-opacity="0.2" />
+    <rect width="498" height="700" fill="black" fillOpacity="0.2" />
     <defs>
       <pattern
         id="pattern0_2734_7372"
@@ -32,4 +32,4 @@ const SingFormImage = () => (
   </svg>
 );
 
-export default SingFormImage;
+export default AuthImage;
