@@ -1,10 +1,12 @@
-import { FC } from 'react';
-import clsx from 'clsx';
-import styles from './Footer.module.scss';
 import useTheme from '@/hooks/index';
-import VkIcon from '@/assets/icons/VkIcon';
-import InstagrammIcon from '@/assets/icons/InstagrammIcon';
+import clsx from 'clsx';
+import { FC } from 'react';
+
+import styles from './Footer.module.scss';
+
 import FacebookIcon from '@/assets/icons/FacebookIcon';
+import InstagrammIcon from '@/assets/icons/InstagrammIcon';
+import VkIcon from '@/assets/icons/VkIcon';
 
 const Footer: FC = () => {
   const { theme } = useTheme();

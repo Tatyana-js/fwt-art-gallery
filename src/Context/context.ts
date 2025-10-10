@@ -1,4 +1,5 @@
 import { createContext } from 'react';
+
 import type { theme } from '../types/types';
 
 export interface IThemeContext {

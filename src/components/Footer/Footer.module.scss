@@ -9,9 +9,11 @@
     background-color: $primary-black;
   }
 }
+
 .containerBorder {
   border-top: 1px solid $primary-light-gray;
 }
+
 .info {
   display: flex;
   flex-direction: column;
@@ -55,6 +57,7 @@
   display: flex;
   gap: 20px;
 }
+
 .iconLink {
   width: 24px;
   height: 24px;
@@ -78,15 +81,19 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
   .footerContent {
     width: 485px;
   }
+
   .footerText {
     @include fonts('Inter', sans-serif, 300, 16px, 140%);
   }
+
   .frameworkTeam {
     @include fonts('Inter', sans-serif, 500, 16px, 140%);
   }
+
   .name {
     margin-top: 12px;
     @include fonts('Inter', sans-serif, 300, 16px, 140%);
@@ -101,15 +108,19 @@
     flex-direction: row;
     justify-content: space-between;
   }
+
   .footerContent {
     width: 485px;
   }
+
   .footerText {
     @include fonts('Inter', sans-serif, 300, 16px, 140%);
   }
+
   .frameworkTeam {
     @include fonts('Inter', sans-serif, 500, 16px, 140%);
   }
+
   .name {
     margin-top: 40px;
     @include fonts('Inter', sans-serif, 300, 16px, 140%);
