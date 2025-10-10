@@ -1,23 +1,29 @@
-import { FC, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import styles from './Header.module.scss';
 import clsx from 'clsx';
-import useTheme from '@/hooks/index';
+import { FC } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+
+import styles from './Header.module.scss';
+
+import type { theme } from '@/types/types';
+
+import router from '@/utils/routes';
+
 import IconLogo from '@/assets/icons/IconLogo';
 import IconMenu from '@/assets/icons/IconMenu';
-import SunIcon from '@/assets/icons/SunIcon';
 import MoonIcon from '@/assets/icons/MoonIcon';
-import Modal from '@/ui_kit/Modal';
-import ModalInfo from '@/ui_kit/ModalInfo';
+import SunIcon from '@/assets/icons/SunIcon';
 
-const Header: FC = () => {
-  const { theme, toggleTheme } = useTheme();
-  const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
+interface IHeader {
+  setIsOpen: (value: boolean) => void;
+  toggleTheme: () => void;
+  theme: theme;
+}
+
+const Header: FC<IHeader> = ({ setIsOpen, theme, toggleTheme }) => {
   const location = useLocation();
 
   return (
-    <div className={clsx(styles.header, styles[`header--${theme}`])}>
+    <header className={clsx(styles.header, styles[`header--${theme}`])}>
       <div
         className={clsx(
           'container',
@@ -30,32 +36,34 @@ const Header: FC = () => {
         </div>
         <div className={styles.containerButtons}>
           <div className={styles.buttonContainer}>
-            <button
-              type="button"
+            <Link
+              to={router.login()}
               className={clsx(
                 styles.buttonItem,
                 styles[`buttonItem--${theme}`]
               )}
-              onClick={() =>
-                navigate('/auth/login', {
-                  state: { background: location },
-                })
-              }
+              state={{
+                background: {
+                  pathname: location.pathname,
+                },
+              }}
             >
               LOG IN
-            </button>
-            <button
-              type="button"
+            </Link>
+            <Link
+              to={router.signUp()}
               className={clsx(
                 styles.buttonItem,
                 styles[`buttonItem--${theme}`]
               )}
-              // onClick={() => navigate('/auth/signup', {
-              //   state: { background: location }
-              // })}
+              state={{
+                background: {
+                  pathname: location.pathname,
+                },
+              }}
             >
               SIGN UP
-            </button>
+            </Link>
           </div>
           <div
             className={clsx(
@@ -67,27 +75,11 @@ const Header: FC = () => {
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </div>
         </div>{' '}
-        {isOpen && (
-          <Modal
-            theme={theme}
-            variant="modalInfo"
-            closeModal={() => setIsOpen(false)}
-            isOpen={isOpen}
-          >
-            <ModalInfo
-              theme={theme}
-              onClick={(e: React.MouseEvent) => {
-                e.stopPropagation();
-                toggleTheme();
-              }}
-            />
-          </Modal>
-        )}
         <div className={styles.containerMenu} onClick={() => setIsOpen(true)}>
           <IconMenu />
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 

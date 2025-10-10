@@ -32,7 +32,6 @@ function AppRouter() {
 
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
-  console.log(2);
 
   const background = location.state?.background;
 

@@ -1,72 +1,72 @@
-import { useRef, useEffect, useState } from 'react';
 import clsx from 'clsx';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useOnClickOutside } from 'usehooks-ts';
+
 import styles from './Modal.module.scss';
-import ClearIcon from '@/assets/icons/ClearIcon';
+
 import type { theme } from '@/types/types.ts';
 
-type ModalVariant = 'modalInfo' | 'authorization';
+import ClearIcon from '@/assets/icons/ClearIcon';
+
+type ModalVariant = 'menuModal' | 'authorization' | 'register';
 
 export interface IModal {
   children: React.ReactNode;
   theme: theme;
   variant: ModalVariant;
-  closeModal: () => void;
-  isOpen: boolean;
+  closeModal: (value: boolean) => void;
 }
 
-const Modal: React.FC<IModal> = ({
-  children,
-  theme,
-  variant,
-  closeModal,
-  isOpen,
-}) => {
-  const [isActive, setIsActive] = useState(false);
+const Modal: React.FC<IModal> = ({ children, theme, variant, closeModal }) => {
+  const [isActive, setIsActive] = useState(true);
   const drawerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => {
-        setIsActive(true);
-      }, 50);
-    } else {
-      setIsActive(false);
+  const navigation = useNavigate();
+
+  useOnClickOutside(drawerRef as React.RefObject<HTMLElement>, () =>
+    setIsActive(false)
+  );
+
+  const getVariantClasses = (variant: string, theme: string) => {
+    if (variant === 'menuModal') {
+      return [
+        styles.menuModal,
+        styles[`menuModal--${theme}`],
+        isActive && styles.activeMenuModal,
+      ];
     }
-  }, [isOpen]);
-
-  const handleClose = () => {
-    setIsActive(false);
-    setTimeout(() => {
-      closeModal();
-    }, 300);
+    if (variant === 'authorization' || variant === 'register') {
+      return [styles.authModal, styles[`authModal--${theme}`]];
+    }
+    return [];
   };
-
-  useOnClickOutside(drawerRef as React.RefObject<HTMLElement>, handleClose);
 
   return (
     <div
       className={clsx(
         styles.modal_overlay,
         styles[`modal_overlay--${theme}`],
-        isOpen && styles.active,
-        isOpen && styles[`active--${theme}`]
+        isActive && styles.active,
+        isActive && styles[`active--${theme}`]
       )}
     >
       <div
         ref={drawerRef}
-        className={clsx(
-          styles[`${variant}`],
-          styles[`${variant}--${theme}`],
-          isActive && styles.activeModalInfo
-        )}
+        className={clsx(getVariantClasses(variant, theme))}
         onClick={(e) => e.stopPropagation()}
+        onAnimationEnd={() => {
+          if (!isActive) closeModal(false);
+        }}
       >
         <button
           type="button"
           aria-label="Close modal"
           className={clsx(styles.clearButton, styles[`clearButton--${theme}`])}
-          onClick={handleClose}
+          onClick={() => {
+            setIsActive(false);
+            navigation('/');
+          }}
         >
           <ClearIcon />
         </button>
