@@ -1,21 +1,23 @@
+import useTheme from '@/hooks/index';
+import { useState } from 'react';
+import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+
 import './styles/global.scss';
-import './styles/variables.scss';
 import './styles/mixins.scss';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-  Outlet,
-} from 'react-router-dom';
-import MainPage from './pages/MainPage';
-import ArtistProfile from './pages/ArtistProfile';
+import './styles/variables.scss';
+
 import Header from './components/Header';
 import Footer from '@/components/Footer';
-import router from './utils/routes';
+
 import AuthModal from './ui_kit/AuthModal';
-import useTheme from '@/hooks/index';
+import RegisterModal from './ui_kit/RegisterModal';
+import MenuModal from '@/ui_kit/MenuModal';
 import Modal from '@/ui_kit/Modal';
+
+import router from './utils/routes';
+
+import ArtistProfile from './pages/ArtistProfile';
+import MainPage from './pages/MainPage';
 
 function App() {
   return (
@@ -26,49 +28,62 @@ function App() {
 }
 
 function AppRouter() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
   const location = useLocation();
-  const background = location.state?.background;
-  const { theme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
   console.log(2);
+
+  const background = location.state?.background;
+
   return (
     <>
+      <Header setIsOpen={setIsOpen} theme={theme} toggleTheme={toggleTheme} />
       <Routes location={background || location}>
-        <Route path="/" element={<Layout />}>
-          <Route path={router.artists()} element={<MainPage />} />
-          <Route
-            path={router.artist_profile(':id')}
-            element={<ArtistProfile />}
-          />
-        </Route>
+        <Route path={router.artists()} element={<MainPage />} />
+        <Route
+          path={router.artist_profile(':id')}
+          element={<ArtistProfile />}
+        />
       </Routes>
+      {isOpen && (
+        <Modal theme={theme} variant="menuModal" closeModal={setIsOpen}>
+          <MenuModal
+            theme={theme}
+            onClick={(e: React.MouseEvent) => {
+              e.stopPropagation();
+              toggleTheme();
+            }}
+          />
+        </Modal>
+      )}
       {background && (
         <Routes>
           <Route
-            path="/auth/login"
+            path={router.login()}
             element={
               <Modal
                 theme={theme}
                 variant="authorization"
-                closeModal={() => window.history.back()}
-                isOpen={true}
+                closeModal={setIsOpen}
               >
                 <AuthModal theme={theme} />
               </Modal>
             }
           />
+          <Route
+            path={router.signUp()}
+            element={
+              <Modal theme={theme} variant="register" closeModal={setIsOpen}>
+                <RegisterModal theme={theme} />
+              </Modal>
+            }
+          />
         </Routes>
       )}
+      <Footer />
     </>
   );
 }
 
-const Layout = () => {
-  return (
-    <>
-      <Header />
-      <Outlet />
-      <Footer />
-    </>
-  );
-};
 export default App;
