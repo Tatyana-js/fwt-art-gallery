@@ -8,7 +8,7 @@ import type { theme } from '@/types/types';
 
 import SelectButton from '@/assets/icons/SelectButton';
 
-import { Checkbox } from '../Checkbox';
+import Checkbox from '../Checkbox';
 import Input from '../Input/Input';
 import Label from '../Label/Label';
 

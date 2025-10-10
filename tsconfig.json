@@ -21,5 +21,14 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "tests", "src/test-setup.ts", "vitest.d.ts"]
+  "include": [
+    "src",
+    "tests",
+    "src/test-setup.ts",
+    "vitest.d.ts",
+    "src/declarations.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.d.ts"
+  ]
 }
