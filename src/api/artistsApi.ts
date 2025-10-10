@@ -1,10 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { BASA_URL } from '@/utils/getImageSrc';
+
 import IArtist, { IPainting } from '@/types/Artist';
+
+import { BASE_URL } from '@/utils/getImageSrc';
 
 export const artistsApi = createApi({
   reducerPath: 'artistsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: BASA_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   tagTypes: ['Artist', 'Painting'],
   keepUnusedDataFor: 60,
   endpoints: (builder) => ({
