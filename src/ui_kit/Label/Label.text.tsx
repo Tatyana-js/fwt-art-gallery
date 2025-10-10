@@ -1,5 +1,6 @@
-import { expect, test, describe } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe, expect, test } from 'vitest';
+
 import Label from './Label';
 
 describe('Card Label', () => {

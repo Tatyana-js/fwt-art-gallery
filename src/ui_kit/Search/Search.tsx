@@ -1,9 +1,13 @@
-import { theme } from '@/types/types';
-import styles from './Search.module.scss';
 import clsx from 'clsx';
+
+import styles from './Search.module.scss';
+
+import { theme } from '@/types/types';
+
 // import ErrorIcon from '@/assets/icons/ErrorIcon';
 import ClearIcon from '@/assets/icons/ClearIcon';
 import SearchIcon from '@/assets/icons/SearchIcon';
+
 import Input from '../Input/Input';
 
 interface ISearchProps extends React.InputHTMLAttributes<HTMLInputElement> {

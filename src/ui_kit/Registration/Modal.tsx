@@ -1,9 +1,13 @@
 import clsx from 'clsx';
+
 import styles from './Modal.module.scss';
-import Input from '../Input/Input';
+
 import type { theme } from '@/types/types.ts';
+
 import SingFormImage from '@/assets/image/AuthImage';
+
 import Button from '../Buttons';
+import Input from '../Input/Input';
 
 interface IModalProps {
   theme: theme;

@@ -1,9 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
+import IArtist from '@/types/Artist';
+
+import Card from '../Card/Card';
 import Grid from './Grid';
 import type { IGridProps } from './Grid';
 import artists from './mock';
-import Card from '../Card/Card';
-import IArtist from '@/types/Artist';
 
 // данные для историй
 const paintingsData: IGridProps = {

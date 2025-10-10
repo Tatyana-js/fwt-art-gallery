@@ -1,10 +1,12 @@
-import { expect, test, describe } from 'vitest';
 import { render } from '@testing-library/react';
-import Grid from './Grid';
+import { describe, expect, test } from 'vitest';
+
+import IArtist from '@/types/Artist';
+
 import { Card } from '../Card';
+import Grid from './Grid';
 import type { IGridProps } from './Grid';
 import artists from './mock';
-import IArtist from '@/types/Artist';
 
 const mainPaintingsData: IGridProps = {
   children: artists.map((artistData: IArtist) => (

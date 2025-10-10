@@ -1,7 +1,10 @@
-import { FC } from 'react';
-import type { theme } from '@/types/types';
 import clsx from 'clsx';
+import { FC } from 'react';
+
 import styles from './Label.module.scss';
+
+import type { theme } from '@/types/types';
+
 import ClearIcon from '@/assets/icons/ClearIcon';
 
 export interface LabelProps extends React.HTMLAttributes<HTMLSpanElement> {

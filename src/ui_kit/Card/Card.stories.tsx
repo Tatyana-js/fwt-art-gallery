@@ -1,7 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import Card from './Card';
-import artist from './mock';
 import type { ICardProps } from './Card';
+import artist from './mock';
 
 const cardData: ICardProps = {
   artist: artist,

@@ -1,10 +1,14 @@
-import { FC, memo } from 'react';
 import clsx from 'clsx';
+import { FC, memo } from 'react';
+
 import styles from './ToggleTheme.module.scss';
+
 import type { theme } from '@/types/types.ts';
-import SunIcon from '@/assets/icons/SunIcon';
-import Button from '../Buttons';
+
 import MoonIcon from '@/assets/icons/MoonIcon';
+import SunIcon from '@/assets/icons/SunIcon';
+
+import Button from '../Buttons';
 
 export interface IToggleTheme {
   theme: theme;

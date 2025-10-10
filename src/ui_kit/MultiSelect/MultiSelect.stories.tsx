@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+
 import MultiSelect from './MultiSelect';
 import { genres } from './mock';
 import { selectedGenres } from './mock';

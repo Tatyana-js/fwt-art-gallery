@@ -1,7 +1,10 @@
-import { FC } from 'react';
-import type { theme } from '@/types/types';
 import clsx from 'clsx';
+import { FC } from 'react';
+
 import styles from './Checkbox.module.scss';
+
+import type { theme } from '@/types/types';
+
 import Success from '@/assets/icons/Success';
 
 export interface CheckboxProps

@@ -1,13 +1,17 @@
+import { useGetArtistsQuery } from '@/api/artistsApi';
+import useTheme from '@/hooks/index';
+import clsx from 'clsx';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import clsx from 'clsx';
-import router from '@/utils/routes';
+
 import styles from './MainPage.module.scss';
-import useTheme from '@/hooks/index';
-import Grid from '@/ui_kit/Grid/Grid';
-import Card from '@/ui_kit/Card/Card';
+
 import type IArtist from '@/types/Artist.ts';
-import { useGetArtistsQuery } from '@/api/artistsApi';
+
+import Card from '@/ui_kit/Card/Card';
+import Grid from '@/ui_kit/Grid/Grid';
+
+import router from '@/utils/routes';
 
 const MainPage: FC = () => {
   const { theme } = useTheme();

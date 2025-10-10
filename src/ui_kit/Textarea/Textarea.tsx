@@ -1,7 +1,10 @@
-import { FC } from 'react';
-import type { theme } from '@/types/types.ts';
-import styles from './Textarea.module.scss';
 import clsx from 'clsx';
+import { FC } from 'react';
+
+import styles from './Textarea.module.scss';
+
+import type { theme } from '@/types/types.ts';
+
 import ErrorIcon from '@/assets/icons/ErrorIcon';
 
 export interface ITextareaProps

@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client';
+
 import init from './init';
 
 const app = async () => {

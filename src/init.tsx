@@ -1,8 +1,9 @@
-import ThemeContextProvider from './Context/ThemeContext';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { artistsApi } from './api/artistsApi';
+
 import App from './App';
+import ThemeContextProvider from './Context/ThemeContext';
+import { artistsApi } from './api/artistsApi';
 
 const init = async (): Promise<React.ReactNode> => {
   const store = configureStore({

@@ -1,11 +1,15 @@
-import { FC, useState } from 'react';
 import clsx from 'clsx';
+import { FC, useState } from 'react';
+
 import styles from './Artistinfo.module.scss';
-import { theme } from '@/types/types';
-import SelectButton from '@/assets/icons/SelectButton';
+
 import type { IGenre } from '@/types/Artist';
-import Label from '@/ui_kit/Label';
+import { theme } from '@/types/types';
+
 import Button from '@/ui_kit/Buttons';
+import Label from '@/ui_kit/Label';
+
+import SelectButton from '@/assets/icons/SelectButton';
 
 export interface IArtistInfoProps {
   description: string;

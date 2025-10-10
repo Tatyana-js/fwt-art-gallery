@@ -1,13 +1,16 @@
-import { FC } from 'react';
-import useTheme from '@/hooks/index';
-import { useParams } from 'react-router-dom';
-import styles from './ArtistProfile.module.scss';
 import { useGetArtistByIdQuery } from '@/api/artistsApi';
+import useTheme from '@/hooks/index';
 import clsx from 'clsx';
+import { FC } from 'react';
+import { useParams } from 'react-router-dom';
+
+import styles from './ArtistProfile.module.scss';
+
+import type { IMainPainting } from '@/types/Artist';
+
+import Artist from '@/ui_kit/Artist';
 import Card from '@/ui_kit/Card/Card';
 import Grid from '@/ui_kit/Grid/Grid';
-import type { IMainPainting } from '@/types/Artist';
-import Artist from '@/ui_kit/Artist';
 
 const ArtistProfile: FC = () => {
   const { theme } = useTheme();

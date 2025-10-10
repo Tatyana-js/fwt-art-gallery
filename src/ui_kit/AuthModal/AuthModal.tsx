@@ -1,10 +1,14 @@
-import { FC } from 'react';
 import clsx from 'clsx';
-import type { theme } from '@/types/types';
+import { FC } from 'react';
+
 import styles from './AuthModal.module.scss';
-import Input from '../Input';
-import Button from '../Buttons';
+
+import type { theme } from '@/types/types';
+
 import AuthImage from '@/assets/image/AuthImage';
+
+import Button from '../Buttons';
+import Input from '../Input';
 
 export interface IAuthModal {
   theme: theme;

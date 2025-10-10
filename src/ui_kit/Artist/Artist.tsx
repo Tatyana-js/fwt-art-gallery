@@ -1,17 +1,23 @@
-import { FC } from 'react';
-import styles from './Artist.module.scss';
 import clsx from 'clsx';
+import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-import router from '@/utils/routes';
-import Card from '@/ui_kit/Card/Card';
+
+import styles from './Artist.module.scss';
+
+import IArtist from '@/types/Artist';
+import { theme } from '@/types/types';
+
 import Button from '@/ui_kit/Buttons';
+import Card from '@/ui_kit/Card/Card';
+
+import router from '@/utils/routes';
+
+import BackIcon from '@/assets/icons/BackIcon';
+
 // import SelectButton from '@/assets/icons/SelectButton';
 // import type { IGenre } from '@/types/Artist';
 // import Label from '@/ui_kit/Label';
 import ArtistInfo from '../ArtistInfo';
-import IArtist from '@/types/Artist';
-import { theme } from '@/types/types';
-import BackIcon from '@/assets/icons/BackIcon';
 
 export interface IArtistsProps {
   artist: IArtist;

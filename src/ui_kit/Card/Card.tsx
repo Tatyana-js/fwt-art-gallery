@@ -1,8 +1,12 @@
-import { FC } from 'react';
 import clsx from 'clsx';
+import { FC } from 'react';
+
 import styles from './Card.module.scss';
-import getImageSrc from '@/utils/getImageSrc';
+
 import type { theme } from '@/types/types';
+
+import getImageSrc from '@/utils/getImageSrc';
+
 import ComeIn from '@/assets/icons/ComeIn';
 
 export interface ICardProps {

@@ -1,7 +1,10 @@
-import { FC, useState } from 'react';
-import styles from './Input.module.scss';
-import type { theme } from '@/types/types.ts';
 import clsx from 'clsx';
+import { FC, useState } from 'react';
+
+import styles from './Input.module.scss';
+
+import type { theme } from '@/types/types.ts';
+
 import ErrorIcon from '@/assets/icons/ErrorIcon';
 
 export interface InputProps

@@ -1,5 +1,6 @@
-import { expect, test, describe } from 'vitest';
 import { render } from '@testing-library/react';
+import { describe, expect, test } from 'vitest';
+
 import Search from './Search';
 
 describe('Card Search', () => {

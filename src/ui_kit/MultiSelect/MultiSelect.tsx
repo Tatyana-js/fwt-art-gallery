@@ -1,12 +1,16 @@
-import { useState } from 'react';
 import clsx from 'clsx';
-import type { theme } from '@/types/types';
-import { Checkbox } from '../Checkbox';
+import { useState } from 'react';
+
 import styles from './MultiSelect.module.scss';
-import SelectButton from '@/assets/icons/SelectButton';
-import Label from '../Label/Label';
-import Input from '../Input/Input';
+
 import type { IGenre } from '@/types/Artist';
+import type { theme } from '@/types/types';
+
+import SelectButton from '@/assets/icons/SelectButton';
+
+import { Checkbox } from '../Checkbox';
+import Input from '../Input/Input';
+import Label from '../Label/Label';
 
 interface IMultiSelectProps
   extends React.InputHTMLAttributes<HTMLInputElement> {

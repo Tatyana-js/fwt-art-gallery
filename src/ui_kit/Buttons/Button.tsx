@@ -1,7 +1,9 @@
-import { FC } from 'react';
 import clsx from 'clsx';
-import type { theme } from '@/types/types';
+import { FC } from 'react';
+
 import styles from './Button.module.scss';
+
+import type { theme } from '@/types/types';
 
 type ButtonVariant = 'defaultButton' | 'text' | 'icon' | 'circleIcon';
 

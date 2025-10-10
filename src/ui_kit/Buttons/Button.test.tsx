@@ -1,9 +1,11 @@
-import { expect, test, describe } from 'vitest';
 import { render } from '@testing-library/react';
-import Button from './Button';
-import PlusIcon from '@/assets/icons/PlusIcon';
-import DeleteIcon from '@/assets/icons/DeleteIcon';
+import { describe, expect, test } from 'vitest';
+
 import ArrowIconLight from '@/assets/icons/ArrowIcon';
+import DeleteIcon from '@/assets/icons/DeleteIcon';
+import PlusIcon from '@/assets/icons/PlusIcon';
+
+import Button from './Button';
 
 describe('Button Component', () => {
   describe('render defaultButton', () => {
