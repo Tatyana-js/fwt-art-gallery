@@ -12,7 +12,7 @@ import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
   [
-    globalIgnores(['dist']),
+    globalIgnores(['vitest.config.ts', '**/dist/**', '**/node_modules/**']),
     {
       files: ['**/*.{ts,tsx}'],
       extends: [
