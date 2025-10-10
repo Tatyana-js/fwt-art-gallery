@@ -29,7 +29,7 @@ function AppRouter() {
   const location = useLocation();
   const background = location.state?.background;
   const { theme } = useTheme();
-
+console.log(2)
   return (
     <>
       <Routes location={background || location}>
