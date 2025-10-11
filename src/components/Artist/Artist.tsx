@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './Artist.module.scss';
 
+import ArtistInfo from './components/ArtistInfo';
+
 import IArtist from '@/types/Artist';
 import { theme } from '@/types/types';
 
@@ -13,8 +15,6 @@ import Card from '@/ui_kit/Card/Card';
 import router from '@/utils/routes';
 
 import BackIcon from '@/assets/icons/BackIcon';
-
-import ArtistInfo from './components/ArtistInfo';
 
 export interface IArtistsProps {
   artist: IArtist;
