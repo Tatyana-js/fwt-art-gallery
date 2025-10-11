@@ -8,7 +8,7 @@ import styles from './ArtistProfile.module.scss';
 
 import type { IMainPainting } from '@/types/Artist';
 
-import Artist from '@/ui_kit/Artist';
+import Artist from '@/components/Artist';
 import Card from '@/ui_kit/Card/Card';
 import Grid from '@/ui_kit/Grid/Grid';
 

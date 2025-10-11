@@ -46,8 +46,6 @@ const ModalInfo: FC<IModalInfo> = ({ theme, onClick }) => {
           state={{
             background: {
               pathname: location.pathname,
-              search: location.search,
-              hash: location.hash,
             },
           }}
         >

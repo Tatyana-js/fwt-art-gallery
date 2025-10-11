@@ -14,10 +14,7 @@ import router from '@/utils/routes';
 
 import BackIcon from '@/assets/icons/BackIcon';
 
-// import SelectButton from '@/assets/icons/SelectButton';
-// import type { IGenre } from '@/types/Artist';
-// import Label from '@/ui_kit/Label';
-import ArtistInfo from '../ArtistInfo';
+import ArtistInfo from './components/ArtistInfo';
 
 export interface IArtistsProps {
   artist: IArtist;

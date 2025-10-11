@@ -1,7 +1,7 @@
-export const BASA_URL = import.meta.env.VITE_BASA_URL;
+export const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 const getImageSrc = (imageUrl: string): string => {
-  return `${BASA_URL}${imageUrl}`;
+  return `${BASE_URL}${imageUrl}`;
 };
 
 export default getImageSrc;

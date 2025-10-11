@@ -1,9 +1,12 @@
 import clsx from 'clsx';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './AuthModal.module.scss';
 
 import type { theme } from '@/types/types';
+
+import router from '@/utils/routes';
 
 import AuthImage from '@/assets/image/AuthImage';
 
@@ -45,12 +48,17 @@ const AuthModal: FC<IAuthModal> = ({ theme }) => {
           )}
         >
           If you don't have an account yet, please{' '}
-          <a
-            href="#"
+          <Link
+            to={router.signUp()}
+            state={{
+              background: {
+                pathname: '/',
+              },
+            }}
             className={clsx(styles.signUpLink, styles[`signUpLink--${theme}`])}
           >
             sign up
-          </a>
+          </Link>
         </p>
       </div>
     </>
