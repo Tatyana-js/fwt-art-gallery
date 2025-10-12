@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useNavigate } from 'react-router-dom';
 import { useOnClickOutside } from 'usehooks-ts';
 
@@ -42,7 +43,7 @@ const Modal: React.FC<IModal> = ({ children, theme, variant, closeModal }) => {
     return [];
   };
 
-  return (
+  return createPortal(
     <div
       className={clsx(
         styles.modal_overlay,
@@ -72,7 +73,8 @@ const Modal: React.FC<IModal> = ({ children, theme, variant, closeModal }) => {
         </button>
         {children}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
 

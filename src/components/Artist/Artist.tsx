@@ -32,19 +32,20 @@ const Artist: FC<IArtistsProps> = ({ artist, theme }) => {
 
   return (
     <div className={clsx('container', styles.container)}>
-      <div
+      <button
+        type="button"
         onClick={handleBack}
         className={clsx(styles.buttonBack, styles[`buttonBack--${theme}`])}
       >
         <div className={styles.rotated}>
           <BackIcon />
         </div>
-        <div className={clsx(styles.tablet, styles[`tablet--${theme}`])}>
+        <div className={clsx(styles.buttonBack, styles[`buttonBack--${theme}`])}>
           <Button variant="text" theme={theme}>
             BACK
           </Button>
         </div>
-      </div>
+      </button>
       <Card
         type="artist"
         theme={theme}

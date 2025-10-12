@@ -9,8 +9,8 @@ import './styles/variables.scss';
 import Header from './components/Header';
 import Footer from '@/components/Footer';
 
-import AuthModal from './ui_kit/AuthModal';
-import RegisterModal from './ui_kit/RegisterModal';
+import AuthModal from './components/AuthModal';
+import RegisterModal from './components/RegisterModal';
 import MenuModal from '@/ui_kit/MenuModal';
 import Modal from '@/ui_kit/Modal';
 
