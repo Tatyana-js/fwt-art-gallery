@@ -6,11 +6,11 @@ import './styles/global.scss';
 import './styles/mixins.scss';
 import './styles/variables.scss';
 
+import AuthModal from './components/AuthModal';
 import Header from './components/Header';
+import RegisterModal from './components/RegisterModal';
 import Footer from '@/components/Footer';
 
-import AuthModal from './components/AuthModal';
-import RegisterModal from './components/RegisterModal';
 import MenuModal from '@/ui_kit/MenuModal';
 import Modal from '@/ui_kit/Modal';
 

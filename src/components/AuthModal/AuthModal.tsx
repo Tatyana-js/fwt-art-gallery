@@ -6,12 +6,12 @@ import styles from './AuthModal.module.scss';
 
 import type { theme } from '@/types/types';
 
+import Button from '@/ui_kit/Buttons';
+import Input from '@/ui_kit/Input';
+
 import router from '@/utils/routes';
 
 import AuthImage from '@/assets/image/AuthImage';
-
-import Button from '@/ui_kit/Buttons';
-import Input from '@/ui_kit/Input';
 
 export interface IAuthModal {
   theme: theme;
