@@ -14,12 +14,12 @@ import MoonIcon from '@/assets/icons/MoonIcon';
 import SunIcon from '@/assets/icons/SunIcon';
 
 interface IHeader {
-  setIsOpen: (value: boolean) => void;
+  setMenuIsOpen: (value: boolean) => void;
   toggleTheme: () => void;
   theme: theme;
 }
 
-const Header: FC<IHeader> = ({ setIsOpen, theme, toggleTheme }) => {
+const Header: FC<IHeader> = ({ setMenuIsOpen, theme, toggleTheme }) => {
   const location = useLocation();
 
   return (
@@ -75,7 +75,7 @@ const Header: FC<IHeader> = ({ setIsOpen, theme, toggleTheme }) => {
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </div>
         </div>{' '}
-        <div className={styles.containerMenu} onClick={() => setIsOpen(true)}>
+        <div className={styles.containerMenu} onClick={() => setMenuIsOpen(true)}>
           <IconMenu />
         </div>
       </div>

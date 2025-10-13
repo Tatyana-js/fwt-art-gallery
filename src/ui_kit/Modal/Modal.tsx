@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useOnClickOutside } from 'usehooks-ts';
 
 import styles from './Modal.module.scss';
@@ -16,18 +16,33 @@ export interface IModal {
   children: React.ReactNode;
   theme: theme;
   variant: ModalVariant;
-  closeModal: (value: boolean) => void;
+  closeModal?: (value: boolean) => void;
 }
 
 const Modal: React.FC<IModal> = ({ children, theme, variant, closeModal }) => {
   const [isActive, setIsActive] = useState(true);
   const drawerRef = useRef<HTMLDivElement>(null);
 
+  const location = useLocation();
   const navigation = useNavigate();
 
   useOnClickOutside(drawerRef as React.RefObject<HTMLElement>, () =>
     setIsActive(false)
   );
+
+  const handleAnimationEnd = () => {
+    if (!isActive) {
+      if (closeModal) {
+        closeModal(false)
+      } else {
+        if (location.state?.background) {
+          navigation(location.state.background, { replace: true });
+        } else {
+          navigation(-1);
+        }
+      }
+    }
+  }
 
   const getVariantClasses = (variant: string, theme: string) => {
     if (variant === 'menuModal') {
@@ -56,9 +71,7 @@ const Modal: React.FC<IModal> = ({ children, theme, variant, closeModal }) => {
         ref={drawerRef}
         className={clsx(getVariantClasses(variant, theme))}
         onClick={(e) => e.stopPropagation()}
-        onAnimationEnd={() => {
-          if (!isActive) closeModal(false);
-        }}
+        onAnimationEnd={handleAnimationEnd}
       >
         <button
           type="button"

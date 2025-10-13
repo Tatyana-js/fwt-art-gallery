@@ -35,7 +35,7 @@ const Artist: FC<IArtistsProps> = ({ artist, theme }) => {
       <button
         type="button"
         onClick={handleBack}
-        className={clsx(styles.buttonBack, styles[`buttonBack--${theme}`])}
+        className={clsx(styles.buttonsBack, styles[`buttonsBack--${theme}`], 'container')}
       >
         <div className={styles.rotated}>
           <BackIcon />

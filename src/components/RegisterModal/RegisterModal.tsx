@@ -9,6 +9,8 @@ import Button from '@/ui_kit/Buttons';
 import Input from '@/ui_kit/Input';
 
 import RegisterImage from '@/assets/image/RegisterImage';
+import { Link } from 'react-router-dom';
+import router from '@/utils/routes';
 
 export interface IRegisterModal {
   theme: theme;
@@ -35,22 +37,27 @@ const RegisterModal: FC<IRegisterModal> = ({ theme }) => {
         </form>
         <div className={styles.buttonContainer}>
           <Button variant="defaultButton" theme={theme}>
-            LOG IN
+            SIGN UP
           </Button>
         </div>
         <p
           className={clsx(
             styles.signUpMessage,
-            styles[`signUpMessage--${theme}`]
+            styles[`loginMessage--${theme}`]
           )}
         >
           If you already have an account, please{' '}
-          <a
-            href="#"
-            className={clsx(styles.signUpLink, styles[`signUpLink--${theme}`])}
+          <Link
+             to={router.login()}
+            state={{
+              background: {
+                pathname: '/',
+              },
+            }}
+            className={clsx(styles.loginLink, styles[`loginLink--${theme}`])}
           >
             log in
-          </a>
+          </Link>
         </p>
       </div>
     </>

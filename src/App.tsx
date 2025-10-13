@@ -28,18 +28,20 @@ function App() {
 }
 
 function AppRouter() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isMenuOpen, setMenuIsOpen] = useState<boolean>(false);
 
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
 
   const background = location.state?.background;
-  console.log('background pathname:', background?.pathname);
-  console.log('background type:', typeof background?.pathname);
-  console.log('background full:', background);
+
   return (
     <>
-      <Header setIsOpen={setIsOpen} theme={theme} toggleTheme={toggleTheme} />
+      <Header
+        setMenuIsOpen={setMenuIsOpen}
+        theme={theme}
+        toggleTheme={toggleTheme}
+      />
       <Routes location={background || location}>
         <Route path={router.artists()} element={<MainPage />} />
         <Route path="/" element={<MainPage />} />
@@ -47,9 +49,11 @@ function AppRouter() {
           path={router.artist_profile(':id')}
           element={<ArtistProfile />}
         />
+        <Route path={router.login()} element={null} />
+        <Route path={router.signUp()} element={null} />
       </Routes>
-      {isOpen && (
-        <Modal theme={theme} variant="menuModal" closeModal={setIsOpen}>
+      {isMenuOpen && (
+        <Modal theme={theme} variant="menuModal" closeModal={setMenuIsOpen}>
           <MenuModal
             theme={theme}
             onClick={(e: React.MouseEvent) => {
@@ -60,14 +64,13 @@ function AppRouter() {
         </Modal>
       )}
       {background && (
-        <Routes key={location.pathname}>
+        <Routes>
           <Route
             path={router.login()}
             element={
               <Modal
                 theme={theme}
                 variant="authorization"
-                closeModal={setIsOpen}
               >
                 <AuthModal theme={theme} />
               </Modal>
@@ -76,7 +79,10 @@ function AppRouter() {
           <Route
             path={router.signUp()}
             element={
-              <Modal theme={theme} variant="register" closeModal={setIsOpen}>
+              <Modal
+                theme={theme}
+                variant="register"
+              >
                 <RegisterModal theme={theme} />
               </Modal>
             }

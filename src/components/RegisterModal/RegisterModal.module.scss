@@ -30,7 +30,7 @@
   align-items: center;
   gap: 40px;
 }
-.signUpMessage {
+.loginMessage {
   width: 100%;
   text-align: center;
   white-space: nowrap;
@@ -43,7 +43,7 @@
     color: $primary-light-gray;
   }
 }
-.signUpLink {
+.loginLink {
   @include fonts('Inter', sans-serif, 500, 16px, 140%);
   &--light {
     color: $primary-dark-gray;
