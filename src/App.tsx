@@ -68,10 +68,7 @@ function AppRouter() {
           <Route
             path={router.login()}
             element={
-              <Modal
-                theme={theme}
-                variant="authorization"
-              >
+              <Modal theme={theme} variant="authorization">
                 <AuthModal theme={theme} />
               </Modal>
             }
@@ -79,10 +76,7 @@ function AppRouter() {
           <Route
             path={router.signUp()}
             element={
-              <Modal
-                theme={theme}
-                variant="register"
-              >
+              <Modal theme={theme} variant="register">
                 <RegisterModal theme={theme} />
               </Modal>
             }

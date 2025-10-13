@@ -75,7 +75,10 @@ const Header: FC<IHeader> = ({ setMenuIsOpen, theme, toggleTheme }) => {
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </div>
         </div>{' '}
-        <div className={styles.containerMenu} onClick={() => setMenuIsOpen(true)}>
+        <div
+          className={styles.containerMenu}
+          onClick={() => setMenuIsOpen(true)}
+        >
           <IconMenu />
         </div>
       </div>

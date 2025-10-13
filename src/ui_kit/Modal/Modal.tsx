@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useOnClickOutside } from 'usehooks-ts';
 
 import styles from './Modal.module.scss';
@@ -33,7 +33,7 @@ const Modal: React.FC<IModal> = ({ children, theme, variant, closeModal }) => {
   const handleAnimationEnd = () => {
     if (!isActive) {
       if (closeModal) {
-        closeModal(false)
+        closeModal(false);
       } else {
         if (location.state?.background) {
           navigation(location.state.background, { replace: true });
@@ -42,7 +42,7 @@ const Modal: React.FC<IModal> = ({ children, theme, variant, closeModal }) => {
         }
       }
     }
-  }
+  };
 
   const getVariantClasses = (variant: string, theme: string) => {
     if (variant === 'menuModal') {
