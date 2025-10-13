@@ -6,9 +6,9 @@ import styles from './MenuModal.module.scss';
 
 import type { theme } from '@/types/types.ts';
 
-import router from '@/utils/routes';
+import ToggleTheme from '../../ui_kit/ToggleTheme/ToggleTheme';
 
-import ToggleTheme from '../ToggleTheme/ToggleTheme';
+import router from '@/utils/routes';
 
 export interface IModalInfo {
   theme: theme;

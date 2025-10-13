@@ -10,8 +10,8 @@ import AuthModal from './components/AuthModal';
 import Header from './components/Header';
 import RegisterModal from './components/RegisterModal';
 import Footer from '@/components/Footer';
+import MenuModal from '@/components/MenuModal';
 
-import MenuModal from '@/ui_kit/MenuModal';
 import Modal from '@/ui_kit/Modal';
 
 import router from './utils/routes';
