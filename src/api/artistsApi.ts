@@ -1,24 +1,36 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import IArtist, { IPainting } from '@/types/Artist';
+import IArtist, { IPainting, IArtistsResponse } from '@/types/Artist';
 
 import { BASE_URL } from '@/utils/getImageSrc';
 
 export const artistsApi = createApi({
   reducerPath: 'artistsApi',
-  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: BASE_URL,
+    prepareHeaders: (headers) => { //это встроенный интерсептор
+      const token = localStorage.getItem('accessToken');
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+      return headers;
+    },
+  }),
   tagTypes: ['Artist', 'Painting'],
-  keepUnusedDataFor: 60,
   endpoints: (builder) => ({
-    // Получение всех артистов
-    getArtists: builder.query<IArtist[], void>({
-      query: () => '/artists/static/',
+    getArtists: builder.query<IArtistsResponse, void>({
+      query: () => {
+        const token = localStorage.getItem('accessToken');
+        return token ? '/artists' : '/artists/static/';
+      },
       providesTags: ['Artist'],
-      keepUnusedDataFor: 120,
     }),
     // Получение артиста по _id
     getArtistById: builder.query<IArtist, string | undefined>({
-      query: (id) => `artists/static/${id}`,
+      query: (id) => {
+        const token = localStorage.getItem('accessToken');
+        return token ? `artists/${id}` : `artists/static/${id}`;
+      },
       providesTags: (_, __, _id) => [{ type: 'Artist', _id }],
     }),
     // Создание артиста

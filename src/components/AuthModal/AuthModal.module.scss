@@ -6,9 +6,8 @@
   padding: 130px 26px 30px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   gap: 40px;
+  align-items: center;
 }
 .authImage {
   display: none;
@@ -22,7 +21,7 @@
     color: $primary-white;
   }
 }
-.inputContainer {
+.formContainer {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -53,37 +52,35 @@
   }
 }
 @include screen(tablet) {
-  .title {
-    order: 1;
+  .containerInfo {
+    padding: 270px 190px;
   }
   .signUpMessage {
     order: 2;
     margin-top: 0;
     margin-bottom: 20px;
   }
-  .inputContainer {
+  .formContainer {
     order: 3;
   }
   .buttonContainer {
-    order: 4;
+    margin-top: 20px;
   }
 }
 @include screen(tablet_lg) {
   .authImage {
     display: flex;
+    width: 500px;
+    height: 100%;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100%;
-    flex: 1;
     svg {
       width: 100%;
       height: 100%;
-      max-width: 100%;
-      max-height: 100%;
     }
   }
   .containerInfo {
     flex: 1;
+    padding: 130px 85px;
   }
 }

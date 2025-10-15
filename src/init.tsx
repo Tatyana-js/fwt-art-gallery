@@ -4,11 +4,13 @@ import { Provider } from 'react-redux';
 import App from './App';
 import ThemeContextProvider from './Context/ThemeContext';
 import { artistsApi } from './api/artistsApi';
+import { authApi } from './api/authApi';
 
 const init = async (): Promise<React.ReactNode> => {
   const store = configureStore({
     reducer: {
       [artistsApi.reducerPath]: artistsApi.reducer,
+      [authApi.reducerPath]: authApi.reducer,
     },
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({

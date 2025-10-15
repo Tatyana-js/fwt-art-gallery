@@ -1,5 +1,6 @@
 import { useGetArtistsQuery } from '@/api/artistsApi';
 import useTheme from '@/hooks/index';
+import useAuth from '@/hooks/useAuth';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -15,13 +16,19 @@ import router from '@/utils/routes';
 
 const MainPage: FC = () => {
   const { theme } = useTheme();
+  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  const handleCardClick = (artistId: string) => {
-    navigate(router.artist_profile(artistId));
-  };
+  const { data: dataList } = useGetArtistsQuery();
 
-  const { data: artists } = useGetArtistsQuery();
+  const artists = dataList?.data;
+
+  const handleCardClick = (artistId: string) => {
+    if(isAuthenticated) {
+      navigate(router.artist_profile(artistId));
+    }
+    navigate(router.artist_profileStatic(artistId));
+  };
 
   return (
     <div className={clsx(styles.mainPage, styles[`mainPage--${theme}`])}>
@@ -43,4 +50,5 @@ const MainPage: FC = () => {
     </div>
   );
 };
+
 export default MainPage;

@@ -38,3 +38,12 @@ export default interface IArtist {
   avatar: IImage;
   __v?: number;
 }
+
+export interface IArtistsResponse {
+  data: IArtist[];
+  meta: {
+    count: number;
+    perPage: number;
+    pageNumber: number;
+  };
+}

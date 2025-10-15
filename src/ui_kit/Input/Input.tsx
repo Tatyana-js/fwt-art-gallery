@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 
 import styles from './Input.module.scss';
 
@@ -11,7 +11,7 @@ export interface InputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   theme: theme;
-  error?: boolean;
+  error?:  string;
   className?: string;
 }
 
@@ -20,9 +20,8 @@ const Input: FC<InputProps> = ({
   theme,
   error,
   className,
-  // ...props
+  ...props
 }) => {
-  const [value, setValue] = useState('');
   return (
     <div className={clsx(styles.container)}>
       <label
@@ -33,22 +32,20 @@ const Input: FC<InputProps> = ({
       </label>
       <input
         id={label}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
         className={clsx(
           styles.input,
           styles[`input--${theme}`],
           error && styles.inputError,
           className
         )}
-        // {...props}
+        {...props}
       />
       {error && (
         <div className={styles.errorContainer}>
           <div className={styles.errorIcon}>
             <ErrorIcon />
           </div>
-          <p className={styles.errorMessage}>This is an error message!</p>
+          <p className={styles.errorMessage}>{error}</p>
         </div>
       )}
     </div>

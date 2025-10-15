@@ -12,8 +12,6 @@ import { theme } from '@/types/types';
 import Button from '@/ui_kit/Buttons';
 import Card from '@/ui_kit/Card/Card';
 
-import router from '@/utils/routes';
-
 import BackIcon from '@/assets/icons/BackIcon';
 
 export interface IArtistsProps {
@@ -25,7 +23,7 @@ const Artist: FC<IArtistsProps> = ({ artist, theme }) => {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate(router.artists());
+    navigate(-1);
   };
 
   const { name, avatar, yearsOfLife, description, genres } = artist;
