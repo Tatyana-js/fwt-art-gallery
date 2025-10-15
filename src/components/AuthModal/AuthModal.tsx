@@ -1,7 +1,7 @@
 import { useLoginMutation } from '@/api/authApi';
-import { yupResolver } from '@hookform/resolvers/yup';
 import useAuth from '@/hooks/useAuth';
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './AuthModal.module.scss';
+
+import userSchema from '@/components/RegisterModal/validate';
 
 import type { AuthFormData, theme } from '@/types/types';
 
@@ -18,8 +20,6 @@ import Input from '@/ui_kit/Input';
 import router from '@/utils/routes';
 
 import AuthImage from '@/assets/image/AuthImage';
-import userSchema from '@/components/RegisterModal/validate';
-
 
 export interface IAuthModal {
   theme: theme;

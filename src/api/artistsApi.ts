@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import IArtist, { IPainting, IArtistsResponse } from '@/types/Artist';
+import IArtist, { IArtistsResponse, IPainting } from '@/types/Artist';
 
 import { BASE_URL } from '@/utils/getImageSrc';
 
@@ -8,7 +8,8 @@ export const artistsApi = createApi({
   reducerPath: 'artistsApi',
   baseQuery: fetchBaseQuery({
     baseUrl: BASE_URL,
-    prepareHeaders: (headers) => { //это встроенный интерсептор
+    prepareHeaders: (headers) => {
+      //это встроенный интерсептор
       const token = localStorage.getItem('accessToken');
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);

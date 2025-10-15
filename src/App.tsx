@@ -43,7 +43,7 @@ function AppRouter() {
         toggleTheme={toggleTheme}
       />
       <Routes location={background || location}>
-        <Route path='/' element={<MainPage />} />
+        <Route path="/" element={<MainPage />} />
         <Route path={router.artistsStatic()} element={<MainPage />} />
         <Route path={router.artists()} element={<MainPage />} />
         <Route

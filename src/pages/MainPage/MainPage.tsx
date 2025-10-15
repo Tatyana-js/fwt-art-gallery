@@ -24,7 +24,7 @@ const MainPage: FC = () => {
   const artists = dataList?.data;
 
   const handleCardClick = (artistId: string) => {
-    if(isAuthenticated) {
+    if (isAuthenticated) {
       navigate(router.artist_profile(artistId));
     }
     navigate(router.artist_profileStatic(artistId));
