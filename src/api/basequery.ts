@@ -1,4 +1,3 @@
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
 import { type FetchArgs } from '@reduxjs/toolkit/query';
 import axios from 'axios';
 
@@ -21,12 +20,7 @@ export const baseQuery = async (args: string | FetchArgs) => {
 };
 
 axios.interceptors.request.use(
-  async function (config) {
-    const fp = await FingerprintJS.load();
-    const result = await fp.get();
-    const fingerprint = result.visitorId;
-    config.headers.set('X-Fingerprint', fingerprint);
-
+  function (config) {
     if (!config.url?.includes('Authenticate')) {
       const token = localStorage.getItem('accessToken');
       if (token) {
