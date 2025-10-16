@@ -56,8 +56,8 @@ export const authApi = createApi({
           body: {
             ...data,
             fingerprint: fingerprint,
-          } 
-        }
+          },
+        };
       },
     }),
   }),

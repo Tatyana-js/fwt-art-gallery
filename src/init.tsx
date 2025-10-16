@@ -1,6 +1,7 @@
+import authReducer from '@/slices/authSlice';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import authReducer from '@/slices/authSlice';
+
 import App from './App';
 import ThemeContextProvider from './Context/ThemeContext';
 import { artistsApi } from './api/artistsApi';
@@ -16,7 +17,7 @@ const init = async (): Promise<React.ReactNode> => {
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,
-      }).concat(artistsApi.middleware,  authApi.middleware ),
+      }).concat(artistsApi.middleware, authApi.middleware),
   });
 
   return (

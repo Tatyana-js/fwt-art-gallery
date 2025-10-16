@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
-import { setTokens, clearTokens } from '@/utils/tokenStorage';
+import { clearTokens, setTokens } from '@/utils/tokenStorage';
 
 export interface AuthState {
   isAuth: boolean;
@@ -24,12 +24,10 @@ export const authSlice = createSlice({
       setTokens(action.payload);
       state.isAuth = true;
     },
-    logout: (
-      state,
-    ) => {
+    logout: (state) => {
       clearTokens();
       state.isAuth = false;
-    }
+    },
   },
 });
 

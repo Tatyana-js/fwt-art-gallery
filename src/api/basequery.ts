@@ -1,24 +1,22 @@
 import FingerprintJS from '@fingerprintjs/fingerprintjs';
-import axios from 'axios';
 import { type FetchArgs } from '@reduxjs/toolkit/query';
+import axios from 'axios';
 
 import { clearTokens, setTokens } from '@/utils/tokenStorage';
 
 export const baseQuery = async (args: string | FetchArgs) => {
-  const config = typeof args === 'string' 
-    ? { url: args }
-    : args;
-   
+  const config = typeof args === 'string' ? { url: args } : args;
+
   const result = await axios({
     baseURL: import.meta.env.VITE_API_URL,
-    url: config.url,                      
+    url: config.url,
     method: config.method || 'GET',
-    data: config.body, 
+    data: config.body,
     headers: {
       'Content-Type': 'application/json',
     },
   });
-  
+
   return { data: result.data };
 };
 

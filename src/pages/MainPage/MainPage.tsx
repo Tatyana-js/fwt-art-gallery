@@ -4,11 +4,11 @@ import clsx from 'clsx';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { RootState } from '@/types/types';
 
 import styles from './MainPage.module.scss';
 
 import type IArtist from '@/types/Artist.ts';
+import { RootState } from '@/types/types';
 
 import Card from '@/ui_kit/Card/Card';
 import Grid from '@/ui_kit/Grid/Grid';
@@ -21,11 +21,12 @@ const MainPage: FC = () => {
 
   const { data: artistsData } = useGetArtistsQuery();
 
-const isAuthenticated = useSelector((state: RootState) => state.auth.isAuth);
+  const isAuthenticated = useSelector((state: RootState) => state.auth.isAuth);
 
-const artists = (artistsData && typeof artistsData === 'object' && 'data' in artistsData 
-  ? (artistsData).data 
-  : artistsData) as IArtist[] || [];
+  const artists =
+    ((artistsData && typeof artistsData === 'object' && 'data' in artistsData
+      ? artistsData.data
+      : artistsData) as IArtist[]) || [];
 
   const handleCardClick = (artistId: string) => {
     if (isAuthenticated) {

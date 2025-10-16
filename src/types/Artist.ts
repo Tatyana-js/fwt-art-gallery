@@ -38,4 +38,3 @@ export default interface IArtist {
   avatar: IImage;
   __v?: number;
 }
-
