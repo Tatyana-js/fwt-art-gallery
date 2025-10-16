@@ -1,6 +1,5 @@
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import { useRegisterMutation } from '@/api/authApi';
 import { yupResolver } from '@hookform/resolvers/yup';
-import axios from 'axios';
 import clsx from 'clsx';
 import { FC, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
@@ -14,8 +13,8 @@ import type { AuthFormData, theme } from '@/types/types';
 import Button from '@/ui_kit/Buttons';
 import Input from '@/ui_kit/Input';
 
-import { BASE_URL } from '@/utils/getImageSrc';
 import router from '@/utils/routes';
+import { setTokens } from '@/utils/tokenStorage';
 
 import RegisterImage from '@/assets/image/RegisterImage';
 
@@ -31,11 +30,12 @@ interface UseFormData {
 
 const RegisterModal: FC<IRegisterModal> = ({ theme }) => {
   const navigate = useNavigate();
+  const [registerMutation] = useRegisterMutation();
 
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting, touchedFields },
+    formState: { errors, isSubmitting },
     watch,
     reset,
     setError,
@@ -50,11 +50,7 @@ const RegisterModal: FC<IRegisterModal> = ({ theme }) => {
   const emailValue = watch('email');
   const passwordValue = watch('password');
 
-  const isFormReady =
-    emailValue &&
-    passwordValue &&
-    touchedFields.email &&
-    touchedFields.password;
+  const isFormReady = emailValue && passwordValue;
 
   useEffect(() => {
     const emailState = getFieldState('email');
@@ -71,21 +67,16 @@ const RegisterModal: FC<IRegisterModal> = ({ theme }) => {
 
   const onSubmit = async (formData: AuthFormData) => {
     try {
-      const fp = await FingerprintJS.load();
-      const result = await fp.get();
-      const visitorId = result.visitorId;
-
-      const requestData = {
+      const response = await registerMutation({
         username: formData.email,
         password: formData.password,
-        fingerprint: visitorId,
-      };
+      }).unwrap();
 
-      const url = `${BASE_URL}${router.signUp()}`;
+      setTokens({
+        accessToken: response.accessToken,
+        refreshToken: response.refreshToken,
+      });
 
-      const { data } = await axios.post(url, requestData);
-      localStorage.setItem('accessToken', data.accessToken);
-      localStorage.setItem('refreshToken', data.refreshToken);
       reset();
       navigate(router.artists());
     } catch (err) {

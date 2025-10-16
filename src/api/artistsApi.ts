@@ -1,25 +1,14 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
-import IArtist, { IArtistsResponse, IPainting } from '@/types/Artist';
-
-import { BASE_URL } from '@/utils/getImageSrc';
+import { createApi } from '@reduxjs/toolkit/query/react';
+// import { authInterceptor } from '@/interceptors/interceptors';
+import IArtist, { IPainting } from '@/types/Artist';
+import baseQuery from '@/api/basequery';
 
 export const artistsApi = createApi({
   reducerPath: 'artistsApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl: BASE_URL,
-    prepareHeaders: (headers) => {
-      //это встроенный интерсептор
-      const token = localStorage.getItem('accessToken');
-      if (token) {
-        headers.set('Authorization', `Bearer ${token}`);
-      }
-      return headers;
-    },
-  }),
-  tagTypes: ['Artist', 'Painting'],
+  baseQuery: baseQuery,
+  tagTypes: ['Artist', 'User', 'Auth', 'Painting'],
   endpoints: (builder) => ({
-    getArtists: builder.query<IArtistsResponse, void>({
+    getArtists: builder.query<IArtist[], void>({
       query: () => {
         const token = localStorage.getItem('accessToken');
         return token ? '/artists' : '/artists/static/';

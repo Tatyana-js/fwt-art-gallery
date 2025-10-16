@@ -39,11 +39,3 @@ export default interface IArtist {
   __v?: number;
 }
 
-export interface IArtistsResponse {
-  data: IArtist[];
-  meta: {
-    count: number;
-    perPage: number;
-    pageNumber: number;
-  };
-}

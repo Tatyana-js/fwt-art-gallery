@@ -50,6 +50,10 @@ function AppRouter() {
           path={router.artist_profile(':id')}
           element={<ArtistProfile />}
         />
+        <Route
+          path={router.artist_profileStatic(':id')}
+          element={<ArtistProfile />}
+        />
         <Route path={router.login()} element={null} />
         <Route path={router.signUp()} element={null} />
       </Routes>

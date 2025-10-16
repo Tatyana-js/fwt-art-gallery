@@ -1,10 +1,10 @@
 import { useLoginMutation } from '@/api/authApi';
-import useAuth from '@/hooks/useAuth';
-import FingerprintJS from '@fingerprintjs/fingerprintjs';
+import { login } from '@/slices/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
@@ -30,7 +30,7 @@ interface UseFormData {
 }
 
 const AuthModal: FC<IAuthModal> = ({ theme }) => {
-  const { login } = useAuth();
+  const dispatch = useDispatch();
   const [loginMutation] = useLoginMutation();
   const navigate = useNavigate();
 
@@ -51,23 +51,21 @@ const AuthModal: FC<IAuthModal> = ({ theme }) => {
 
   const onSubmit = async (formData: AuthFormData) => {
     try {
-      const fp = await FingerprintJS.load();
-      const result = await fp.get();
-      const visitorId = result.visitorId;
-
-      const requestData = {
+      console.log('Sending login request with:', {
         username: formData.email,
         password: formData.password,
-        fingerprint: visitorId,
-      };
-
-      const response = await loginMutation(requestData).unwrap();
-
-      login({
-        accessToken: response.accessToken,
-        refreshToken: response.refreshToken,
-        fingerprint: visitorId,
       });
+      const response = await loginMutation({
+        username: formData.email,
+        password: formData.password,
+      }).unwrap();
+
+      dispatch(
+        login({
+          accessToken: response.accessToken,
+          refreshToken: response.refreshToken,
+        })
+      );
       reset();
       navigate(router.artists());
     } catch (err) {

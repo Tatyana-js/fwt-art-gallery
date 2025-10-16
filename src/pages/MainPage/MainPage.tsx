@@ -1,9 +1,10 @@
 import { useGetArtistsQuery } from '@/api/artistsApi';
 import useTheme from '@/hooks/index';
-import useAuth from '@/hooks/useAuth';
 import clsx from 'clsx';
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { RootState } from '@/types/types';
 
 import styles from './MainPage.module.scss';
 
@@ -16,12 +17,15 @@ import router from '@/utils/routes';
 
 const MainPage: FC = () => {
   const { theme } = useTheme();
-  const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  const { data: dataList } = useGetArtistsQuery();
+  const { data: artistsData } = useGetArtistsQuery();
 
-  const artists = dataList?.data;
+const isAuthenticated = useSelector((state: RootState) => state.auth.isAuth);
+
+const artists = (artistsData && typeof artistsData === 'object' && 'data' in artistsData 
+  ? (artistsData).data 
+  : artistsData) as IArtist[] || [];
 
   const handleCardClick = (artistId: string) => {
     if (isAuthenticated) {
