@@ -1,7 +1,6 @@
 import baseQuery from '@/api/basequery';
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-// import { authInterceptor } from '@/interceptors/interceptors';
 import IArtist, { IPainting } from '@/types/Artist';
 
 export const artistsApi = createApi({
