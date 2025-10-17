@@ -10,8 +10,6 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './AuthModal.module.scss';
 
-import userSchema from '@/components/RegisterModal/validate';
-
 import type { AuthFormData, theme } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';
@@ -20,6 +18,8 @@ import Input from '@/ui_kit/Input';
 import router from '@/utils/routes';
 
 import AuthImage from '@/assets/image/AuthImage';
+
+import userSchema from './validate';
 
 export interface IAuthModal {
   theme: theme;
@@ -46,15 +46,11 @@ const AuthModal: FC<IAuthModal> = ({ theme }) => {
     mode: 'onChange',
   });
 
-  const emailValue = watch('email');
-  const passwordValue = watch('password');
+  const { email, password } = watch();
+  const hasAllUserData = !!(email && password);
 
   const onSubmit = async (formData: AuthFormData) => {
     try {
-      console.log('Sending login request with:', {
-        username: formData.email,
-        password: formData.password,
-      });
       const response = await loginMutation({
         username: formData.email,
         password: formData.password,
@@ -115,7 +111,7 @@ const AuthModal: FC<IAuthModal> = ({ theme }) => {
               type="submit"
               variant="defaultButton"
               theme={theme}
-              disabled={isSubmitting || !emailValue || !passwordValue}
+              disabled={isSubmitting || !hasAllUserData}
             >
               LOG IN
             </Button>

@@ -1,6 +1,7 @@
 import useTheme from '@/hooks/index';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import './styles/global.scss';
 import './styles/mixins.scss';
@@ -43,7 +44,10 @@ function AppRouter() {
         toggleTheme={toggleTheme}
       />
       <Routes location={background || location}>
-        <Route path="/" element={<MainPage />} />
+        <Route
+          path="/"
+          element={<Navigate to={router.artistsStatic()} replace />}
+        />
         <Route path={router.artistsStatic()} element={<MainPage />} />
         <Route path={router.artists()} element={<MainPage />} />
         <Route

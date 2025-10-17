@@ -1,7 +1,7 @@
 import { useRegisterMutation } from '@/api/authApi';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
-import { FC, useEffect } from 'react';
+import { FC  } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
@@ -39,8 +39,6 @@ const RegisterModal: FC<IRegisterModal> = ({ theme }) => {
     watch,
     reset,
     setError,
-    getFieldState,
-    trigger,
   } = useForm<UseFormData>({
     resolver: yupResolver(userSchema),
     mode: 'onSubmit',
@@ -51,19 +49,6 @@ const RegisterModal: FC<IRegisterModal> = ({ theme }) => {
   const passwordValue = watch('password');
 
   const isFormReady = emailValue && passwordValue;
-
-  useEffect(() => {
-    const emailState = getFieldState('email');
-    const passwordState = getFieldState('password');
-
-    if (emailState.isTouched && emailState.invalid) {
-      trigger('email');
-    }
-
-    if (passwordState.isTouched && passwordState.invalid) {
-      trigger('password');
-    }
-  }, [emailValue, passwordValue, trigger, getFieldState]);
 
   const onSubmit = async (formData: AuthFormData) => {
     try {

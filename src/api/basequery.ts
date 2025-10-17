@@ -23,7 +23,7 @@ axios.interceptors.request.use(
   function (config) {
     if (!config.url?.includes('Authenticate')) {
       const token = localStorage.getItem('accessToken');
-      if (token) {
+      if (token && !config.url?.includes('/static/')) {
         config.headers.set('Authorization', `Bearer ${token}`);
       }
     }
@@ -39,13 +39,12 @@ axios.interceptors.response.use(
     return response;
   },
   async function onRejected(error) {
-    const isLoginRequest = !error.config.url?.includes('/auth/login');
+    const isLoginRequest = !error.config.url?.includes('/auth');
 
     if (error.response?.status === 401 && !isLoginRequest) {
-      const accessToken = localStorage.getItem('accessToken');
       const refreshToken = localStorage.getItem('refreshToken');
 
-      if (accessToken && refreshToken) {
+      if (refreshToken) {
         try {
           const refreshResponse = await axios.post(
             `${import.meta.env.VITE_API_URL}/auth/refresh`,

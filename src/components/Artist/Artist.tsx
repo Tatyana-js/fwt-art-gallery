@@ -23,7 +23,7 @@ const Artist: FC<IArtistsProps> = ({ artist, theme }) => {
   const navigate = useNavigate();
 
   const handleBack = () => {
-    navigate(-1);
+    navigate('/');
   };
 
   const { name, avatar, yearsOfLife, description, genres } = artist;
