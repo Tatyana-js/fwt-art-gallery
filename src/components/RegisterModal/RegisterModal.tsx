@@ -1,7 +1,7 @@
 import { useRegisterMutation } from '@/api/authApi';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
-import { FC  } from 'react';
+import { FC } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
