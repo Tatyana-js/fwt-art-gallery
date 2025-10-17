@@ -10,6 +10,19 @@
     background-color: $primary-black;
   }
 }
+.addArtistButton {
+  width: 110px;
+  height: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
+  }
+}
 @include screen(tablet) {
   .mainPage {
     padding: 40px 0;

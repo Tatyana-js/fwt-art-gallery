@@ -1,8 +1,10 @@
 import { useRegisterMutation } from '@/api/authApi';
+import { authSlice } from '@/slices/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
@@ -31,6 +33,8 @@ interface UseFormData {
 const RegisterModal: FC<IRegisterModal> = ({ theme }) => {
   const navigate = useNavigate();
   const [registerMutation] = useRegisterMutation();
+  const dispatch = useDispatch();
+  const { login } = authSlice.actions;
 
   const {
     register,
@@ -59,7 +63,12 @@ const RegisterModal: FC<IRegisterModal> = ({ theme }) => {
         accessToken: response.accessToken,
         refreshToken: response.refreshToken,
       });
-
+      dispatch(
+        login({
+          accessToken: response.accessToken,
+          refreshToken: response.refreshToken,
+        })
+      );
       reset();
       navigate(router.artists());
     } catch (err) {

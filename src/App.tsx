@@ -1,7 +1,6 @@
 import useTheme from '@/hooks/index';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
-import { Navigate } from 'react-router-dom';
 
 import './styles/global.scss';
 import './styles/mixins.scss';
@@ -12,6 +11,7 @@ import Header from './components/Header';
 import RegisterModal from './components/RegisterModal';
 import Footer from '@/components/Footer';
 import MenuModal from '@/components/MenuModal';
+import AddArtistModal from '@/components/AddArtistModal';
 
 import Modal from '@/ui_kit/Modal';
 
@@ -30,6 +30,8 @@ function App() {
 
 function AppRouter() {
   const [isMenuOpen, setMenuIsOpen] = useState<boolean>(false);
+  const [isAddArtistModalOpen, setIsAddArtistModalOpen] =
+    useState<boolean>(false);
 
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
@@ -45,11 +47,9 @@ function AppRouter() {
       />
       <Routes location={background || location}>
         <Route
-          path="/"
-          element={<Navigate to={router.artistsStatic()} replace />}
+          path={router.artists()}
+          element={<MainPage openMоdal={() => setIsAddArtistModalOpen(true)} />}
         />
-        <Route path={router.artistsStatic()} element={<MainPage />} />
-        <Route path={router.artists()} element={<MainPage />} />
         <Route
           path={router.artist_profile(':id')}
           element={<ArtistProfile />}
@@ -69,6 +69,16 @@ function AppRouter() {
               e.stopPropagation();
               toggleTheme();
             }}
+          />
+        </Modal>
+      )}
+      {isAddArtistModalOpen && (
+        <Modal
+          theme={theme}
+          variant="addArtist"
+          closeModal={() => setIsAddArtistModalOpen(false)}
+        >
+          <AddArtistModal theme={theme}
           />
         </Modal>
       )}

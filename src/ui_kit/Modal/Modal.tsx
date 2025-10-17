@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { FC } from 'react';
 import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -10,7 +11,7 @@ import type { theme } from '@/types/types.ts';
 
 import ClearIcon from '@/assets/icons/ClearIcon';
 
-type ModalVariant = 'menuModal' | 'authorization' | 'register';
+type ModalVariant = 'menuModal' | 'authorization' | 'register' | 'addArtist';
 
 export interface IModal {
   children: React.ReactNode;
@@ -19,7 +20,7 @@ export interface IModal {
   closeModal?: (value: boolean) => void;
 }
 
-const Modal: React.FC<IModal> = ({ children, theme, variant, closeModal }) => {
+const Modal:FC<IModal> = ({ children, theme, variant, closeModal }) => {
   const [isActive, setIsActive] = useState(true);
   const drawerRef = useRef<HTMLDivElement>(null);
 

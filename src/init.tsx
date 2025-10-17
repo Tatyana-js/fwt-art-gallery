@@ -6,6 +6,7 @@ import App from './App';
 import ThemeContextProvider from './Context/ThemeContext';
 import { artistsApi } from './api/artistsApi';
 import { authApi } from './api/authApi';
+import { RootState } from '@/types/types';
 
 const init = async (): Promise<React.ReactNode> => {
   const store = configureStore({
@@ -30,3 +31,4 @@ const init = async (): Promise<React.ReactNode> => {
 };
 
 export default init;
+export const selectIsAuth = (state: RootState) => state.auth.isAuth;

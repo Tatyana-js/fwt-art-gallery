@@ -1,5 +1,8 @@
+import { selectIsAuth } from '@/init';
+import { authSlice } from '@/slices/authSlice';
 import clsx from 'clsx';
 import { FC } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
 import styles from './Header.module.scss';
@@ -21,7 +24,13 @@ interface IHeader {
 
 const Header: FC<IHeader> = ({ setMenuIsOpen, theme, toggleTheme }) => {
   const location = useLocation();
+ const dispatch = useDispatch(); 
+  const isAuth = useSelector(selectIsAuth);
+  const { logout } = authSlice.actions;
 
+  const handleClick = () => {
+    dispatch(logout())
+  }
   return (
     <header className={clsx(styles.header, styles[`header--${theme}`])}>
       <div
@@ -35,36 +44,49 @@ const Header: FC<IHeader> = ({ setMenuIsOpen, theme, toggleTheme }) => {
           <IconLogo />
         </div>
         <div className={styles.containerButtons}>
-          <div className={styles.buttonContainer}>
-            <Link
-              to={router.login()}
+          {isAuth ? (
+            <button
+              type="button"
               className={clsx(
                 styles.buttonItem,
                 styles[`buttonItem--${theme}`]
               )}
-              state={{
-                background: {
-                  pathname: location.pathname,
-                },
-              }}
+              onClick={handleClick}
             >
-              LOG IN
-            </Link>
-            <Link
-              to={router.signUp()}
-              className={clsx(
-                styles.buttonItem,
-                styles[`buttonItem--${theme}`]
-              )}
-              state={{
-                background: {
-                  pathname: location.pathname,
-                },
-              }}
-            >
-              SIGN UP
-            </Link>
-          </div>
+              LOG OUT
+            </button>
+          ) : (
+            <div className={styles.buttonContainer}>
+              <Link
+                to={router.login()}
+                className={clsx(
+                  styles.buttonItem,
+                  styles[`buttonItem--${theme}`]
+                )}
+                state={{
+                  background: {
+                    pathname: location.pathname,
+                  },
+                }}
+              >
+                LOG IN
+              </Link>
+              <Link
+                to={router.signUp()}
+                className={clsx(
+                  styles.buttonItem,
+                  styles[`buttonItem--${theme}`]
+                )}
+                state={{
+                  background: {
+                    pathname: location.pathname,
+                  },
+                }}
+              >
+                SIGN UP
+              </Link>
+            </div>
+          )}
           <div
             className={clsx(
               styles.themeContainer,
