@@ -45,10 +45,8 @@ const RegisterModal: FC<IRegisterModal> = ({ theme }) => {
     reValidateMode: 'onChange',
   });
 
-  const emailValue = watch('email');
-  const passwordValue = watch('password');
-
-  const isFormReady = emailValue && passwordValue;
+  const { email, password } = watch();
+  const isFormReady = !!(email && password);
 
   const onSubmit = async (formData: AuthFormData) => {
     try {

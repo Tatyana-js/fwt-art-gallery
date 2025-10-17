@@ -47,7 +47,7 @@ const AuthModal: FC<IAuthModal> = ({ theme }) => {
   });
 
   const { email, password } = watch();
-  const hasAllUserData = !!(email && password);
+  const isAllUserData = !!(email && password);
 
   const onSubmit = async (formData: AuthFormData) => {
     try {
@@ -111,7 +111,7 @@ const AuthModal: FC<IAuthModal> = ({ theme }) => {
               type="submit"
               variant="defaultButton"
               theme={theme}
-              disabled={isSubmitting || !hasAllUserData}
+              disabled={isSubmitting || !isAllUserData}
             >
               LOG IN
             </Button>
