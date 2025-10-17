@@ -9,9 +9,9 @@ import './styles/variables.scss';
 import AuthModal from './components/AuthModal';
 import Header from './components/Header';
 import RegisterModal from './components/RegisterModal';
+import AddArtistModal from '@/components/AddArtistModal';
 import Footer from '@/components/Footer';
 import MenuModal from '@/components/MenuModal';
-import AddArtistModal from '@/components/AddArtistModal';
 
 import Modal from '@/ui_kit/Modal';
 
@@ -78,8 +78,7 @@ function AppRouter() {
           variant="addArtist"
           closeModal={() => setIsAddArtistModalOpen(false)}
         >
-          <AddArtistModal theme={theme}
-          />
+          <AddArtistModal theme={theme} />
         </Modal>
       )}
       {background && (

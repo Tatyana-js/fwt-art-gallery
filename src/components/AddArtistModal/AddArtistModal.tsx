@@ -1,4 +1,5 @@
 import { FC } from 'react';
+
 import type { theme } from '@/types/types.ts';
 
 interface IAddArtistModal {
@@ -6,9 +7,7 @@ interface IAddArtistModal {
 }
 
 const AddArtistModal: FC<IAddArtistModal> = ({ theme }) => {
-  return (
-    <div>{theme}</div>
-  );
-}
+  return <div>{theme}</div>;
+};
 
 export default AddArtistModal;

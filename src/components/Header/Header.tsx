@@ -2,7 +2,7 @@ import { selectIsAuth } from '@/init';
 import { authSlice } from '@/slices/authSlice';
 import clsx from 'clsx';
 import { FC } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 
 import styles from './Header.module.scss';
@@ -24,13 +24,13 @@ interface IHeader {
 
 const Header: FC<IHeader> = ({ setMenuIsOpen, theme, toggleTheme }) => {
   const location = useLocation();
- const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
   const { logout } = authSlice.actions;
 
   const handleClick = () => {
-    dispatch(logout())
-  }
+    dispatch(logout());
+  };
   return (
     <header className={clsx(styles.header, styles[`header--${theme}`])}>
       <div

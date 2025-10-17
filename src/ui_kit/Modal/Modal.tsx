@@ -20,7 +20,7 @@ export interface IModal {
   closeModal?: (value: boolean) => void;
 }
 
-const Modal:FC<IModal> = ({ children, theme, variant, closeModal }) => {
+const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
   const [isActive, setIsActive] = useState(true);
   const drawerRef = useRef<HTMLDivElement>(null);
 

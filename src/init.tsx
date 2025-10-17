@@ -2,11 +2,12 @@ import authReducer from '@/slices/authSlice';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
 
+import { RootState } from '@/types/types';
+
 import App from './App';
 import ThemeContextProvider from './Context/ThemeContext';
 import { artistsApi } from './api/artistsApi';
 import { authApi } from './api/authApi';
-import { RootState } from '@/types/types';
 
 const init = async (): Promise<React.ReactNode> => {
   const store = configureStore({
