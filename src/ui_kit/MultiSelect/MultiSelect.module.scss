@@ -37,6 +37,12 @@
   &.rotated {
     transform: rotate(180deg);
   }
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $secondary-gray;
+  }
 }
 
 .containerGenre {

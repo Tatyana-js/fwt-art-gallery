@@ -10,9 +10,9 @@ import ErrorIcon from '@/assets/icons/ErrorIcon';
 export interface ITextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
-  text: string;
+  value: string;
   theme: theme;
-  error: boolean;
+  error?: boolean;
 }
 
 const TextArea: FC<ITextareaProps> = ({ label, value, theme, error }) => {

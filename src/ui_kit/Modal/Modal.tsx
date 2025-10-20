@@ -39,7 +39,7 @@ const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
         if (location.state?.background) {
           navigation(location.state.background, { replace: true });
         } else {
-          navigation(-1);
+          navigation('/');
         }
       }
     }
@@ -55,6 +55,9 @@ const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
     }
     if (variant === 'authorization' || variant === 'register') {
       return [styles.authModal, styles[`authModal--${theme}`]];
+    }
+    if (variant === 'addArtist') {
+      return [styles.addArtist, styles[`addArtist--${theme}`]];
     }
     return [];
   };
@@ -80,6 +83,9 @@ const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
           className={clsx(styles.clearButton, styles[`clearButton--${theme}`])}
           onClick={() => {
             setIsActive(false);
+            if (closeModal && variant !== 'menuModal') {
+              closeModal(false);
+            }
             navigation('/');
           }}
         >

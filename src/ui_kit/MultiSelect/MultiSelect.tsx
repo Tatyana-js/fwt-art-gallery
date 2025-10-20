@@ -92,7 +92,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
       <button
         type="button"
         aria-label="Toggle dropdown menu"
-        className={clsx(styles.selectButton, isOpen && styles.rotated)}
+        className={clsx(styles.selectButton, styles[`selectButton--${theme}`], isOpen && styles.rotated)}
         onClick={() => setIsOpen(!isOpen)}
       >
         <SelectButton />

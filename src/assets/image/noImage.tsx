@@ -1,4 +1,4 @@
-const noImage = () => {
+const NoImage = () => {
   return (
     <svg
       width="131"
@@ -34,4 +34,4 @@ const noImage = () => {
   );
 };
 
-export default noImage;
+export default NoImage;

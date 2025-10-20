@@ -14,15 +14,4 @@
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-  &--light {
-    background-color: transparent;
-  }
-  &--dark {
-    color: $primary-light-gray;
-    background-color: $secondary-black;
-  }
 }
