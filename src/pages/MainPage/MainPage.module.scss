@@ -11,16 +11,22 @@
   }
 }
 .addArtistButton {
-  width: 110px;
   height: 24px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  gap: 12px;
+  position: relative;
   &--light {
     color: $primary-dark-gray;
   }
   &--dark {
     color: $primary-light-gray;
+  }
+  svg {
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    left: 0;
+    margin-right: 12px;
   }
 }
 @include screen(tablet) {

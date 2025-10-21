@@ -16,30 +16,40 @@ interface IMultiSelectProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   genres: IGenre[];
   theme: theme;
-  selectedGenres: IGenre[];
 }
 
-const isCheckedGenre = (selectedGenres: IGenre[], _id: string) => {
-  const selectedIds = selectedGenres.map((item: IGenre) => item._id);
-  return selectedIds.includes(_id);
-};
-
-const MultiSelect: React.FC<IMultiSelectProps> = ({
-  genres,
-  selectedGenres,
-  theme,
-}) => {
+const MultiSelect: React.FC<IMultiSelectProps> = ({ genres, theme }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedGenres, setSelectedGenres] = useState<IGenre[]>([]);
 
-  const renderSelect = (
-    genres: IGenre[],
-    theme: theme,
-    selectedGenres: IGenre[]
-  ) => (
-    <>
-      {genres.map(({ _id, name }) => (
+  const toggleGenre = (genre: IGenre) => {
+    setSelectedGenres((prev) => {
+      const isCurrentlySelected = prev.some((g) => g._id === genre._id);
+      if (isCurrentlySelected) {
+        const newGenres = prev.filter((g) => g._id !== genre._id);
+        return newGenres;
+      } else {
+        const newGenres = [...prev, genre];
+        return newGenres;
+      }
+    });
+  };
+
+  const isSelected = (_id: string) => {
+    const selected = selectedGenres.some((g) => g._id === _id);
+    return selected;
+  };
+
+  const renderSelect = (genres: IGenre[], theme: theme) => (
+    <div
+      className={clsx(
+        styles.genreContainer,
+        styles[`genreContainer--${theme}`]
+      )}
+    >
+      {genres?.map((genre) => (
         <div
-          key={_id}
+          key={genre._id}
           className={clsx(
             styles.containerGenre,
             styles[`containerGenre--${theme}`]
@@ -47,12 +57,13 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
         >
           <Checkbox
             theme={theme}
-            text={name}
-            checked={isCheckedGenre(selectedGenres, _id)}
+            text={genre.name}
+            checked={isSelected(genre._id)}
+            onChange={() => toggleGenre(genre)}
           />
         </div>
       ))}
-    </>
+    </div>
   );
 
   const renderSelectedLabel = (selectedGenres: IGenre[], theme: theme) => (
@@ -62,10 +73,10 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
         styles[`selectedGenres--${theme}`]
       )}
     >
-      {selectedGenres.map(({ _id, name }) => (
-        <div key={_id} className={styles.selectedItem}>
-          <Label theme={theme} onClick={() => {}} showCloseButton={true}>
-            {name}
+      {selectedGenres.map((genre) => (
+        <div key={genre._id} className={styles.selectedItem}>
+          <Label key={genre._id} theme={theme} onClick={() => toggleGenre(genre)} showCloseButton={true}>
+            {genre.name}
           </Label>
         </div>
       ))}
@@ -74,14 +85,8 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
 
   return (
     <div className={styles.multiContainer}>
-      <div
-        className={clsx(
-          styles.containerTheme,
-          styles[`containerTheme--${theme}`]
-        )}
-      ></div>
       <Input
-        label="Field name"
+        label="Genres*"
         theme={theme}
         readOnly
         className={clsx(
@@ -92,13 +97,17 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
       <button
         type="button"
         aria-label="Toggle dropdown menu"
-        className={clsx(styles.selectButton, styles[`selectButton--${theme}`], isOpen && styles.rotated)}
+        className={clsx(
+          styles.selectButton,
+          styles[`selectButton--${theme}`],
+          isOpen && styles.rotated
+        )}
         onClick={() => setIsOpen(!isOpen)}
       >
         <SelectButton />
       </button>
       {renderSelectedLabel(selectedGenres, theme)}
-      {isOpen && renderSelect(genres, theme, selectedGenres)}
+      {isOpen && renderSelect(genres, theme)}
     </div>
   );
 };

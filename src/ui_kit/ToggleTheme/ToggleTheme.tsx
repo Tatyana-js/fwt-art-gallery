@@ -21,7 +21,7 @@ const ToggleTheme: FC<IToggleTheme> = memo(({ theme, toggleTheme }) => {
       className={clsx(styles.buttonTheme, styles[`buttonTheme--${theme}`])}
       onClick={toggleTheme}
     >
-      <div className={clsx(styles.iconTheme, styles[`iconTheme--${theme}`])}>
+      <div className={clsx(styles.iconTheme)}>
         {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
       </div>
       <Button variant="text" theme={theme}>

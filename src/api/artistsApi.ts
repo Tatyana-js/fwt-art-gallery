@@ -1,12 +1,12 @@
 import baseQuery from '@/api/basequery';
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-import IArtist, { IPainting } from '@/types/Artist';
+import IArtist, { IPainting, IGenre } from '@/types/Artist';
 
 export const artistsApi = createApi({
   reducerPath: 'artistsApi',
   baseQuery: baseQuery,
-  tagTypes: ['Artist', 'User', 'Auth', 'Painting'],
+  tagTypes: ['Artist', 'Painting', 'Genres'],
   endpoints: (builder) => ({
     getArtists: builder.query<IArtist[], void>({
       query: () => {
@@ -90,6 +90,11 @@ export const artistsApi = createApi({
     getArtistMainPainting: builder.query<IPainting, string>({
       query: (id) => `artists/${id}/main-painting`,
     }),
+    //  Получение жанров
+    getGenres: builder.query<IGenre[], void>({
+      query: () => 'genres',
+      providesTags: ['Genres'],
+    }),
   }),
 });
 
@@ -103,4 +108,5 @@ export const {
   useUpdateArtistPaintingMutation,
   useDeleteArtistPaintingMutation,
   useGetArtistMainPaintingQuery,
+  useGetGenresQuery,
 } = artistsApi;

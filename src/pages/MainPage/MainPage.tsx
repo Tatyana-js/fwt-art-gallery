@@ -49,7 +49,9 @@ const MainPage: FC<IMainPage> = ({ openMоdal }) => {
             )}
             onClick={openMоdal}
           >
-            <PlusIcon />
+            <div>
+              <PlusIcon />
+            </div>
             <Button variant="text" theme={theme}>
               ADD ARTISTS
             </Button>

@@ -1,5 +1,6 @@
+import useScrollLock from '@/hooks/useScrollLock';
 import clsx from 'clsx';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -23,9 +24,17 @@ export interface IModal {
 const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
   const [isActive, setIsActive] = useState(true);
   const drawerRef = useRef<HTMLDivElement>(null);
+  const { lock, unlock } = useScrollLock();
 
   const location = useLocation();
   const navigation = useNavigate();
+
+  useEffect(() => {
+    lock();
+    return () => {
+      unlock();
+    };
+  }, [lock, unlock]);
 
   useOnClickOutside(drawerRef as React.RefObject<HTMLElement>, () =>
     setIsActive(false)
@@ -33,6 +42,7 @@ const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
 
   const handleAnimationEnd = () => {
     if (!isActive) {
+      unlock();
       if (closeModal) {
         closeModal(false);
       } else {

@@ -33,8 +33,6 @@ function AppRouter() {
   const [isAddArtistModalOpen, setIsAddArtistModalOpen] =
     useState<boolean>(false);
 
-    console.log(isAddArtistModalOpen);
-    
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
 

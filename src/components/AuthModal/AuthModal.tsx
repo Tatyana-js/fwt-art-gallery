@@ -43,7 +43,7 @@ const AuthModal: FC<IAuthModal> = ({ theme }) => {
     setError,
   } = useForm<UseFormData>({
     resolver: yupResolver(userSchema),
-    mode: 'onChange',
+    mode: 'onSubmit',
   });
 
   const { email, password } = watch();

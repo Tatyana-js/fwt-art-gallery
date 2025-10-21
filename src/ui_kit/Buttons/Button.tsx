@@ -13,10 +13,10 @@ export interface ButtonProps
   theme: theme;
 }
 
-const Button: FC<ButtonProps> = ({ variant, children, theme, ...props }) => (
+const Button: FC<ButtonProps> = ({ variant, children, theme, type = 'button', ...props }) => (
   <button
     className={clsx(styles[variant], styles[`${variant}--${theme}`])}
-    type="button"
+    type={type}
     {...props}
   >
     {children}

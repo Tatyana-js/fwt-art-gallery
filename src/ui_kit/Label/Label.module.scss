@@ -10,13 +10,12 @@
   padding: 8px 16px;
   transition: all 0.5s ease;
   position: relative;
-  padding-right: 36px;
+  margin-left: 12px;
   &--light {
     color: $primary-dark-gray;
     border: none;
     background-color: rgba($color: $primary-black, $alpha: 5%);
   }
-
   &--dark {
     color: #ffffff;
     background-color: transparent;
@@ -33,14 +32,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
-  top: 10px;
-  right: 10px;
-
+  position: relative;
+  padding: 0;
+ background-color: transparent;
   &--light {
     color: $primary-dark-gray;
   }
   &--dark {
     color: $primary-light-gray;
+  }
+  svg {
+    width: 12px;    
+    height: 12px; 
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-50%, -50%);
   }
 }

@@ -2,8 +2,8 @@
 @use '@/styles/variables.scss' as *;
 
 .container {
-  min-width: 260px;
-  display: flex;
+  width: 260px;
+  display: inline;
   flex-direction: column;
   position: relative;
   &--light {
@@ -81,8 +81,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
 }
 .errorMessage {
   color: $accept-error;
   @include fonts('Inter', sans-serif, 300, 12px, 140%);
+  margin-left: 32px;
+}
+
+@include screen(tablet) {
+  .container {
+    width: 340px;
+  }
 }

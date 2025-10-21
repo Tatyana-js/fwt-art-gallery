@@ -2,26 +2,33 @@
 @use '@/styles/variables.scss' as *;
 
 .multiContainer {
-  width: 340px;
-  overflow: hidden;
-  display: flex;
+  width: 260px;
+  display: inline-flex;
   flex-direction: column;
   border: none;
   position: relative;
 }
-.containerTheme {
-  width: 340px;
-  height: 286px;
-  position: absolute;
-  top: 29px;
-  z-index: 0;
+.genreContainer {
+  height: 260px;
+  margin-top: 10px;
+  max-height: 240px;
+  overflow-y: scroll;
+  transition: all 0.3s ease;
+  z-index: 10000;
+  transform: translateY(-10px);
+
+  &.open {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
   &--light {
-    border: 1px solid $primary-light-gray;
+    color: $primary-dark-gray;
     background-color: $primary-white;
   }
   &--dark {
+    color: $secondary-gray;
     background-color: $secondary-black;
-    border: none;
   }
 }
 .inputContainer {
@@ -29,22 +36,29 @@
 }
 .selectButton {
   position: absolute;
-  top: 40px;
-  left: 300px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 30px;
+  right: 16px;
   transform: rotate(0deg);
   transition: transform 0.3s ease;
   z-index: 7;
+  border: none;
   &.rotated {
     transform: rotate(180deg);
   }
   &--light {
     color: $primary-dark-gray;
+    background-color: $primary-white;
   }
   &--dark {
     color: $secondary-gray;
+    background-color: $secondary-black;
   }
 }
-
 .containerGenre {
   display: flex;
   gap: 12px;
@@ -66,21 +80,18 @@
     }
   }
 }
-
 .selectedGenres {
   position: absolute;
   z-index: 6;
-  width: 263px;
-  height: 33px;
-  left: 16px;
-  display: block;
+  width: 230px;
+  height: 46px;
+  display: inline;
   top: 26px;
 
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   transition: all 0.5s ease;
-
   &--light {
     color: $primary-dark-gray;
   }
@@ -89,7 +100,13 @@
     color: $primary-white;
   }
 }
-
 .selectedItem {
   display: inline;
+  margin-right: 12px;
+}
+
+@include screen(tablet) {
+  .multiContainer {
+    width: 340px;
+  }
 }

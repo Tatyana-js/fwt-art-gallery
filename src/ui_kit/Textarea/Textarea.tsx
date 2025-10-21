@@ -10,12 +10,11 @@ import ErrorIcon from '@/assets/icons/ErrorIcon';
 export interface ITextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
-  value: string;
   theme: theme;
   error?: boolean;
 }
 
-const TextArea: FC<ITextareaProps> = ({ label, value, theme, error }) => {
+const TextArea: FC<ITextareaProps> = ({ label, theme, error }) => {
   return (
     <div className={styles.container}>
       <label
@@ -26,7 +25,6 @@ const TextArea: FC<ITextareaProps> = ({ label, value, theme, error }) => {
       </label>
       <textarea
         id="label"
-        value={value}
         className={clsx(
           styles.textarea,
           styles[`textarea--${theme}`],
