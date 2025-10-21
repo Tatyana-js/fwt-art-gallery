@@ -34,7 +34,7 @@
   align-items: center;
   position: relative;
   padding: 0;
- background-color: transparent;
+  background-color: transparent;
   &--light {
     color: $primary-dark-gray;
   }
@@ -42,8 +42,8 @@
     color: $primary-light-gray;
   }
   svg {
-    width: 12px;    
-    height: 12px; 
+    width: 12px;
+    height: 12px;
     // position: absolute;
     // top: 50%;
     // left: 50%;

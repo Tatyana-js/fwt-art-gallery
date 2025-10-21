@@ -41,11 +41,10 @@ svg {
   position: relative;
 }
 
-  .iconWrapper {
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+.iconWrapper {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

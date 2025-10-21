@@ -75,7 +75,12 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({ genres, theme }) => {
     >
       {selectedGenres.map((genre) => (
         <div key={genre._id} className={styles.selectedItem}>
-          <Label key={genre._id} theme={theme} onClick={() => toggleGenre(genre)} showCloseButton={true}>
+          <Label
+            key={genre._id}
+            theme={theme}
+            onClick={() => toggleGenre(genre)}
+            showCloseButton={true}
+          >
             {genre.name}
           </Label>
         </div>
