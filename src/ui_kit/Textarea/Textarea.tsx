@@ -34,7 +34,9 @@ const TextArea: FC<ITextareaProps> = ({ label, theme, error, ...props }) => {
       />
       {error && (
         <div className={styles.errorContainer}>
-          <div className={styles.iconContainer}><ErrorIcon /></div>
+          <div className={styles.iconContainer}>
+            <ErrorIcon />
+          </div>
           <p className={styles.errorMessage}>{error}</p>
         </div>
       )}

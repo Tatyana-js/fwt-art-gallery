@@ -52,7 +52,9 @@ function AppRouter() {
         />
         <Route
           path={router.artist_profile(':id')}
-          element={<ArtistProfile openMоdal={() => setIsAddArtistModalOpen(true)} />}
+          element={
+            <ArtistProfile openMоdal={() => setIsAddArtistModalOpen(true)} />
+          }
         />
         <Route
           path={router.artist_profileStatic(':id')}

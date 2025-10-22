@@ -54,8 +54,9 @@ const ArtistProfile: FC<IArtistProfile> = ({ openMоdal }) => {
               )
             )
           ) : (
-            <div className={styles.emptyPhoto}><EmptyImage /></div>
-            
+            <div className={styles.emptyPhoto}>
+              <EmptyImage />
+            </div>
           )}
         </Grid>
       </div>

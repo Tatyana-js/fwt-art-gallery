@@ -20,18 +20,22 @@ interface IMultiSelectProps
   onGenresChange: (genreIds: string[]) => void;
 }
 
-const MultiSelect: React.FC<IMultiSelectProps> = ({ genres, theme, selectedGenres, onGenresChange}) => {
+const MultiSelect: React.FC<IMultiSelectProps> = ({
+  genres,
+  theme,
+  selectedGenres,
+  onGenresChange,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleGenre = (genre: IGenre) => {
-      const isCurrentlySelected = selectedGenres.includes(genre._id);
-      let newGenres: string[];
-      if (isCurrentlySelected) {
-        newGenres = selectedGenres.filter((id) => id !== genre._id);
-      } else {
-        newGenres = [...selectedGenres, genre._id];
-        
-    };
+    const isCurrentlySelected = selectedGenres.includes(genre._id);
+    let newGenres: string[];
+    if (isCurrentlySelected) {
+      newGenres = selectedGenres.filter((id) => id !== genre._id);
+    } else {
+      newGenres = [...selectedGenres, genre._id];
+    }
     onGenresChange(newGenres);
   };
 
@@ -39,7 +43,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({ genres, theme, selectedGenre
     return selectedGenres.includes(_id);
   };
 
-  const selectedGenreObjects = genres.filter(genre => 
+  const selectedGenreObjects = genres.filter((genre) =>
     selectedGenres.includes(genre._id)
   );
 
