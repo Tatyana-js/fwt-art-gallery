@@ -15,6 +15,9 @@
     }
   }
 }
+.paintingArtist {
+  aspect-ratio: auto;
+}
 img {
   width: 100%;
   height: auto;
@@ -81,7 +84,6 @@ img {
     color: $accent-gold;
   }
 }
-
 .containerArtist {
   min-width: 300px;
   padding: 20px;
@@ -154,17 +156,17 @@ img {
   .paintingArtist {
     position: relative;
     margin-left: 440px;
+    width: 1000px;
+    height: 800px;
   }
   .container {
     width: 300px;
     padding: 20px;
     @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
   }
-
   .containerArtist {
     display: none;
   }
-
   .line {
     display: flex;
     position: absolute;

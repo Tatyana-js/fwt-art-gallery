@@ -96,7 +96,7 @@ const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
             if (closeModal && variant !== 'menuModal') {
               closeModal(false);
             }
-            navigation('/');
+            // navigation('/');
           }}
         >
           <ClearIcon />

@@ -11,10 +11,10 @@ export interface ITextareaProps
   extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
   theme: theme;
-  error?: boolean;
+  error?: string;
 }
 
-const TextArea: FC<ITextareaProps> = ({ label, theme, error }) => {
+const TextArea: FC<ITextareaProps> = ({ label, theme, error, ...props }) => {
   return (
     <div className={styles.container}>
       <label
@@ -30,11 +30,12 @@ const TextArea: FC<ITextareaProps> = ({ label, theme, error }) => {
           styles[`textarea--${theme}`],
           error && styles.textareaError
         )}
+        {...props}
       />
       {error && (
         <div className={styles.errorContainer}>
-          <ErrorIcon />
-          <p className={styles.errorMessage}>This is an error message!</p>
+          <div className={styles.iconContainer}><ErrorIcon /></div>
+          <p className={styles.errorMessage}>{error}</p>
         </div>
       )}
     </div>

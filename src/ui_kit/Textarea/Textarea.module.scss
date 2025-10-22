@@ -11,7 +11,6 @@
   transition: all 0.5s ease;
   @include fonts('Inter', sans-serif, 700, 12px, 100%);
 }
-
 .textarea {
   width: 100%;
   padding: 12px 16px 6px;
@@ -20,9 +19,7 @@
   overflow-y: scroll;
   scrollbar-width: thin;
   transition: all 0.5s ease;
-
   @include fonts('Inter', sans-serif, 300, 16px, 140%);
-
   &--light {
     background-color: $primary-white;
     border: 1px solid $primary-light-gray;
@@ -35,7 +32,6 @@
       border: 1px solid $primary-dark-gray;
     }
   }
-
   &--dark {
     background-color: $secondary-black;
     color: $primary-light-gray;
@@ -54,9 +50,13 @@
 .errorContainer {
   display: flex;
   gap: 8px;
-  align-items: center;
+  align-items: flex-start;
 }
-
+.iconContainer {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
 .errorMessage {
   color: $accept-error;
   @include fonts('Inter', sans-serif, 300, 12px, 140%);

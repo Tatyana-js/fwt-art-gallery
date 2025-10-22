@@ -1,5 +1,7 @@
+import { selectIsAuth } from '@/init';
 import clsx from 'clsx';
 import { FC } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './Artist.module.scss';
@@ -13,13 +15,17 @@ import Button from '@/ui_kit/Buttons';
 import Card from '@/ui_kit/Card/Card';
 
 import BackIcon from '@/assets/icons/BackIcon';
+import DeleteIcon from '@/assets/icons/DeleteIcon';
+import EditIcon from '@/assets/icons/EditIcon';
 
 export interface IArtistsProps {
   artist: IArtist;
   theme: theme;
+  openMоdal?: () => void;
 }
 
-const Artist: FC<IArtistsProps> = ({ artist, theme }) => {
+const Artist: FC<IArtistsProps> = ({ artist, theme, openMоdal }) => {
+  const isAuth = useSelector(selectIsAuth);
   const navigate = useNavigate();
 
   const handleBack = () => {
@@ -50,11 +56,21 @@ const Artist: FC<IArtistsProps> = ({ artist, theme }) => {
           </Button>
         </div>
       </button>
+      {isAuth && (
+        <div className={styles.editButtons}>
+          <Button variant="icon" theme={theme} onClick={openMоdal}>
+            <EditIcon />
+          </Button>
+          <Button variant="icon" theme={theme}>
+            <DeleteIcon />
+          </Button>
+        </div>
+      )}
       <Card
         type="artist"
         theme={theme}
         name={name}
-        imageSrc={avatar?.src || ''}
+        imageSrc={avatar?.src ?? ''}
         details={yearsOfLife}
       />
       <div

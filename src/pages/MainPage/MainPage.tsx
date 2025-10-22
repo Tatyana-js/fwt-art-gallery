@@ -28,7 +28,7 @@ const MainPage: FC<IMainPage> = ({ openMоdal }) => {
   const isAuth = useSelector(selectIsAuth);
 
   const { data: artistsData } = useGetArtistsQuery();
-
+  console.log(artistsData);
   const artists =
     ((artistsData && typeof artistsData === 'object' && 'data' in artistsData
       ? artistsData.data
@@ -47,26 +47,23 @@ const MainPage: FC<IMainPage> = ({ openMоdal }) => {
               styles.addArtistButton,
               styles[`addArtistButton--${theme}`]
             )}
-            onClick={openMоdal}
           >
-            <div>
+            <Button variant="text" theme={theme} onClick={openMоdal}>
               <PlusIcon />
-            </div>
-            <Button variant="text" theme={theme}>
               ADD ARTISTS
             </Button>
           </div>
         )}
         <Grid>
-          {artists?.map(({ _id, mainPainting }: IArtist) => (
+          {artists?.map((artist: IArtist) => (
             <Card
-              key={mainPainting._id}
+              key={artist._id}
               theme={theme}
-              name={mainPainting.name}
-              details={mainPainting.yearOfCreation}
-              imageSrc={mainPainting.image.src}
+              name={artist.name}
+              details={artist.yearsOfLife}
+              imageSrc={artist.mainPainting?.image?.src ?? ''}
               type="painting"
-              onClick={() => handleCardClick(_id)}
+              onClick={() => handleCardClick(artist._id)}
             />
           ))}
         </Grid>

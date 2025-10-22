@@ -9,8 +9,10 @@ import getImageSrc from '@/utils/getImageSrc';
 
 import ComeIn from '@/assets/icons/ComeIn';
 
+import EmptyImage from '../EmptyImage';
+
 export interface ICardProps {
-  name: string;
+  name?: string;
   imageSrc: string;
   details: string;
   theme: theme;
@@ -25,32 +27,46 @@ const Card: FC<ICardProps> = ({
   details,
   type,
   onClick,
-}) => (
-  <div
-    onClick={onClick}
-    className={clsx(
-      styles.painting,
-      type === 'artist' && styles.paintingArtist
-    )}
-  >
-    <a href="#" className={styles.linkboxOverlay}></a>
-    <img src={getImageSrc(imageSrc)} alt={name} width={100} height={100} />
+}) => {
+  const isEmpty = !imageSrc;
+
+  return (
     <div
+      onClick={onClick}
       className={clsx(
-        styles.container,
-        styles[`container--${theme}`],
-        type === 'artist' && styles.containerArtist
+        styles.painting,
+        type === 'artist' && styles.paintingArtist
       )}
     >
-      <div className={clsx(styles.line, styles[`line--${theme}`])}>
-        <ComeIn />
+      <a href="#" className={styles.linkboxOverlay}></a>
+      {isEmpty ? (
+        <EmptyImage theme={theme} />
+      ) : (
+        <img
+          src={getImageSrc(imageSrc)}
+          alt={name || 'Card name'}
+          width={100}
+          height={100}
+        />
+      )}
+
+      <div
+        className={clsx(
+          styles.container,
+          styles[`container--${theme}`],
+          type === 'artist' && styles.containerArtist
+        )}
+      >
+        <div className={clsx(styles.line, styles[`line--${theme}`])}>
+          <ComeIn />
+        </div>
+        <p className={clsx(styles.name, styles[`name--${theme}`])}>{name}</p>
+        <p className={clsx(styles.details, styles[`details--${theme}`])}>
+          {details}
+        </p>
       </div>
-      <p className={clsx(styles.name, styles[`name--${theme}`])}>{name}</p>
-      <p className={clsx(styles.details, styles[`details--${theme}`])}>
-        {details}
-      </p>
     </div>
-  </div>
-);
+  );
+};
 
 export default Card;

@@ -42,7 +42,16 @@
 .tabletLgOnly {
   display: none;
 }
-
+.editButtons {
+  width: 76px;
+  height: 28px;
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 @include screen(tablet) {
   .container {
     padding: 80px 0;
@@ -53,7 +62,7 @@
     display: flex;
     align-items: center;
     top: 36px;
-    left: 20px;
+    left: 0;
     gap: 12px;
     .buttonBack {
       display: flex;
@@ -71,6 +80,7 @@
 @include screen(tablet_lg) {
   .container {
     padding: 100px 0;
+    overflow: hidden;
   }
   .buttonBack {
     top: 52px;
@@ -127,5 +137,8 @@
   }
   .notDesctop {
     display: none;
+  }
+  .editButtons {
+    right: 100px;
   }
 }

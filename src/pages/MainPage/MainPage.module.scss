@@ -14,19 +14,11 @@
   height: 24px;
   display: flex;
   gap: 12px;
-  position: relative;
   &--light {
     color: $primary-dark-gray;
   }
   &--dark {
     color: $primary-light-gray;
-  }
-  svg {
-    width: 12px;
-    height: 12px;
-    position: absolute;
-    left: 0;
-    margin-right: 12px;
   }
 }
 @include screen(tablet) {

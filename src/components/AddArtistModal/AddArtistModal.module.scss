@@ -16,6 +16,13 @@
     background-color: $primary-black;
   }
 }
+.columnLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
 .containerPhoto {
   width: 200px;
   height: 200px;
@@ -59,10 +66,6 @@
     align-items: start;
   }
   .columnLeft {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
     gap: 40px;
   }
   .buttonContainer {

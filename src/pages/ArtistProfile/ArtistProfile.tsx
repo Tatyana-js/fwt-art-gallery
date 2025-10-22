@@ -13,7 +13,13 @@ import type { IMainPainting } from '@/types/Artist';
 import Card from '@/ui_kit/Card/Card';
 import Grid from '@/ui_kit/Grid/Grid';
 
-const ArtistProfile: FC = () => {
+import EmptyImage from '@/assets/image/EmptyImage';
+
+interface IArtistProfile {
+  openMоdal?: () => void;
+}
+
+const ArtistProfile: FC<IArtistProfile> = ({ openMоdal }) => {
   const { theme } = useTheme();
   const { id } = useParams();
   const { data: artist } = useGetArtistByIdQuery(id);
@@ -28,23 +34,28 @@ const ArtistProfile: FC = () => {
         styles[`containerArtist--${theme}`]
       )}
     >
-      <Artist theme={theme} artist={artist} />
+      <Artist theme={theme} artist={artist} openMоdal={openMоdal} />
       <div className="container">
         <h3 className={clsx(styles.workTitle, styles[`workTitle--${theme}`])}>
           Artworks
         </h3>
         <Grid>
-          {paintings.map(
-            ({ _id, name, yearOfCreation, image }: IMainPainting) => (
-              <Card
-                key={_id}
-                theme={theme}
-                name={name}
-                details={yearOfCreation}
-                imageSrc={image.src}
-                type="painting"
-              />
+          {paintings?.length > 0 ? (
+            paintings.map(
+              ({ _id, name, yearOfCreation, image }: IMainPainting) => (
+                <Card
+                  key={_id}
+                  theme={theme}
+                  name={name}
+                  details={yearOfCreation}
+                  imageSrc={image.src}
+                  type="painting"
+                />
+              )
             )
+          ) : (
+            <div className={styles.emptyPhoto}><EmptyImage /></div>
+            
           )}
         </Grid>
       </div>

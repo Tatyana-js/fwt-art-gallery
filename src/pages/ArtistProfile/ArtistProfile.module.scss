@@ -20,7 +20,15 @@
     color: $accent-gold;
   }
 }
-
+.emptyPhoto {
+  display: flex;
+  justify-content: center;
+  border: 1px dashed $primary-dark-gray;
+  & svg {
+    position: static; // Отменяет absolute по умолчанию
+    transform: none;
+  }
+}
 @include screen(tablet) {
   .workTitle {
     margin-top: 18px;

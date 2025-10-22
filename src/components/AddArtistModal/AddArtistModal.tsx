@@ -28,26 +28,28 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme }) => {
   const [createArtistMutation] = useCreateArtistMutation();
   const { data: genresData } = useGetGenresQuery();
   const genres = useMemo(() => genresData || [], [genresData]);
-  console.log(genres);
+
   const navigate = useNavigate();
 
   const {
     register,
     handleSubmit,
-    setError,
     formState: { errors },
-    // watch,
     reset,
-    // setError,
+    setError,
+    setValue,
+    watch,
   } = useForm({
     mode: 'onChange',
     resolver: yupResolver(addArtistSchema),
   });
 
+  const selectedGenreIds = watch('genres') || [];
+
   const onSubmit = async (formData: IAddArtistSchema) => {
     console.log('Form data:', formData);
     try {
-      await createArtistMutation({
+      const responceArtist = await createArtistMutation({
         name: formData.name,
         yearsOfLife: formData.yearsOfLife,
         description: formData.description,
@@ -55,7 +57,7 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme }) => {
       }).unwrap();
 
       reset();
-      navigate(router.artists());
+      navigate(router.artist_profile(responceArtist._id));
     } catch (err) {
       if (err instanceof Error) {
         setError('root.serverError', {
@@ -64,6 +66,10 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme }) => {
         });
       }
     }
+  };
+
+  const handleGenresChange = (genreIds: string[]) => {
+    setValue('genres', genreIds, { shouldValidate: true });
   };
 
   return (
@@ -112,8 +118,18 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme }) => {
             type="text"
             {...register('location')}
           />
-          <TextArea label="Description" theme={theme} />
-          <MultiSelect genres={genres || []} theme={theme} />
+          <TextArea
+            label="Description"
+            theme={theme}
+            {...register('description')}
+            error={errors.description?.message}
+          />
+          <MultiSelect
+            genres={genres || []}
+            theme={theme}
+            selectedGenres={selectedGenreIds}
+            onGenresChange={handleGenresChange}
+          />
           <div className={styles.buttonContainer}>
             <Button type="submit" variant="defaultButton" theme={theme}>
               SAVE

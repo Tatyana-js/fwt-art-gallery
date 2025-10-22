@@ -16,29 +16,32 @@ interface IMultiSelectProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   genres: IGenre[];
   theme: theme;
+  selectedGenres: string[];
+  onGenresChange: (genreIds: string[]) => void;
 }
 
-const MultiSelect: React.FC<IMultiSelectProps> = ({ genres, theme }) => {
+const MultiSelect: React.FC<IMultiSelectProps> = ({ genres, theme, selectedGenres, onGenresChange}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedGenres, setSelectedGenres] = useState<IGenre[]>([]);
 
   const toggleGenre = (genre: IGenre) => {
-    setSelectedGenres((prev) => {
-      const isCurrentlySelected = prev.some((g) => g._id === genre._id);
+      const isCurrentlySelected = selectedGenres.includes(genre._id);
+      let newGenres: string[];
       if (isCurrentlySelected) {
-        const newGenres = prev.filter((g) => g._id !== genre._id);
-        return newGenres;
+        newGenres = selectedGenres.filter((id) => id !== genre._id);
       } else {
-        const newGenres = [...prev, genre];
-        return newGenres;
-      }
-    });
+        newGenres = [...selectedGenres, genre._id];
+        
+    };
+    onGenresChange(newGenres);
   };
 
   const isSelected = (_id: string) => {
-    const selected = selectedGenres.some((g) => g._id === _id);
-    return selected;
+    return selectedGenres.includes(_id);
   };
+
+  const selectedGenreObjects = genres.filter(genre => 
+    selectedGenres.includes(genre._id)
+  );
 
   const renderSelect = (genres: IGenre[], theme: theme) => (
     <div
@@ -111,7 +114,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({ genres, theme }) => {
       >
         <SelectButton />
       </button>
-      {renderSelectedLabel(selectedGenres, theme)}
+      {renderSelectedLabel(selectedGenreObjects, theme)}
       {isOpen && renderSelect(genres, theme)}
     </div>
   );
