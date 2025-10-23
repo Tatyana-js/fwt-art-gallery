@@ -5,6 +5,7 @@ import { clearTokens, setTokens } from '@/utils/tokenStorage';
 
 export const baseQuery = async (args: string | FetchArgs) => {
   const config = typeof args === 'string' ? { url: args } : args;
+  const token = localStorage.getItem('accessToken');
 
   const result = await axios({
     baseURL: import.meta.env.VITE_API_URL,
@@ -13,6 +14,7 @@ export const baseQuery = async (args: string | FetchArgs) => {
     data: config.body,
     headers: {
       'Content-Type': 'application/json',
+      ...(token && { Authorization: `Bearer ${token}` }),
     },
   });
 
@@ -21,11 +23,9 @@ export const baseQuery = async (args: string | FetchArgs) => {
 
 axios.interceptors.request.use(
   function (config) {
-    if (!config.url?.includes('Authenticate')) {
-      const token = localStorage.getItem('accessToken');
-      if (token && !config.url?.includes('/static/')) {
-        config.headers.set('Authorization', `Bearer ${token}`);
-      }
+    const token = localStorage.getItem('accessToken');
+    if (token && !config.url?.includes('/static/')) {
+      config.headers.set('Authorization', `Bearer ${token}`);
     }
     return config;
   },
@@ -39,9 +39,12 @@ axios.interceptors.response.use(
     return response;
   },
   async function onRejected(error) {
-    const isLoginRequest = !error.config.url?.includes('/auth');
+    const shouldSkipRefresh =
+      error.config.url?.includes('/auth/login') ||
+      error.config.url?.includes('/auth/register') ||
+      error.config.url?.includes('/auth/refresh');
 
-    if (error.response?.status === 401 && !isLoginRequest) {
+    if (error.response?.status === 401 && !shouldSkipRefresh) {
       const refreshToken = localStorage.getItem('refreshToken');
 
       if (refreshToken) {

@@ -16,33 +16,6 @@
     background-color: $primary-black;
   }
 }
-.columnLeft {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 20px;
-}
-.containerPhoto {
-  width: 200px;
-  height: 200px;
-  position: relative;
-  border: 1px solid $primary-dark-gray;
-  border-style: dashed;
-  border-radius: 10%;
-  &--light {
-    color: $secondary-gray;
-  }
-  &--dark {
-    color: $secondary-gray;
-  }
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
 .formContainer {
   width: 260px;
   display: flex;

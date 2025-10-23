@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './AddArtistModal.module.scss';
 
+import EmptyCard from '@/components/EmptyCard';
+
 import type { theme } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';
@@ -15,8 +17,6 @@ import MultiSelect from '@/ui_kit/MultiSelect';
 import TextArea from '@/ui_kit/Textarea';
 
 import router from '@/utils/routes';
-
-import AddArtistPhoto from '@/assets/image/AddArtistPhoto';
 
 import addArtistSchema, { IAddArtistSchema } from './validate';
 
@@ -73,71 +73,51 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme }) => {
   };
 
   return (
-    <>
-      <div
-        className={clsx(
-          styles.containerInfo,
-          styles[`containerInfo--${theme}`]
-        )}
-      >
-        <div className={styles.columnLeft}>
-          <div
-            className={clsx(
-              styles.containerPhoto,
-              styles[`containerPhoto--${theme}`]
-            )}
-          >
-            <AddArtistPhoto />
-          </div>
-          <Button variant="text" theme={theme}>
-            BROWSE PROFILE PHOTO
+    <div
+      className={clsx(styles.containerInfo, styles[`containerInfo--${theme}`])}
+    >
+      <EmptyCard theme={theme} />
+      <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
+        <Input
+          label="Name*"
+          theme={theme}
+          type="name"
+          {...register('name')}
+          placeholder="Ivan Aivazovsky"
+          error={errors.name?.message}
+        />
+        <Input
+          label="Years of life"
+          theme={theme}
+          type="text"
+          {...register('yearsOfLife')}
+          error={errors.yearsOfLife?.message}
+        />
+        <Input
+          label="Location"
+          theme={theme}
+          type="text"
+          {...register('location')}
+        />
+        <TextArea
+          label="Description"
+          theme={theme}
+          {...register('description')}
+          error={errors.description?.message}
+        />
+        <MultiSelect
+          genres={genres || []}
+          theme={theme}
+          selectedGenres={selectedGenreIds}
+          onGenresChange={handleGenresChange}
+        />
+        <div className={styles.buttonContainer}>
+          <Button type="submit" variant="defaultButton" theme={theme}>
+            SAVE
           </Button>
         </div>
-        <form
-          className={styles.formContainer}
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <Input
-            label="Name*"
-            theme={theme}
-            type="name"
-            {...register('name')}
-            placeholder="Ivan Aivazovsky"
-            error={errors.name?.message}
-          />
-          <Input
-            label="Years of life"
-            theme={theme}
-            type="text"
-            {...register('yearsOfLife')}
-            error={errors.yearsOfLife?.message}
-          />
-          <Input
-            label="Location"
-            theme={theme}
-            type="text"
-            {...register('location')}
-          />
-          <TextArea
-            label="Description"
-            theme={theme}
-            {...register('description')}
-            error={errors.description?.message}
-          />
-          <MultiSelect
-            genres={genres || []}
-            theme={theme}
-            selectedGenres={selectedGenreIds}
-            onGenresChange={handleGenresChange}
-          />
-          <div className={styles.buttonContainer}>
-            <Button type="submit" variant="defaultButton" theme={theme}>
-              SAVE
-            </Button>
-          </div>
-        </form>
-      </div>
-    </>
+      </form>
+    </div>
   );
 };
 

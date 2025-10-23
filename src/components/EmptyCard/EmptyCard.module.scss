@@ -1,0 +1,63 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/mixins.scss' as *;
+
+.columnLeft {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  input {
+    display: none;
+  }
+}
+.image {
+  width: 200px;
+  height: 200px;
+  position: relative;
+  border: 1px solid $primary-dark-gray;
+  border-style: dashed;
+  border-radius: 10%;
+  &--light {
+    color: $secondary-gray;
+  }
+  &--dark {
+    color: $secondary-gray;
+  }
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.dropMessage {
+  display: none;
+}
+@include screen(tablet_lg) {
+  .image {
+    svg {
+      position: absolute;
+      top: 60px;
+      left: 100px;
+    }
+  }
+  .dropMessage {
+    width: 136px;
+    height: 44px;
+    position: absolute;
+    top: 116px;
+    left: 32px;
+    @include fonts('Inter', sans-serif, 300, 16px, 140%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    &--light {
+      background-color: $secondary-gray;
+    }
+    &--dark {
+      color: $primary-light-gray;
+    }
+  }
+}

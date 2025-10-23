@@ -9,7 +9,7 @@ import getImageSrc from '@/utils/getImageSrc';
 
 import ComeIn from '@/assets/icons/ComeIn';
 
-import EmptyImage from '../EmptyImage';
+import EmptyImage from '@/assets/image/EmptyImage';
 
 export interface ICardProps {
   name?: string;
@@ -40,7 +40,7 @@ const Card: FC<ICardProps> = ({
     >
       <a href="#" className={styles.linkboxOverlay}></a>
       {isEmpty ? (
-        <EmptyImage theme={theme} />
+        <EmptyImage />
       ) : (
         <img
           src={getImageSrc(imageSrc)}
