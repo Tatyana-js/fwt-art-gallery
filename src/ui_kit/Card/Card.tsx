@@ -8,7 +8,6 @@ import type { theme } from '@/types/types';
 import getImageSrc from '@/utils/getImageSrc';
 
 import ComeIn from '@/assets/icons/ComeIn';
-
 import EmptyImage from '@/assets/image/EmptyImage';
 
 export interface ICardProps {
