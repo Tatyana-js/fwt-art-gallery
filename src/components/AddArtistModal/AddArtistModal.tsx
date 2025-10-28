@@ -1,7 +1,7 @@
-import { useCreateArtistMutation, useGetGenresQuery } from '@/api/artistsApi';
+import { useCreateArtistMutation } from '@/api/artistsApi';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
-import { FC, useMemo } from 'react';
+import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,26 +9,25 @@ import styles from './AddArtistModal.module.scss';
 
 import EmptyCard from '@/components/EmptyCard';
 
+import { ICreateArtistRequest } from '@/types/Artist';
 import type { theme } from '@/types/types';
-
-import Button from '@/ui_kit/Buttons';
-import Input from '@/ui_kit/Input';
-import MultiSelect from '@/ui_kit/MultiSelect';
-import TextArea from '@/ui_kit/Textarea';
 
 import router from '@/utils/routes';
 
+import AddArtistForm from './AddArtistForm/AddArtistForm';
 import addArtistSchema, { IAddArtistSchema } from './validate';
 
 interface IAddArtistModal {
   theme: theme;
+  closeModal: (value: boolean) => void;
 }
 
-const AddArtistModal: FC<IAddArtistModal> = ({ theme }) => {
-  const [createArtistMutation] = useCreateArtistMutation();
-  const { data: genresData } = useGetGenresQuery();
-  const genres = useMemo(() => genresData || [], [genresData]);
+const AddArtistModal: FC<IAddArtistModal> = ({ theme, closeModal }) => {
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [isDragOver, setIsDragOver] = useState(false);
 
+  const [createArtistMutation] = useCreateArtistMutation();
   const navigate = useNavigate();
 
   const {
@@ -39,24 +38,30 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme }) => {
     setError,
     setValue,
     watch,
-  } = useForm({
+  } = useForm<IAddArtistSchema>({
     mode: 'onChange',
     resolver: yupResolver(addArtistSchema),
   });
 
-  const selectedGenreIds = watch('genres') || [];
-
-  const onSubmit = async (formData: IAddArtistSchema) => {
-    console.log('Form data:', formData);
+  const onSubmit = async (formData: ICreateArtistRequest) => {
     try {
-      const responceArtist = await createArtistMutation({
-        name: formData.name,
-        yearsOfLife: formData.yearsOfLife,
-        description: formData.description,
-        genres: formData.genres,
-      }).unwrap();
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('yearsOfLife', formData.yearsOfLife);
+      formDataToSend.append('description', formData.description);
+
+      formData.genres.forEach((genreId) => {
+        formDataToSend.append('genres', genreId);
+      });
+      if (selectedFile) {
+        formDataToSend.append('avatar', selectedFile);
+      }
+      const responceArtist = await createArtistMutation(
+        formDataToSend as unknown as ICreateArtistRequest
+      ).unwrap();
 
       reset();
+      closeModal(false);
       navigate(router.artist_profile(responceArtist._id));
     } catch (err) {
       if (err instanceof Error) {
@@ -68,55 +73,47 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme }) => {
     }
   };
 
-  const handleGenresChange = (genreIds: string[]) => {
-    setValue('genres', genreIds, { shouldValidate: true });
+  const handleFilesDrop = (files: File[]) => {
+    if (files.length > 0) {
+      const file = files[0];
+      setSelectedFile(file);
+      const objectUrl = URL.createObjectURL(file);
+      setPreviewUrl(objectUrl);
+    }
   };
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragOver(true);
+  };
+
+  const handleClearImage = () => {
+  setSelectedFile(null);
+  setPreviewUrl(null);
+};
 
   return (
     <div
       className={clsx(styles.containerInfo, styles[`containerInfo--${theme}`])}
+      onDragOver={handleDragOver}
     >
-      <EmptyCard theme={theme} />
-      <form className={styles.formContainer} onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          label="Name*"
-          theme={theme}
-          type="name"
-          {...register('name')}
-          placeholder="Ivan Aivazovsky"
-          error={errors.name?.message}
-        />
-        <Input
-          label="Years of life"
-          theme={theme}
-          type="text"
-          {...register('yearsOfLife')}
-          error={errors.yearsOfLife?.message}
-        />
-        <Input
-          label="Location"
-          theme={theme}
-          type="text"
-          {...register('location')}
-        />
-        <TextArea
-          label="Description"
-          theme={theme}
-          {...register('description')}
-          error={errors.description?.message}
-        />
-        <MultiSelect
-          genres={genres || []}
-          theme={theme}
-          selectedGenres={selectedGenreIds}
-          onGenresChange={handleGenresChange}
-        />
-        <div className={styles.buttonContainer}>
-          <Button type="submit" variant="defaultButton" theme={theme}>
-            SAVE
-          </Button>
-        </div>
-      </form>
+      <EmptyCard
+        theme={theme}
+        onFilesDrop={handleFilesDrop}
+        previewUrl={previewUrl}
+        selectedFile={selectedFile}
+        isDragOver={isDragOver}
+        setIsDragOver={setIsDragOver}
+        handleClearImage={handleClearImage}
+      />
+      <AddArtistForm
+        theme={theme}
+        setValue={setValue}
+        watch={watch}
+        onSubmit={handleSubmit(onSubmit)}
+        register={register}
+        errors={errors}
+      />
     </div>
   );
 };

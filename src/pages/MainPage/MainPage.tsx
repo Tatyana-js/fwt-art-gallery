@@ -28,7 +28,7 @@ const MainPage: FC<IMainPage> = ({ openMоdal }) => {
   const isAuth = useSelector(selectIsAuth);
 
   const { data: artistsData } = useGetArtistsQuery();
-  console.log(artistsData);
+
   const artists =
     ((artistsData && typeof artistsData === 'object' && 'data' in artistsData
       ? artistsData.data

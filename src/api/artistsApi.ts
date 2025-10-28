@@ -1,13 +1,14 @@
 import baseQuery from '@/api/basequery';
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-import IArtist, { IGenre, IPainting } from '@/types/Artist';
+import IArtist, { IGenre, IPainting, ICreateArtistRequest } from '@/types/Artist';
 
 export const artistsApi = createApi({
   reducerPath: 'artistsApi',
   baseQuery: baseQuery,
   tagTypes: ['Artist', 'Painting', 'Genres'],
   endpoints: (builder) => ({
+    // Получение всех артистов
     getArtists: builder.query<IArtist[], void>({
       query: () => {
         const token = localStorage.getItem('accessToken');
@@ -24,7 +25,7 @@ export const artistsApi = createApi({
       providesTags: (_, __, _id) => [{ type: 'Artist', _id }],
     }),
     // Создание артиста
-    createArtist: builder.mutation<IArtist, Partial<IArtist>>({
+    createArtist: builder.mutation<IArtist, ICreateArtistRequest>({
       query: (artistData) => ({
         url: 'artists',
         method: 'POST',

@@ -5,10 +5,6 @@ import { clearTokens, setTokens } from '@/utils/tokenStorage';
 export interface AuthState {
   isAuth: boolean;
 }
-console.log(
-  'Auth slice initialized, localStorage token:',
-  localStorage.getItem('accessToken')
-);
 
 const initialState: AuthState = {
   isAuth: !!localStorage.getItem('accessToken'),

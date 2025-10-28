@@ -1,3 +1,4 @@
+import { useDeleteArtistMutation } from '@/api/artistsApi';
 import { selectIsAuth } from '@/init';
 import clsx from 'clsx';
 import { FC } from 'react';
@@ -26,42 +27,39 @@ export interface IArtistsProps {
 
 const Artist: FC<IArtistsProps> = ({ artist, theme, openMоdal }) => {
   const isAuth = useSelector(selectIsAuth);
+  const [deleteArtist] = useDeleteArtistMutation();
+
   const navigate = useNavigate();
 
   const handleBack = () => {
     navigate('/');
   };
 
-  const { name, avatar, yearsOfLife, description, genres } = artist;
+  const { name, yearsOfLife, description, genres, _id } = artist;
 
   return (
     <div className={clsx('container', styles.container)}>
-      <button
-        type="button"
-        onClick={handleBack}
-        className={clsx(
-          styles.buttonsBack,
-          styles[`buttonsBack--${theme}`],
-          'container'
-        )}
+      <div
+        className={clsx(styles.buttonsBack, styles[`buttonsBack--${theme}`])}
       >
-        <div className={styles.rotated}>
+        <Button variant="text" theme={theme} onClick={handleBack}>
           <BackIcon />
-        </div>
-        <div
-          className={clsx(styles.buttonBack, styles[`buttonBack--${theme}`])}
-        >
-          <Button variant="text" theme={theme}>
-            BACK
-          </Button>
-        </div>
-      </button>
+          <span className={styles.backText}>BACK</span>
+        </Button>
+      </div>
       {isAuth && (
         <div className={styles.editButtons}>
           <Button variant="icon" theme={theme} onClick={openMоdal}>
             <EditIcon />
           </Button>
-          <Button variant="icon" theme={theme}>
+          <Button
+            variant="icon"
+            theme={theme}
+            onClick={() => {
+              deleteArtist(_id);
+              navigate('/');
+            }}
+          >
             <DeleteIcon />
           </Button>
         </div>
@@ -70,7 +68,7 @@ const Artist: FC<IArtistsProps> = ({ artist, theme, openMоdal }) => {
         type="artist"
         theme={theme}
         name={name}
-        imageSrc={avatar?.src ?? ''}
+        imageSrc={_id ?? ''}
         details={yearsOfLife}
       />
       <div

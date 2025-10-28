@@ -9,6 +9,7 @@
   justify-items: center;
   gap: 40px;
   align-items: center;
+  position: relative;
   &--ligth {
     background-color: $primary-white;
   }
@@ -16,33 +17,11 @@
     background-color: $primary-black;
   }
 }
-.formContainer {
-  width: 260px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 32px;
-}
-.buttonContainer {
-  margin: 0 auto;
-  margin-top: 8px;
-}
-@include screen(tablet) {
-  .formContainer {
-    width: 340px;
-    gap: 40px;
-  }
-}
 @include screen(tablet_lg) {
   .containerInfo {
     grid-template-columns: 2fr 3fr;
     align-items: start;
-  }
-  .columnLeft {
-    gap: 40px;
-  }
-  .buttonContainer {
-    margin-left: 0;
-    margin-top: 20px;
+    position: relative;
   }
 }
+

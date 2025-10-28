@@ -80,7 +80,7 @@ function AppRouter() {
           variant="addArtist"
           closeModal={setIsAddArtistModalOpen}
         >
-          <AddArtistModal theme={theme} />
+          <AddArtistModal theme={theme} closeModal={setIsAddArtistModalOpen} />
         </Modal>
       )}
       {background && (

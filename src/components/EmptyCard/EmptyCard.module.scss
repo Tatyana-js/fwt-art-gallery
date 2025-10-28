@@ -7,6 +7,7 @@
   justify-content: flex-start;
   align-items: center;
   gap: 20px;
+  transition: all 0.3s ease;
   input {
     display: none;
   }
@@ -18,6 +19,7 @@
   border: 1px solid $primary-dark-gray;
   border-style: dashed;
   border-radius: 10%;
+  transition: all 0.3s ease;
   &--light {
     color: $secondary-gray;
   }
@@ -31,33 +33,104 @@
     transform: translate(-50%, -50%);
   }
 }
-.dropMessage {
+.emptyCardMessage {
   display: none;
 }
 @include screen(tablet_lg) {
   .image {
     svg {
-      position: absolute;
       top: 60px;
       left: 100px;
     }
   }
-  .dropMessage {
+  .emptyCardMessage {
+    display: block;
+    text-align: center;
     width: 136px;
     height: 44px;
     position: absolute;
-    top: 116px;
+    bottom: 40px;
     left: 32px;
     @include fonts('Inter', sans-serif, 300, 16px, 140%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
     &--light {
       background-color: $secondary-gray;
     }
     &--dark {
       color: $primary-light-gray;
     }
+  }
+  .imageDrag {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $secondary-black;
+    z-index: 100;
+    border: 1px dashed $primary-dark-gray;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .dragOverState {
+    width: 260px;
+    height: 157px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    svg {
+      position: static;
+      margin: 0 auto;
+      top: auto;
+      left: auto;
+      transform: none;
+    }
+  }
+  .messageContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .dropMessage {
+    text-align: center;
+    width: 136px;
+    height: 44px;
+    @include fonts('Inter', sans-serif, 300, 16px, 140%);
+    &--light {
+      background-color: $secondary-gray;
+    }
+    &--dark {
+      color: $primary-light-gray;
+    }
+  }
+  .uploadMessage {
+    white-space: nowrap;
+    @include fonts('Inter', sans-serif, 300, 12px, 140%);
+    color: $primary-dark-gray;
+  }
+  .deleteButton {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    right: 8px;
+    bottom: 8px;
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  .previewImage {
+    border-radius: 10%;
   }
 }

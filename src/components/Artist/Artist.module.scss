@@ -8,7 +8,6 @@
 .buttonsBack {
   width: 24px;
   height: 24px;
-  display: flex;
   transition: transform 0.3s ease;
   position: absolute;
   top: 16px;
@@ -21,22 +20,22 @@
   &--dark {
     color: $primary-light-gray;
   }
-}
-.rotated {
-  width: 16px;
-  height: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transform: rotate(180deg);
-  &--light {
-    color: $primary-dark-gray;
+  svg {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotate(180deg);
+    &--light {
+      color: $primary-dark-gray;
+    }
+    &--dark {
+      color: $primary-light-gray;
+    }
   }
-  &--dark {
-    color: $primary-light-gray;
-  }
 }
-.buttonBack {
+.backText {
   display: none;
 }
 .tabletLgOnly {
@@ -62,18 +61,10 @@
     display: flex;
     align-items: center;
     top: 36px;
-    left: 0;
+    left: 20px;
     gap: 12px;
-    .buttonBack {
+    .backText {
       display: flex;
-      width: 34px;
-      height: 16px;
-      &--light {
-        color: $primary-dark-gray;
-      }
-      &--dark {
-        color: $primary-light-gray;
-      }
     }
   }
 }
@@ -82,8 +73,7 @@
     padding: 100px 0;
     overflow: hidden;
   }
-  .buttonBack {
-    top: 52px;
+  .buttonsBack {
     left: 100px;
   }
   .tabletLgOnly {

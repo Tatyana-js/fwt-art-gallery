@@ -86,6 +86,7 @@
   justify-content: center;
   border: none;
   transition: all 0.5s ease;
+  background: transparent;
   & svg {
     width: 24px;
     height: 24px;
@@ -94,7 +95,7 @@
   }
   &--light {
     color: $primary-dark-gray;
-    background-color: $secondary-white;
+    // background-color: $secondary-white;
     &:hover {
       color: $primary-black;
     }
@@ -104,7 +105,7 @@
   }
   &--dark {
     color: $primary-light-gray;
-    background-color: $secondary-black;
+    // background-color: $secondary-black;
     &:hover {
       color: $primary-white;
     }

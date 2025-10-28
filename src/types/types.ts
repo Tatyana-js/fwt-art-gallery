@@ -13,6 +13,7 @@ export interface AuthFormData {
   email: string;
   password: string;
 }
+
 export type RootState = {
   auth: {
     isAuth: boolean;
