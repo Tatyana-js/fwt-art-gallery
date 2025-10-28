@@ -88,9 +88,9 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme, closeModal }) => {
   };
 
   const handleClearImage = () => {
-  setSelectedFile(null);
-  setPreviewUrl(null);
-};
+    setSelectedFile(null);
+    setPreviewUrl(null);
+  };
 
   return (
     <div

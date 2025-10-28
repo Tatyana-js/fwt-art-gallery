@@ -1,7 +1,11 @@
 import baseQuery from '@/api/basequery';
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-import IArtist, { IGenre, IPainting, ICreateArtistRequest } from '@/types/Artist';
+import IArtist, {
+  ICreateArtistRequest,
+  IGenre,
+  IPainting,
+} from '@/types/Artist';
 
 export const artistsApi = createApi({
   reducerPath: 'artistsApi',
