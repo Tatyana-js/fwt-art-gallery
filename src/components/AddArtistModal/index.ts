@@ -1,1 +1,1 @@
-export { default } from './AddArtistModal';
+export { default } from './ArtistModal';

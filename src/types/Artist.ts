@@ -35,8 +35,9 @@ export default interface IArtist {
   description: string;
   yearsOfLife: string;
   mainPainting: IMainPainting;
-  avatar?: string;
+  avatar?: IImage;
   __v?: number;
+  location?: string;
 }
 
 export type ICreateArtistRequest = {
@@ -44,5 +45,6 @@ export type ICreateArtistRequest = {
   yearsOfLife: string;
   description: string;
   genres: string[];
+  location: string;
   avatar?: string;
 };

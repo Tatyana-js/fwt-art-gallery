@@ -14,7 +14,7 @@ export interface IEmptyCardProps {
   theme: theme;
   onFilesDrop: (files: File[]) => void;
   previewUrl?: string | null;
-  selectedFile?: File | null;
+  // selectedFile?: File | null;
   isDragOver?: boolean;
   setIsDragOver: (arg0: boolean) => void;
   handleClearImage: () => void;
@@ -24,7 +24,7 @@ const EmptyCard: FC<IEmptyCardProps> = ({
   theme,
   onFilesDrop,
   previewUrl,
-  selectedFile,
+  // selectedFile,
   isDragOver = false,
   setIsDragOver,
   handleClearImage,
@@ -50,7 +50,6 @@ const EmptyCard: FC<IEmptyCardProps> = ({
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
-    e.stopPropagation();
     setIsDragOver(false);
     const files = Array.from(e.dataTransfer.files);
     const imageFiles = files.filter((file) => file.type.startsWith('image/'));
@@ -85,7 +84,7 @@ const EmptyCard: FC<IEmptyCardProps> = ({
               </p>
             </div>
           </div>
-        ) : selectedFile ? (
+        ) : previewUrl ? (
           <>
             <img
               src={previewUrl || ''}

@@ -7,8 +7,8 @@ import {
   UseFormWatch,
 } from 'react-hook-form';
 
-import styles from './AddArtistForm.module.scss';
-
+import styles from './ArtistForm.module.scss';
+import { ICreateArtistRequest } from '@/types/Artist';
 import type { theme } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';
@@ -16,15 +16,13 @@ import Input from '@/ui_kit/Input';
 import MultiSelect from '@/ui_kit/MultiSelect';
 import TextArea from '@/ui_kit/Textarea';
 
-import { IAddArtistSchema } from '../validate';
-
 interface IArtistFormProps {
   theme: theme;
-  setValue: UseFormSetValue<IAddArtistSchema>;
+  setValue: UseFormSetValue<ICreateArtistRequest>;
   onSubmit: (e?: BaseSyntheticEvent) => Promise<void>;
-  register: UseFormRegister<IAddArtistSchema>;
-  errors: FieldErrors<IAddArtistSchema>;
-  watch: UseFormWatch<IAddArtistSchema>;
+  register: UseFormRegister<ICreateArtistRequest>;
+  errors: FieldErrors<ICreateArtistRequest>;
+  watch: UseFormWatch<ICreateArtistRequest>;
 }
 
 const AddArtistForm: FC<IArtistFormProps> = ({

@@ -35,7 +35,7 @@ const Artist: FC<IArtistsProps> = ({ artist, theme, openMоdal }) => {
     navigate('/');
   };
 
-  const { name, yearsOfLife, description, genres, _id } = artist;
+  const { name, yearsOfLife, description, genres, _id, avatar } = artist;
 
   return (
     <div className={clsx('container', styles.container)}>
@@ -68,7 +68,7 @@ const Artist: FC<IArtistsProps> = ({ artist, theme, openMоdal }) => {
         type="artist"
         theme={theme}
         name={name}
-        imageSrc={_id ?? ''}
+        imageSrc={avatar?.src || ''}
         details={yearsOfLife}
       />
       <div

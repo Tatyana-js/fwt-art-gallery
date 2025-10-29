@@ -1,33 +1,45 @@
-import { useCreateArtistMutation } from '@/api/artistsApi';
+import {
+  useCreateArtistMutation,
+  useGetArtistByIdQuery,
+  useUpdateArtistMutation,
+} from '@/api/artistsApi';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-import styles from './AddArtistModal.module.scss';
+import styles from './ArtistModal.module.scss';
 
 import EmptyCard from '@/components/EmptyCard';
 
 import { ICreateArtistRequest } from '@/types/Artist';
 import type { theme } from '@/types/types';
 
+import getImageSrc from '@/utils/getImageSrc';
 import router from '@/utils/routes';
 
-import AddArtistForm from './AddArtistForm/AddArtistForm';
-import addArtistSchema, { IAddArtistSchema } from './validate';
+import ArtistForm from './ArtistForm/ArtistForm';
+import addArtistSchema from './validate';
 
-interface IAddArtistModal {
+interface IArtistModal {
   theme: theme;
   closeModal: (value: boolean) => void;
 }
 
-const AddArtistModal: FC<IAddArtistModal> = ({ theme, closeModal }) => {
+const ArtistModal: FC<IArtistModal> = ({ theme, closeModal }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isDragOver, setIsDragOver] = useState(false);
+  const location = useLocation();
+  const isEditMode = location.pathname.includes('/artists/');
+  const id = location.pathname.split('/')[2];
+  const { data: artist } = useGetArtistByIdQuery(id!, {
+    skip: !isEditMode,
+  });
 
   const [createArtistMutation] = useCreateArtistMutation();
+  const [updateArtistMutation] = useUpdateArtistMutation();
   const navigate = useNavigate();
 
   const {
@@ -38,10 +50,33 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme, closeModal }) => {
     setError,
     setValue,
     watch,
-  } = useForm<IAddArtistSchema>({
+  } = useForm<ICreateArtistRequest>({
     mode: 'onChange',
     resolver: yupResolver(addArtistSchema),
+    defaultValues: artist
+      ? {
+          name: artist.name,
+          yearsOfLife: artist.yearsOfLife,
+          description: artist.description,
+          genres: artist.genres?.map((genre) => genre._id) || [],
+          location: artist.location || '',
+        }
+      : {
+          name: '',
+          yearsOfLife: '',
+          description: '',
+          genres: [],
+          location: '',
+        },
   });
+
+  useEffect(() => {
+    if (artist?.avatar?.src) {
+      const avatarUrl = getImageSrc(artist.avatar.src);
+      console.log(avatarUrl);
+      setPreviewUrl(avatarUrl);
+    }
+  }, [artist]);
 
   const onSubmit = async (formData: ICreateArtistRequest) => {
     try {
@@ -50,19 +85,25 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme, closeModal }) => {
       formDataToSend.append('yearsOfLife', formData.yearsOfLife);
       formDataToSend.append('description', formData.description);
 
-      formData.genres.forEach((genreId) => {
+      formData.genres.forEach((genreId: string) => {
         formDataToSend.append('genres', genreId);
       });
       if (selectedFile) {
         formDataToSend.append('avatar', selectedFile);
       }
-      const responceArtist = await createArtistMutation(
-        formDataToSend as unknown as ICreateArtistRequest
-      ).unwrap();
+      let responseArtist;
 
+      if (isEditMode && id) {
+        responseArtist = await updateArtistMutation({
+          id: id,
+          data: formDataToSend,
+        }).unwrap();
+      } else {
+        responseArtist = await createArtistMutation(formDataToSend).unwrap();
+      }
       reset();
       closeModal(false);
-      navigate(router.artist_profile(responceArtist._id));
+      navigate(router.artist_profile(responseArtist._id));
     } catch (err) {
       if (err instanceof Error) {
         setError('root.serverError', {
@@ -83,7 +124,6 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme, closeModal }) => {
   };
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
-    e.stopPropagation();
     setIsDragOver(true);
   };
 
@@ -101,12 +141,11 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme, closeModal }) => {
         theme={theme}
         onFilesDrop={handleFilesDrop}
         previewUrl={previewUrl}
-        selectedFile={selectedFile}
         isDragOver={isDragOver}
         setIsDragOver={setIsDragOver}
         handleClearImage={handleClearImage}
       />
-      <AddArtistForm
+      <ArtistForm
         theme={theme}
         setValue={setValue}
         watch={watch}
@@ -118,4 +157,4 @@ const AddArtistModal: FC<IAddArtistModal> = ({ theme, closeModal }) => {
   );
 };
 
-export default AddArtistModal;
+export default ArtistModal;

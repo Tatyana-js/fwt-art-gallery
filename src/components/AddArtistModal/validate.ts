@@ -1,4 +1,4 @@
-import { InferType, array, object, string } from 'yup';
+import { array, object, string } from 'yup';
 
 const addArtistSchema = object().shape({
   name: string().trim().required('Обязательное поле'),
@@ -10,5 +10,4 @@ const addArtistSchema = object().shape({
     .required('Обязательное поле'),
 });
 
-export type IAddArtistSchema = InferType<typeof addArtistSchema>;
 export default addArtistSchema;

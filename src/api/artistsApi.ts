@@ -2,7 +2,7 @@ import baseQuery from '@/api/basequery';
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import IArtist, {
-  ICreateArtistRequest,
+  // ICreateArtistRequest,
   IGenre,
   IPainting,
 } from '@/types/Artist';
@@ -29,19 +29,16 @@ export const artistsApi = createApi({
       providesTags: (_, __, _id) => [{ type: 'Artist', _id }],
     }),
     // Создание артиста
-    createArtist: builder.mutation<IArtist, ICreateArtistRequest>({
-      query: (artistData) => ({
+    createArtist: builder.mutation<IArtist, FormData>({
+      query: (formData) => ({
         url: 'artists',
         method: 'POST',
-        body: artistData,
+        body: formData,
       }),
       invalidatesTags: ['Artist'],
     }),
     // Редактирование артиста
-    updateArtist: builder.mutation<
-      IArtist,
-      { id: string; data: Partial<IArtist> }
-    >({
+    updateArtist: builder.mutation<IArtist, { id: string; data: FormData }>({
       query: ({ id, data }) => ({
         url: `artists/${id}`,
         method: 'PUT',
