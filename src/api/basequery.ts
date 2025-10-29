@@ -14,7 +14,7 @@ export const baseQuery = async (args: string | FetchArgs) => {
     data: config.body,
     headers: {
       ...(config.body instanceof FormData
-        ? {'Content-Type': 'multipart/form-data'}
+        ? { 'Content-Type': 'multipart/form-data' }
         : { 'Content-Type': 'application/json' }),
       ...(token && { Authorization: `Bearer ${token}` }),
     },

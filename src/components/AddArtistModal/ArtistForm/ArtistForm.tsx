@@ -8,6 +8,7 @@ import {
 } from 'react-hook-form';
 
 import styles from './ArtistForm.module.scss';
+
 import { ICreateArtistRequest } from '@/types/Artist';
 import type { theme } from '@/types/types';
 
