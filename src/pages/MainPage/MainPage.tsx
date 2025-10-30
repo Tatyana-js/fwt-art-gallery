@@ -38,6 +38,8 @@ const MainPage: FC<IMainPage> = ({ openMоdal }) => {
     navigate(router.artist_profile(artistId));
   };
 
+  const renderArtists = artists.slice(0, 6);
+
   return (
     <div className={clsx(styles.mainPage, styles[`mainPage--${theme}`])}>
       <div className="container">
@@ -55,7 +57,7 @@ const MainPage: FC<IMainPage> = ({ openMоdal }) => {
           </div>
         )}
         <Grid>
-          {artists?.map((artist: IArtist) => (
+          {renderArtists?.map((artist: IArtist) => (
             <Card
               key={artist._id}
               theme={theme}

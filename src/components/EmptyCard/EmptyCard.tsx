@@ -10,11 +10,10 @@ import Button from '@/ui_kit/Buttons';
 import DeleteIcon from '@/assets/icons/DeleteIcon';
 import AddArtistPhoto from '@/assets/image/AddArtistPhoto';
 
-export interface IEmptyCardProps {
+interface IEmptyCardProps {
   theme: theme;
   onFilesDrop: (files: File[]) => void;
   previewUrl?: string | null;
-  // selectedFile?: File | null;
   isDragOver?: boolean;
   setIsDragOver: (arg0: boolean) => void;
   handleClearImage: () => void;
@@ -24,7 +23,6 @@ const EmptyCard: FC<IEmptyCardProps> = ({
   theme,
   onFilesDrop,
   previewUrl,
-  // selectedFile,
   isDragOver = false,
   setIsDragOver,
   handleClearImage,

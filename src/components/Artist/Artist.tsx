@@ -1,4 +1,3 @@
-import { useDeleteArtistMutation } from '@/api/artistsApi';
 import { selectIsAuth } from '@/init';
 import clsx from 'clsx';
 import { FC } from 'react';
@@ -22,44 +21,37 @@ import EditIcon from '@/assets/icons/EditIcon';
 export interface IArtistsProps {
   artist: IArtist;
   theme: theme;
-  openMоdal?: () => void;
+  artistMоdal?: () => void;
+  openDeleteModal?: () => void;
 }
 
-const Artist: FC<IArtistsProps> = ({ artist, theme, openMоdal }) => {
+const Artist: FC<IArtistsProps> = ({
+  artist,
+  theme,
+  artistMоdal,
+  openDeleteModal,
+}) => {
   const isAuth = useSelector(selectIsAuth);
-  const [deleteArtist] = useDeleteArtistMutation();
-
   const navigate = useNavigate();
 
-  const handleBack = () => {
-    navigate('/');
-  };
-
-  const { name, yearsOfLife, description, genres, _id, avatar } = artist;
+  const { name, yearsOfLife, description, genres, avatar } = artist;
 
   return (
     <div className={clsx('container', styles.container)}>
       <div
         className={clsx(styles.buttonsBack, styles[`buttonsBack--${theme}`])}
       >
-        <Button variant="text" theme={theme} onClick={handleBack}>
+        <Button variant="text" theme={theme} onClick={() => navigate('/')}>
           <BackIcon />
           <span className={styles.backText}>BACK</span>
         </Button>
       </div>
       {isAuth && (
         <div className={styles.editButtons}>
-          <Button variant="icon" theme={theme} onClick={openMоdal}>
+          <Button variant="icon" theme={theme} onClick={artistMоdal}>
             <EditIcon />
           </Button>
-          <Button
-            variant="icon"
-            theme={theme}
-            onClick={() => {
-              deleteArtist(_id);
-              navigate('/');
-            }}
-          >
+          <Button variant="icon" theme={theme} onClick={openDeleteModal}>
             <DeleteIcon />
           </Button>
         </div>

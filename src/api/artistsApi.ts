@@ -19,6 +19,7 @@ export const artistsApi = createApi({
         return token ? '/artists' : '/artists/static/';
       },
       providesTags: ['Artist'],
+      keepUnusedDataFor: 60 * 60,
     }),
     // Получение артиста по _id
     getArtistById: builder.query<IArtist, string | undefined>({

@@ -150,18 +150,18 @@
     }
   }
   .themeContainer {
-    width: 40px;
-    height: 40px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     position: relative;
+    svg {
+      position: absolute;
+    }
     &--light {
       background-color: $secondary-white;
     }
     &--dark {
       background-color: $secondary-black;
     }
-  }
-  svg {
-    position: absolute;
   }
 }

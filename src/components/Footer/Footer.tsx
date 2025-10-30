@@ -18,7 +18,7 @@ const Footer: FC = () => {
           styles[`containerBorder--${theme}`]
         )}
       ></div>
-      <div className={clsx('container', `container--${theme}`, 'position')}>
+      <div className='container'>
         <div className={clsx(styles.info, styles[`info--${theme}`])}>
           <div className={styles.footerContent}>
             <p

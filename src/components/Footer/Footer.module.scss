@@ -62,8 +62,11 @@
   width: 24px;
   height: 24px;
   position: relative;
+  overflow: hidden;
+  border-radius: 50%;
   svg {
     position: absolute;
+    width: 24px;
   }
   &--light {
     color: $primary-dark-gray;

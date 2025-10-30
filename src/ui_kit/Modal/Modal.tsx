@@ -12,7 +12,7 @@ import type { theme } from '@/types/types.ts';
 
 import ClearIcon from '@/assets/icons/ClearIcon';
 
-type ModalVariant = 'menuModal' | 'authorization' | 'register' | 'addArtist';
+type ModalVariant = 'menuModal' | 'authorization' | 'register' | 'addArtist' | 'deleteArtist';
 
 export interface IModal {
   children: React.ReactNode;
@@ -69,6 +69,9 @@ const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
     if (variant === 'addArtist') {
       return [styles.addArtist, styles[`addArtist--${theme}`]];
     }
+    if (variant === 'deleteArtist') {
+      return [styles.deleteArtist, styles[`deleteArtist--${theme}`]];
+    }
     return [];
   };
 
@@ -96,7 +99,6 @@ const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
             if (closeModal && variant !== 'menuModal') {
               closeModal(false);
             }
-            // navigation('/');
           }}
         >
           <ClearIcon />

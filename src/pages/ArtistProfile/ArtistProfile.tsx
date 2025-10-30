@@ -1,25 +1,28 @@
 import { useGetArtistByIdQuery } from '@/api/artistsApi';
 import useTheme from '@/hooks/index';
 import clsx from 'clsx';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import styles from './ArtistProfile.module.scss';
 
 import Artist from '@/components/Artist';
+import DeleteModal from '@/components/DeleteModal';
 
 import type { IMainPainting } from '@/types/Artist';
 
-import Card from '@/ui_kit/Card/Card';
-import Grid from '@/ui_kit/Grid/Grid';
+import Card from '@/ui_kit/Card';
+import Grid from '@/ui_kit/Grid';
+import Modal from '@/ui_kit/Modal';
 
 import EmptyImage from '@/assets/image/EmptyImage';
 
 interface IArtistProfile {
-  openMоdal?: () => void;
+  artistMоdal?: () => void;
 }
 
-const ArtistProfile: FC<IArtistProfile> = ({ openMоdal }) => {
+const ArtistProfile: FC<IArtistProfile> = ({ artistMоdal }) => {
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState<boolean>(false);
   const { theme } = useTheme();
   const { id } = useParams();
   const { data: artist } = useGetArtistByIdQuery(id);
@@ -27,6 +30,7 @@ const ArtistProfile: FC<IArtistProfile> = ({ openMоdal }) => {
   if (!artist) return null;
 
   const { paintings } = artist;
+
   return (
     <div
       className={clsx(
@@ -34,7 +38,25 @@ const ArtistProfile: FC<IArtistProfile> = ({ openMоdal }) => {
         styles[`containerArtist--${theme}`]
       )}
     >
-      <Artist theme={theme} artist={artist} openMоdal={openMоdal} />
+      <Artist
+        theme={theme}
+        artist={artist}
+        artistMоdal={artistMоdal}
+        openDeleteModal={() => setIsOpenDeleteModal(true)}
+      />
+      {isOpenDeleteModal && (
+        <Modal
+          theme={theme}
+          variant="deleteArtist"
+          closeModal={setIsOpenDeleteModal}
+        >
+          <DeleteModal
+            theme={theme}
+            artist={artist}
+            closeModal={setIsOpenDeleteModal}
+          />
+        </Modal>
+      )}
       <div className="container">
         <h3 className={clsx(styles.workTitle, styles[`workTitle--${theme}`])}>
           Artworks
