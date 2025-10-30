@@ -12,7 +12,12 @@ import type { theme } from '@/types/types.ts';
 
 import ClearIcon from '@/assets/icons/ClearIcon';
 
-type ModalVariant = 'menuModal' | 'authorization' | 'register' | 'addArtist' | 'deleteArtist';
+type ModalVariant =
+  | 'menuModal'
+  | 'authorization'
+  | 'register'
+  | 'addArtist'
+  | 'deleteArtist';
 
 export interface IModal {
   children: React.ReactNode;
