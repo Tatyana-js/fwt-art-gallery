@@ -83,17 +83,17 @@ const PaintModal: FC<IPaintModal> = ({
 
     try {
       if (editingPainting) {
-      await updatePainting({
-        id: artistId,
-        paintingId: editingPainting._id,
-        data: formData,
-      }).unwrap();
-    } else {
-      await addPainting({
-        id: artistId,
-        data: formData,
-      }).unwrap();
-    }
+        await updatePainting({
+          id: artistId,
+          paintingId: editingPainting._id,
+          data: formData,
+        }).unwrap();
+      } else {
+        await addPainting({
+          id: artistId,
+          data: formData,
+        }).unwrap();
+      }
       reset();
       closeModal(false);
     } catch (error) {

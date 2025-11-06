@@ -82,7 +82,9 @@ const ArtistProfile: FC<IArtistProfile> = ({ artistModal }) => {
             theme={theme}
             artistId={artist._id}
             closeModal={setIsPaintModal}
-            editingPainting={currentIndex !== null ? paintings[currentIndex] : undefined}
+            editingPainting={
+              currentIndex !== null ? paintings[currentIndex] : undefined
+            }
           />
         </Modal>
       )}

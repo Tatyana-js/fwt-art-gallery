@@ -39,7 +39,7 @@ const EmptyCard: FC<IEmptyCardProps> = ({
       onFilesDrop(files);
     }
   };
-  
+
   const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault();
     if (!e.currentTarget.contains(e.relatedTarget as Node)) {

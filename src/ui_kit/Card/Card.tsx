@@ -47,10 +47,7 @@ const Card: FC<ICardProps> = ({
           <p className={styles.emptyMessage}>NO IMAGE UPLOADED</p>
         </div>
       ) : (
-        <img
-          src={getImageSrc(imageSrc)}
-          alt={name || 'Avatar'}
-        />
+        <img src={getImageSrc(imageSrc)} alt={name || 'Avatar'} />
       )}
       <div
         className={clsx(

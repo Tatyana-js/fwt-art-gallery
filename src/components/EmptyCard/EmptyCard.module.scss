@@ -44,19 +44,19 @@
   height: 229px;
   margin-top: 40px;
 }
-  .deleteButton {
+.deleteButton {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  right: 8px;
+  bottom: 8px;
+  svg {
     position: absolute;
-    width: 28px;
-    height: 28px;
-    right: 8px;
-    bottom: 8px;
-    svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
+}
 @include screen(tablet_lg) {
   .image {
     svg {

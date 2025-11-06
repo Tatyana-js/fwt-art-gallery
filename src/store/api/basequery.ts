@@ -28,7 +28,8 @@ const baseQuery: BaseQueryFn<
   } else {
     const isFormData = args.body instanceof FormData;
 
-    const headers: Record<string, string> = {  // Создаем новые headers как простой объект
+    const headers: Record<string, string> = {
+      // Создаем новые headers как простой объект
       ...(token && { Authorization: `Bearer ${token}` }),
     };
 

@@ -56,13 +56,13 @@ const Artist: FC<IArtistsProps> = ({
           </Button>
         </div>
       )}
-        <Card
-          type="artist"
-          theme={theme}
-          name={name}
-          imageSrc={avatar?.src || ''}
-          details={yearsOfLife}
-        />
+      <Card
+        type="artist"
+        theme={theme}
+        name={name}
+        imageSrc={avatar?.src || ''}
+        details={yearsOfLife}
+      />
       <div
         className={clsx(styles.tabletLgOnly, styles[`tabletLgOnly--${theme}`])}
       >

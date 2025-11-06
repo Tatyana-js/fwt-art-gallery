@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 
 export const useSwipe = (onSwipeLeft: () => void, onSwipeRight: () => void) => {
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -17,7 +17,7 @@ export const useSwipe = (onSwipeLeft: () => void, onSwipeRight: () => void) => {
 
   const onTouchEnd = useCallback(() => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
     const isRightSwipe = distance < -minSwipeDistance;

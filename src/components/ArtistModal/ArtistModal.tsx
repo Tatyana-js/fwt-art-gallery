@@ -141,10 +141,7 @@ const ArtistModal: FC<IArtistModal> = ({ theme, closeModal }) => {
           setIsDragOver={setIsDragOver}
           handleClearImage={handleClearImage}
         />
-        <ArtistForm
-          theme={theme}
-          onSubmit={methods.handleSubmit(onSubmit)}
-        />
+        <ArtistForm theme={theme} onSubmit={methods.handleSubmit(onSubmit)} />
       </div>
     </FormProvider>
   );

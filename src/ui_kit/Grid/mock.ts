@@ -28,7 +28,7 @@ const artists: IArtist[] = [
         original: '/images/60bf3ec1ee81da111fa6871f/original.jpg',
       },
       _id: '',
-      artist: ''
+      artist: '',
     },
   },
 ];
