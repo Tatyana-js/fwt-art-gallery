@@ -1,4 +1,4 @@
-import { selectIsAuth } from '@/init';
+import { selectIsAuth } from '@/store/index';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useSelector } from 'react-redux';
@@ -21,14 +21,14 @@ import EditIcon from '@/assets/icons/EditIcon';
 export interface IArtistsProps {
   artist: IArtist;
   theme: theme;
-  artistMоdal?: () => void;
+  artistModal?: () => void;
   openDeleteModal?: () => void;
 }
 
 const Artist: FC<IArtistsProps> = ({
   artist,
   theme,
-  artistMоdal,
+  artistModal,
   openDeleteModal,
 }) => {
   const isAuth = useSelector(selectIsAuth);
@@ -48,7 +48,7 @@ const Artist: FC<IArtistsProps> = ({
       </div>
       {isAuth && (
         <div className={styles.editButtons}>
-          <Button variant="icon" theme={theme} onClick={artistMоdal}>
+          <Button variant="icon" theme={theme} onClick={artistModal}>
             <EditIcon />
           </Button>
           <Button variant="icon" theme={theme} onClick={openDeleteModal}>
@@ -56,13 +56,13 @@ const Artist: FC<IArtistsProps> = ({
           </Button>
         </div>
       )}
-      <Card
-        type="artist"
-        theme={theme}
-        name={name}
-        imageSrc={avatar?.src || ''}
-        details={yearsOfLife}
-      />
+        <Card
+          type="artist"
+          theme={theme}
+          name={name}
+          imageSrc={avatar?.src || ''}
+          details={yearsOfLife}
+        />
       <div
         className={clsx(styles.tabletLgOnly, styles[`tabletLgOnly--${theme}`])}
       >

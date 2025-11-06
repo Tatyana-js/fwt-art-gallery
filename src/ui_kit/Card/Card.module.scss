@@ -2,6 +2,7 @@
 @use '@/styles/variables.scss' as *;
 
 .painting {
+  width: 100%;
   position: relative;
   aspect-ratio: 1.507;
   overflow: hidden;
@@ -14,9 +15,25 @@
       transition: transform 0.5s ease;
     }
   }
+  &--light {
+    background-color: $secondary-white;
+  }
+  &--dark {
+    background-color: $secondary-black;
+  }
 }
 .paintingArtist {
+  height: 450px;
   aspect-ratio: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &--light {
+    background-color: $secondary-white;
+  }
+  &--dark {
+    background-color: $secondary-black;
+  }
 }
 img {
   width: 100%;
@@ -113,7 +130,22 @@ img {
     }
   }
 }
-
+.emptyContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 40px;
+  svg {
+    position: static;
+    transform: translate(0);
+  }
+}
+.emptyMessage {
+  color: $primary-dark-gray;
+  @include fonts('Inter', sans-serif, 900, 20px, 100%);
+}
 @include screen(tablet) {
   .container {
     min-width: 300px;
@@ -158,6 +190,9 @@ img {
     margin-left: 440px;
     width: 1000px;
     height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .container {
     width: 300px;

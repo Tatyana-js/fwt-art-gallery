@@ -1,5 +1,5 @@
-import { useRegisterMutation } from '@/api/authApi';
-import { authSlice } from '@/slices/authSlice';
+import { useRegisterMutation } from '@/store/api/authApi';
+import { authSlice } from '@/store/slices/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
 import { FC } from 'react';

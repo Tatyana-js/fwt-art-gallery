@@ -1,42 +1,86 @@
-import { useDeleteArtistMutation } from '@/api/artistsApi';
+import {
+  useDeleteArtistMutation,
+  useDeleteArtistPaintingMutation,
+} from '@/store/api/artistsApi';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './DeleteModal.module.scss';
 
-import IArtist from '@/types/Artist';
+import IArtist, { IPainting } from '@/types/Artist';
 import type { theme } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';
+
+import routes from '@/utils/routes';
 
 import DeleteIcon from '@/assets/icons/DeleteIcon';
 
 interface IDeleteModaleProps {
   theme: theme;
-  artist: IArtist;
+  artist?: IArtist;
+  painting?: IPainting;
+  type: 'artist' | 'painting';
   closeModal?: (value: boolean) => void;
+  artistId?: string;
+  onSuccess?: () => void;
+  // openSlider?: () => void;
+  // paintingsCount: number;
 }
 
 const DeleteModale: FC<IDeleteModaleProps> = ({
   theme,
   artist,
+  painting,
+  type,
+  // openSlider,
+  artistId,
   closeModal,
+  // paintingsCount,
 }) => {
   const [deleteArtist] = useDeleteArtistMutation();
+  const [deleteArtistPainting] = useDeleteArtistPaintingMutation();
   const navigate = useNavigate();
+
+  const handleDelete = async () => {
+    try {
+      if (type === 'artist' && artist) {
+        navigate(routes.artists());
+        await deleteArtist(artist._id).unwrap();
+        closeModal?.(false);
+      } else if (type === 'painting' && painting && artistId) {
+        await deleteArtistPainting({
+          id: artistId,
+          paintingId: painting._id,
+        }).unwrap();
+        closeModal?.(false);
+      }
+    } catch (error) {
+      console.error('Failed to delete artist:', error);
+    }
+  };
+
+  const getDeleteText = () => {
+    if (type === 'artist') {
+      return {
+        question: 'Do you want to delete this artist profile?',
+        warning: 'You will not be able to recover this profile afterwards.',
+      };
+    } else {
+      return {
+        question: 'Do you want to delete this painting?',
+        warning: 'You will not be able to recover this painting afterwards.',
+      };
+    }
+  };
+
+  const { question, warning } = getDeleteText();
 
   return (
     <div className={styles.container}>
       <div className={styles.deleteButton}>
-        <Button
-          variant="icon"
-          theme={theme}
-          onClick={() => {
-            deleteArtist(artist._id);
-            navigate('/');
-          }}
-        >
+        <Button variant="icon" theme={theme} onClick={handleDelete}>
           <DeleteIcon />
         </Button>
       </div>
@@ -46,19 +90,10 @@ const DeleteModale: FC<IDeleteModaleProps> = ({
           styles[`deleteQuestion--${theme}`]
         )}
       >
-        Do you want to delete this artist profile?
+        {question}
       </p>
-      <p className={styles.textWarning}>
-        You will not be able to recover this profile afterwards.
-      </p>
-      <Button
-        variant="defaultButton"
-        theme={theme}
-        onClick={() => {
-          deleteArtist(artist._id);
-          navigate('/');
-        }}
-      >
+      <p className={styles.textWarning}>{warning}</p>
+      <Button variant="defaultButton" theme={theme} onClick={handleDelete}>
         DELETE
       </Button>
       <Button

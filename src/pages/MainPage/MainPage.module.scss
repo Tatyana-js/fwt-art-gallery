@@ -2,7 +2,8 @@
 @use '@/styles/mixins.scss' as *;
 
 .mainPage {
-  padding: 20px 0;
+  padding: 80px 0;
+  position: relative;
   &--light {
     background-color: $primary-white;
   }
@@ -14,6 +15,8 @@
   height: 24px;
   display: flex;
   gap: 12px;
+  position: absolute;
+  top: 36px;
   &--light {
     color: $primary-dark-gray;
   }
@@ -21,8 +24,35 @@
     color: $primary-light-gray;
   }
 }
+.loadButton {
+  width: 72px;
+  height: 15px;
+  margin: 0 auto;
+  margin-top: 32px;
+}
+.filterButton {
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  right: 20px;
+  top: 32px;
+  border-radius: 10%;
+  &--light {
+    background-color: $secondary-white;
+  }
+  &--dark {
+    background-color: $secondary-black;
+  }
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
 @include screen(tablet) {
   .mainPage {
-    padding: 40px 0;
+    padding: 100px 0;
+  }
+  .loadButton {
+    margin-top: 40px;
   }
 }

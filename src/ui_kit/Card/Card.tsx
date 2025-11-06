@@ -34,21 +34,24 @@ const Card: FC<ICardProps> = ({
       onClick={onClick}
       className={clsx(
         styles.painting,
-        type === 'artist' && styles.paintingArtist
+        type === 'artist' && [
+          styles.paintingArtist,
+          theme && styles[`paintingArtist--${theme}`],
+        ]
       )}
     >
       <a href="#" className={styles.linkboxOverlay}></a>
       {isEmpty ? (
-        <EmptyImage />
+        <div className={styles.emptyContainer}>
+          <EmptyImage />
+          <p className={styles.emptyMessage}>NO IMAGE UPLOADED</p>
+        </div>
       ) : (
         <img
           src={getImageSrc(imageSrc)}
-          alt={name || 'Card name'}
-          width={100}
-          height={100}
+          alt={name || 'Avatar'}
         />
       )}
-
       <div
         className={clsx(
           styles.container,

@@ -17,7 +17,9 @@ type ModalVariant =
   | 'authorization'
   | 'register'
   | 'addArtist'
-  | 'deleteArtist';
+  | 'deleteArtist'
+  | 'painting'
+  | 'slider';
 
 export interface IModal {
   children: React.ReactNode;
@@ -60,24 +62,31 @@ const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
     }
   };
 
-  const getVariantClasses = (variant: string, theme: string) => {
-    if (variant === 'menuModal') {
-      return [
-        styles.menuModal,
-        styles[`menuModal--${theme}`],
-        isActive && styles.activeMenuModal,
-      ];
+  const getVariantClasses = (variant: ModalVariant, theme: string) => {
+    switch (variant) {
+      case 'menuModal':
+        return [
+          styles.menuModal,
+          styles[`menuModal--${theme}`],
+          isActive && styles.activeMenuModal,
+        ];
+
+      case 'authorization':
+      case 'register':
+        return [styles.authModal, styles[`authModal--${theme}`]];
+
+      case 'addArtist':
+        return [styles.addArtist, styles[`addArtist--${theme}`]];
+
+      case 'deleteArtist':
+        return [styles.deleteArtist, styles[`deleteArtist--${theme}`]];
+
+      case 'painting':
+        return [styles.paintingModal, styles[`paintingModal--${theme}`]];
+
+      case 'slider':
+        return styles.sliderModal;
     }
-    if (variant === 'authorization' || variant === 'register') {
-      return [styles.authModal, styles[`authModal--${theme}`]];
-    }
-    if (variant === 'addArtist') {
-      return [styles.addArtist, styles[`addArtist--${theme}`]];
-    }
-    if (variant === 'deleteArtist') {
-      return [styles.deleteArtist, styles[`deleteArtist--${theme}`]];
-    }
-    return [];
   };
 
   return createPortal(

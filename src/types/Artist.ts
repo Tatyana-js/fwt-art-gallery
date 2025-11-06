@@ -40,11 +40,17 @@ export default interface IArtist {
   location?: string;
 }
 
-export type ICreateArtistRequest = {
+export interface ICreateArtistRequest {
   name: string;
   yearsOfLife: string;
   description: string;
   genres: string[];
   location: string;
   avatar?: string;
-};
+}
+
+export interface ICreatePaintRequest {
+  id: string;
+  name: string;
+  yearOfCreation: number;
+}

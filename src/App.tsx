@@ -9,7 +9,7 @@ import './styles/variables.scss';
 import AuthModal from './components/AuthModal';
 import Header from './components/Header';
 import RegisterModal from './components/RegisterModal';
-import AddArtistModal from '@/components/AddArtistModal';
+import ArtistModal from '@/components/ArtistModal';
 import Footer from '@/components/Footer';
 import MenuModal from '@/components/MenuModal';
 
@@ -30,12 +30,10 @@ function App() {
 
 function AppRouter() {
   const [isMenuOpen, setMenuIsOpen] = useState<boolean>(false);
-  const [isAddArtistModalOpen, setIsAddArtistModalOpen] =
-    useState<boolean>(false);
+  const [isArtistModalOpen, setIsArtistModalOpen] = useState<boolean>(false);
 
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
-
   const background = location.state?.background;
 
   return (
@@ -48,12 +46,12 @@ function AppRouter() {
       <Routes location={background || location}>
         <Route
           path={router.artists()}
-          element={<MainPage openMоdal={() => setIsAddArtistModalOpen(true)} />}
+          element={<MainPage openMоdal={() => setIsArtistModalOpen(true)} />}
         />
         <Route
           path={router.artist_profile(':id')}
           element={
-            <ArtistProfile artistMоdal={() => setIsAddArtistModalOpen(true)} />
+            <ArtistProfile artistMоdal={() => setIsArtistModalOpen(true)} />
           }
         />
         <Route
@@ -64,7 +62,11 @@ function AppRouter() {
         <Route path={router.signUp()} element={null} />
       </Routes>
       {isMenuOpen && (
-        <Modal theme={theme} variant="menuModal" closeModal={setMenuIsOpen}>
+        <Modal
+          theme={theme}
+          variant="menuModal"
+          closeModal={() => setMenuIsOpen(false)}
+        >
           <MenuModal
             theme={theme}
             onClick={(e: React.MouseEvent) => {
@@ -74,13 +76,16 @@ function AppRouter() {
           />
         </Modal>
       )}
-      {isAddArtistModalOpen && (
+      {isArtistModalOpen && (
         <Modal
           theme={theme}
           variant="addArtist"
-          closeModal={setIsAddArtistModalOpen}
+          closeModal={() => setIsArtistModalOpen(false)}
         >
-          <AddArtistModal theme={theme} closeModal={setIsAddArtistModalOpen} />
+          <ArtistModal
+            theme={theme}
+            closeModal={() => setIsArtistModalOpen(false)}
+          />
         </Modal>
       )}
       {background && (

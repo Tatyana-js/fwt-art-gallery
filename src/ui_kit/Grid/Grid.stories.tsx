@@ -4,13 +4,19 @@ import IArtist from '@/types/Artist';
 
 import Card from '../Card/Card';
 import Grid from './Grid';
-import type { IGridProps } from './Grid';
 import artists from './mock';
 
 // данные для историй
-const paintingsData: IGridProps = {
+const paintingsData = {
   children: artists.map((artistData: IArtist) => (
-    <Card key={artistData._id} artist={artistData} theme="dark" />
+    <Card
+      key={artistData._id}
+      name={artistData.name}
+      theme="dark"
+      imageSrc={''}
+      details={''}
+      type={'painting'}
+    />
   )),
 };
 

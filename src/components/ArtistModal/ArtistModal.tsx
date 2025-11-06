@@ -2,11 +2,11 @@ import {
   useCreateArtistMutation,
   useGetArtistByIdQuery,
   useUpdateArtistMutation,
-} from '@/api/artistsApi';
+} from '@/store/api/artistsApi';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
 import { FC, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import styles from './ArtistModal.module.scss';
@@ -42,15 +42,7 @@ const ArtistModal: FC<IArtistModal> = ({ theme, closeModal }) => {
   const [updateArtistMutation] = useUpdateArtistMutation();
   const navigate = useNavigate();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-    setError,
-    setValue,
-    watch,
-  } = useForm<ICreateArtistRequest>({
+  const methods = useForm<ICreateArtistRequest>({
     mode: 'onChange',
     resolver: yupResolver(addArtistSchema),
     defaultValues: artist
@@ -101,12 +93,12 @@ const ArtistModal: FC<IArtistModal> = ({ theme, closeModal }) => {
       } else {
         responseArtist = await createArtistMutation(formDataToSend).unwrap();
       }
-      reset();
+      methods.reset();
       closeModal(false);
       navigate(router.artist_profile(responseArtist._id));
     } catch (err) {
       if (err instanceof Error) {
-        setError('root.serverError', {
+        methods.setError('root.serverError', {
           type: 'server',
           message: err.message || 'Authorization failed',
         });
@@ -133,27 +125,28 @@ const ArtistModal: FC<IArtistModal> = ({ theme, closeModal }) => {
   };
 
   return (
-    <div
-      className={clsx(styles.containerInfo, styles[`containerInfo--${theme}`])}
-      onDragOver={handleDragOver}
-    >
-      <EmptyCard
-        theme={theme}
-        onFilesDrop={handleFilesDrop}
-        previewUrl={previewUrl}
-        isDragOver={isDragOver}
-        setIsDragOver={setIsDragOver}
-        handleClearImage={handleClearImage}
-      />
-      <ArtistForm
-        theme={theme}
-        setValue={setValue}
-        watch={watch}
-        onSubmit={handleSubmit(onSubmit)}
-        register={register}
-        errors={errors}
-      />
-    </div>
+    <FormProvider {...methods}>
+      <div
+        className={clsx(
+          styles.containerInfo,
+          styles[`containerInfo--${theme}`]
+        )}
+        onDragOver={handleDragOver}
+      >
+        <EmptyCard
+          theme={theme}
+          onFilesDrop={handleFilesDrop}
+          previewUrl={previewUrl}
+          isDragOver={isDragOver}
+          setIsDragOver={setIsDragOver}
+          handleClearImage={handleClearImage}
+        />
+        <ArtistForm
+          theme={theme}
+          onSubmit={methods.handleSubmit(onSubmit)}
+        />
+      </div>
+    </FormProvider>
   );
 };
 

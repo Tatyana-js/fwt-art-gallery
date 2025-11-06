@@ -1,5 +1,5 @@
-import { selectIsAuth } from '@/init';
-import { authSlice } from '@/slices/authSlice';
+import { selectIsAuth } from '@/store/index';
+import { authSlice } from '@/store/slices/authSlice';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';

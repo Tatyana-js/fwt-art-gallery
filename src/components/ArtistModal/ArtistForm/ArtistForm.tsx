@@ -1,11 +1,6 @@
-import { useGetGenresQuery } from '@/api/artistsApi';
+import { useGetGenresQuery } from '@/store/api/artistsApi';
 import { BaseSyntheticEvent, FC, useMemo } from 'react';
-import {
-  FieldErrors,
-  UseFormRegister,
-  UseFormSetValue,
-  UseFormWatch,
-} from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 import styles from './ArtistForm.module.scss';
 
@@ -19,21 +14,17 @@ import TextArea from '@/ui_kit/Textarea';
 
 interface IArtistFormProps {
   theme: theme;
-  setValue: UseFormSetValue<ICreateArtistRequest>;
   onSubmit: (e?: BaseSyntheticEvent) => Promise<void>;
-  register: UseFormRegister<ICreateArtistRequest>;
-  errors: FieldErrors<ICreateArtistRequest>;
-  watch: UseFormWatch<ICreateArtistRequest>;
 }
 
-const AddArtistForm: FC<IArtistFormProps> = ({
-  theme,
-  setValue,
-  register,
-  errors,
-  onSubmit,
-  watch,
-}) => {
+const AddArtistForm: FC<IArtistFormProps> = ({ theme, onSubmit }) => {
+  const {
+    register,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useFormContext<ICreateArtistRequest>();
+
   const { data: genresData } = useGetGenresQuery();
   const selectedGenreIds = watch('genres') || [];
 

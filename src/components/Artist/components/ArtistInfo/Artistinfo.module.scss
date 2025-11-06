@@ -63,3 +63,9 @@
   margin-top: 32px;
   gap: 8px;
 }
+
+@include screen(tablet) {
+  .selectButton {
+    width: 120px;
+  }
+}

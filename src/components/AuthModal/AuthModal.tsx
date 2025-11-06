@@ -1,5 +1,5 @@
-import { useLoginMutation } from '@/api/authApi';
-import { login } from '@/slices/authSlice';
+import { useLoginMutation } from '@/store/api/authApi';
+import { login } from '@/store/slices/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
 import clsx from 'clsx';
 import { FC } from 'react';

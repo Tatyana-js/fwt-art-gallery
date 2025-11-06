@@ -35,9 +35,28 @@
     transform: translate(-50%, -50%);
   }
 }
-.emptyCardMessage {
+.emptyCardMessage,
+.messageContainer {
   display: none;
 }
+.emptyContainer {
+  width: 264px;
+  height: 229px;
+  margin-top: 40px;
+}
+  .deleteButton {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    right: 8px;
+    bottom: 8px;
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
 @include screen(tablet_lg) {
   .image {
     svg {
@@ -118,19 +137,6 @@
     white-space: nowrap;
     @include fonts('Inter', sans-serif, 300, 12px, 140%);
     color: $primary-dark-gray;
-  }
-  .deleteButton {
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    right: 8px;
-    bottom: 8px;
-    svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
   }
   .previewImage {
     width: 100%;

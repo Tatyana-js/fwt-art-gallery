@@ -39,6 +39,7 @@ const EmptyCard: FC<IEmptyCardProps> = ({
       onFilesDrop(files);
     }
   };
+  
   const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault();
     if (!e.currentTarget.contains(e.relatedTarget as Node)) {
@@ -104,7 +105,7 @@ const EmptyCard: FC<IEmptyCardProps> = ({
             </div>
           </>
         ) : (
-          <div className={styles.emptyState}>
+          <div className={styles.emptyContainer}>
             <AddArtistPhoto />
             <p className={styles.emptyCardMessage}>
               You can drop your image here
@@ -112,11 +113,9 @@ const EmptyCard: FC<IEmptyCardProps> = ({
           </div>
         )}
       </div>
-      {!isDragOver && (
-        <Button variant="text" theme={theme} onClick={handleBrowseClick}>
-          BROWSE PROFILE PHOTO
-        </Button>
-      )}
+      <Button variant="text" theme={theme} onClick={handleBrowseClick}>
+        BROWSE PROFILE PHOTO
+      </Button>
     </div>
   );
 };

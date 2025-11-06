@@ -1,15 +1,11 @@
-import baseQuery from '@/api/basequery';
+import { baseQueryWithReauth } from '@/store/api/basequery';
 import { createApi } from '@reduxjs/toolkit/query/react';
 
-import IArtist, {
-  // ICreateArtistRequest,
-  IGenre,
-  IPainting,
-} from '@/types/Artist';
+import IArtist, { IGenre, IPainting } from '@/types/Artist';
 
 export const artistsApi = createApi({
   reducerPath: 'artistsApi',
-  baseQuery: baseQuery,
+  baseQuery: baseQueryWithReauth,
   tagTypes: ['Artist', 'Painting', 'Genres'],
   endpoints: (builder) => ({
     // Получение всех артистов
@@ -27,7 +23,14 @@ export const artistsApi = createApi({
         const token = localStorage.getItem('accessToken');
         return token ? `artists/${id}` : `artists/static/${id}`;
       },
-      providesTags: (_, __, _id) => [{ type: 'Artist', _id }],
+      providesTags: (result, _error, id) => [
+        { type: 'Artist' as const, id },
+        { type: 'Painting' as const, id },
+        ...(result?.paintings || []).map(({ _id }) => ({
+          type: 'Painting' as const,
+          id: _id,
+        })),
+      ],
     }),
     // Создание артиста
     createArtist: builder.mutation<IArtist, FormData>({
@@ -55,27 +58,56 @@ export const artistsApi = createApi({
       }),
       invalidatesTags: ['Artist'],
     }),
+
     // === PAINTINGS ===
     // Получение всех картин артиста
     getArtistPaintings: builder.query<IPainting[], string>({
       query: (id) => `artists/${id}/paintings`,
-      providesTags: ['Painting'],
+      providesTags: (result, _error, artistId) => [
+        { type: 'Painting' as const, id: artistId },
+        ...(result
+          ? result.map(({ _id }) => ({ type: 'Painting' as const, id: _id }))
+          : []),
+        'Painting' as const,
+      ],
     }),
     // Добавление картины артисту
-
+    addArtistPainting: builder.mutation<
+      IPainting,
+      {
+        id: string;
+        data: FormData;
+      }
+    >({
+      query: ({ id, data }) => ({
+        url: `artists/${id}/paintings`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: (_result, _error, { id }) => [
+        { type: 'Painting' as const, id },
+        { type: 'Artist' as const, id },
+        'Painting' as const,
+      ],
+    }),
     // Редактирование картины
     updateArtistPainting: builder.mutation<
       IPainting,
-      { id: string; paintingId: string; data: Partial<IPainting> }
+      {
+        id: string;
+        data: FormData;
+        paintingId: string;
+      }
     >({
       query: ({ id, paintingId, data }) => ({
         url: `artists/${id}/paintings/${paintingId}`,
         method: 'PUT',
         body: data,
       }),
-      invalidatesTags: (_, __, { paintingId }) => [
-        { type: 'Painting', id: paintingId },
-        'Painting',
+      invalidatesTags: (_, __, { id, paintingId }) => [
+        { type: 'Painting' as const, id },
+        { type: 'Painting' as const, id: paintingId },
+        'Painting' as const,
       ],
     }),
     // Удаление картины
@@ -87,7 +119,12 @@ export const artistsApi = createApi({
         url: `artists/${id}/paintings/${paintingId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Painting'],
+      invalidatesTags: (_result, _error, { id, paintingId }) => [
+        { type: 'Painting' as const, id },
+        { type: 'Artist' as const, id },
+        { type: 'Painting' as const, id: paintingId },
+        'Painting' as const,
+      ],
     }),
     //  Получение главной картины у артиста
     getArtistMainPainting: builder.query<IPainting, string>({
@@ -108,6 +145,7 @@ export const {
   useDeleteArtistMutation,
   useUpdateArtistMutation,
   useGetArtistPaintingsQuery,
+  useAddArtistPaintingMutation,
   useUpdateArtistPaintingMutation,
   useDeleteArtistPaintingMutation,
   useGetArtistMainPaintingQuery,
