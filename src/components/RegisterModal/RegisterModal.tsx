@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 import styles from './RegisterModal.module.scss';
 
-import type { AuthFormData, theme } from '@/types/types';
+import type { AuthFormData } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';
 import Input from '@/ui_kit/Input';

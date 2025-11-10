@@ -36,7 +36,7 @@ const DeleteModale: FC<IDeleteModaleProps> = ({
   const [deleteArtistPainting] = useDeleteArtistPaintingMutation();
   const navigate = useNavigate();
 
-const artistId = artist?._id;
+  const artistId = artist?._id;
 
   const handleDelete = async () => {
     try {

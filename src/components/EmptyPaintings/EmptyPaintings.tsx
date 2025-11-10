@@ -1,7 +1,9 @@
 import clsx from 'clsx';
 import { FC } from 'react';
-import type { theme } from '@/types/types';
+
 import styles from './EmptyPaintings.module.scss';
+
+import type { theme } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';
 

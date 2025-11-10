@@ -97,11 +97,7 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
 
   return (
     <div className={styles.multiContainer}>
-      <Input
-        label="Genres*"
-        theme={theme}
-        readOnly
-      />
+      <Input label="Genres*" theme={theme} readOnly />
       <button
         type="button"
         aria-label="Toggle dropdown menu"

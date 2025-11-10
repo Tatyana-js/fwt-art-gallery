@@ -93,7 +93,7 @@ const EmptyCard: FC<IEmptyCardProps> = ({
             <div className={clsx(styles.deleteButton)}>
               <Button
                 variant="icon"
-                theme={theme} 
+                theme={theme}
                 onClick={(e) => {
                   e.stopPropagation();
                   onFilesDrop([]);

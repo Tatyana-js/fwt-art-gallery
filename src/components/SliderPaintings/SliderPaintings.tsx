@@ -1,11 +1,16 @@
 import { useSwipe } from '@/hooks/useSwipe';
 import clsx from 'clsx';
 import { FC, useCallback, useEffect } from 'react';
+
 import styles from './SliderPaintings.module.scss';
+
 import IArtist, { IPainting } from '@/types/Artist';
 import { theme } from '@/types/types';
+
 import Button from '@/ui_kit/Buttons';
+
 import getImageSrc from '@/utils/getImageSrc';
+
 import ArrowIcon from '@/assets/icons/ArrowIcon';
 import ClearIcon from '@/assets/icons/ClearIcon';
 import DeleteIcon from '@/assets/icons/DeleteIcon';
@@ -81,7 +86,7 @@ const SliderPaintings: FC<ISliderPaintingsProps> = ({
   if (!currentPainting) {
     return null;
   }
-console.log(currentIndex)
+  console.log(currentIndex);
   const pageCounterText =
     currentIndex !== null && paintings.length > 0
       ? `${currentIndex + 1} / ${paintings.length}`

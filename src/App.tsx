@@ -30,20 +30,20 @@ function App() {
 function AppRouter() {
   const [isMenuOpen, setMenuIsOpen] = useState<boolean>(false);
   const [isArtistModalOpen, setIsArtistModalOpen] = useState<boolean>(false);
-    const [searchState, setSearchState] = useState({
-    value: "",
+  const [searchState, setSearchState] = useState({
+    value: '',
     isSearch: false,
   });
 
   const location = useLocation();
   const background = location.state?.background;
 
-const toggleSearch = () => {
-    setSearchState(prev => ({ ...prev, isSearch: !prev.isSearch }));
+  const toggleSearch = () => {
+    setSearchState((prev) => ({ ...prev, isSearch: !prev.isSearch }));
   };
 
-const handleSetValue = (value: string) => {
-    setSearchState(prev => ({ ...prev, value }));
+  const handleSetValue = (value: string) => {
+    setSearchState((prev) => ({ ...prev, value }));
   };
 
   return (
