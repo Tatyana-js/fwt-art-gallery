@@ -1,3 +1,4 @@
+import useTheme from '@/hooks';
 import useScrollLock from '@/hooks/useScrollLock';
 import clsx from 'clsx';
 import { FC, useEffect } from 'react';
@@ -7,8 +8,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useOnClickOutside } from 'usehooks-ts';
 
 import styles from './Modal.module.scss';
-
-import type { theme } from '@/types/types.ts';
 
 import ClearIcon from '@/assets/icons/ClearIcon';
 
@@ -23,13 +22,13 @@ type ModalVariant =
 
 export interface IModal {
   children: React.ReactNode;
-  theme: theme;
   variant: ModalVariant;
   closeModal?: (value: boolean) => void;
 }
 
-const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
+const Modal: FC<IModal> = ({ children, variant, closeModal }) => {
   const [isActive, setIsActive] = useState(true);
+  const { theme } = useTheme();
   const drawerRef = useRef<HTMLDivElement>(null);
   const { lock, unlock } = useScrollLock();
 
@@ -50,15 +49,21 @@ const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
   const handleAnimationEnd = () => {
     if (!isActive) {
       unlock();
-      if (closeModal) {
+      if (variant === 'authorization' || variant === 'register') {
+        if (location.state?.background) {
+          navigation(location.state.background, { replace: true });
+        } else {
+          navigation('/', { replace: true });
+        }
+      } else if (closeModal) {
         closeModal(false);
       } else {
         if (location.state?.background) {
           navigation(location.state.background, { replace: true });
-        } else {
-          navigation('/');
         }
       }
+    } else {
+      navigation('/');
     }
   };
 
@@ -110,6 +115,13 @@ const Modal: FC<IModal> = ({ children, theme, variant, closeModal }) => {
           className={clsx(styles.clearButton, styles[`clearButton--${theme}`])}
           onClick={() => {
             setIsActive(false);
+            if (variant === 'authorization' || variant === 'register') {
+              if (location.state?.background) {
+                navigation(location.state.background, { replace: true });
+              } else {
+                navigation('/', { replace: true });
+              }
+            }
             if (closeModal && variant !== 'menuModal') {
               closeModal(false);
             }

@@ -101,10 +101,6 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
         label="Genres*"
         theme={theme}
         readOnly
-        className={clsx(
-          styles.inputContainer,
-          styles[`inputContainer--${theme}`]
-        )}
       />
       <button
         type="button"

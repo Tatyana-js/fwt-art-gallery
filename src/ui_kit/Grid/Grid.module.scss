@@ -5,6 +5,7 @@
   grid-template-columns: repeat(1, 1fr);
   gap: 20px;
   overflow: hidden;
+  margin-top: 20px;
 }
 
 @include screen(tablet) {

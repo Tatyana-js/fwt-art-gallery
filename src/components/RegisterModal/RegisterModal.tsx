@@ -1,3 +1,4 @@
+import useTheme from '@/hooks';
 import { useRegisterMutation } from '@/store/api/authApi';
 import { authSlice } from '@/store/slices/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -22,15 +23,13 @@ import RegisterImage from '@/assets/image/RegisterImage';
 
 import userSchema from './validate';
 
-export interface IRegisterModal {
-  theme: theme;
-}
 interface UseFormData {
   email: string;
   password: string;
 }
 
-const RegisterModal: FC<IRegisterModal> = ({ theme }) => {
+const RegisterModal: FC = () => {
+  const { theme } = useTheme();
   const navigate = useNavigate();
   const [registerMutation] = useRegisterMutation();
   const dispatch = useDispatch();

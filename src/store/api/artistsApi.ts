@@ -130,6 +130,26 @@ export const artistsApi = createApi({
     getArtistMainPainting: builder.query<IPainting, string>({
       query: (id) => `artists/${id}/main-painting`,
     }),
+    // Редактирование главной картины у артиста
+    updateArtistMainPainting: builder.mutation<
+      IArtist,
+      {
+        id: string;
+        paintingId: string;
+      }
+    >({
+      query: ({ id, paintingId }) => ({
+        url: `artists/${id}/main-painting`,
+        method: 'PATCH',
+        body: { mainPainting: paintingId },
+      }),
+      invalidatesTags: (_result, _error, { id, paintingId }) => [
+        { type: 'Artist', id },
+        { type: 'Painting', id: paintingId },
+        'Artist',
+        'Painting',
+      ],
+    }),
     //  Получение жанров
     getGenres: builder.query<IGenre[], void>({
       query: () => 'genres',
@@ -148,6 +168,7 @@ export const {
   useAddArtistPaintingMutation,
   useUpdateArtistPaintingMutation,
   useDeleteArtistPaintingMutation,
+  useUpdateArtistMainPaintingMutation,
   useGetArtistMainPaintingQuery,
   useGetGenresQuery,
 } = artistsApi;

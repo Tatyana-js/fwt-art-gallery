@@ -1,3 +1,4 @@
+import useTheme from '@/hooks';
 import { selectIsAuth } from '@/store/index';
 import { authSlice } from '@/store/slices/authSlice';
 import clsx from 'clsx';
@@ -7,22 +8,32 @@ import { Link, useLocation } from 'react-router-dom';
 
 import styles from './Header.module.scss';
 
-import type { theme } from '@/types/types';
+import Search from '@/ui_kit/Search';
 
 import router from '@/utils/routes';
 
 import IconLogo from '@/assets/icons/IconLogo';
 import IconMenu from '@/assets/icons/IconMenu';
 import MoonIcon from '@/assets/icons/MoonIcon';
+import SearchIcon from '@/assets/icons/SearchIcon';
 import SunIcon from '@/assets/icons/SunIcon';
 
 interface IHeader {
+  value: string;
   setMenuIsOpen: (value: boolean) => void;
-  toggleTheme: () => void;
-  theme: theme;
+  isSearch: boolean;
+  onSearch: () => void;
+  onChange: (value: string) => void;
 }
 
-const Header: FC<IHeader> = ({ setMenuIsOpen, theme, toggleTheme }) => {
+const Header: FC<IHeader> = ({
+  setMenuIsOpen,
+  isSearch,
+  value,
+  onSearch,
+  onChange,
+}) => {
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   const dispatch = useDispatch();
   const isAuth = useSelector(selectIsAuth);
@@ -31,6 +42,7 @@ const Header: FC<IHeader> = ({ setMenuIsOpen, theme, toggleTheme }) => {
   const handleClick = () => {
     dispatch(logout());
   };
+
   return (
     <header className={clsx(styles.header, styles[`header--${theme}`])}>
       <div
@@ -96,12 +108,42 @@ const Header: FC<IHeader> = ({ setMenuIsOpen, theme, toggleTheme }) => {
           >
             {theme === 'dark' ? <SunIcon /> : <MoonIcon />}
           </div>
-        </div>{' '}
-        <div
-          className={styles.containerMenu}
-          onClick={() => setMenuIsOpen(true)}
-        >
-          <IconMenu />
+        </div>
+        <div className={styles.buttons}>
+          {isSearch ? (
+            <div className={styles.search}>
+              <Search
+                theme={theme}
+                error={false}
+                value={value}
+                onChange={onChange}
+                closeSearch={onSearch}
+              />
+            </div>
+          ) : (
+            <button
+              aria-label="searchIcon"
+              type="button"
+              className={clsx(
+                styles.searchButton,
+                styles[`searchButton--${theme}`]
+              )}
+              onClick={onSearch}
+            >
+              <SearchIcon />
+            </button>
+          )}
+          <button
+            type="button"
+            aria-label="menuButton"
+            className={clsx(
+              styles.containerMenu,
+              styles[`containerMenu--${theme}`]
+            )}
+            onClick={() => setMenuIsOpen(true)}
+          >
+            <IconMenu />
+          </button>
         </div>
       </div>
     </header>

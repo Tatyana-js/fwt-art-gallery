@@ -1,3 +1,4 @@
+import useTheme from '@/hooks';
 import { useLoginMutation } from '@/store/api/authApi';
 import { login } from '@/store/slices/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -10,7 +11,7 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './AuthModal.module.scss';
 
-import type { AuthFormData, theme } from '@/types/types';
+import type { AuthFormData } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';
 import Input from '@/ui_kit/Input';
@@ -21,15 +22,13 @@ import AuthImage from '@/assets/image/AuthImage';
 
 import userSchema from './validate';
 
-export interface IAuthModal {
-  theme: theme;
-}
 interface UseFormData {
   email: string;
   password: string;
 }
 
-const AuthModal: FC<IAuthModal> = ({ theme }) => {
+const AuthModal: FC = () => {
+  const { theme } = useTheme();
   const dispatch = useDispatch();
   const [loginMutation] = useLoginMutation();
   const navigate = useNavigate();

@@ -87,27 +87,21 @@
   border: none;
   transition: all 0.5s ease;
   background: transparent;
+  position: relative;
   & svg {
     width: 100%;
     height: 100%;
-    position: static; // Отменяет absolute по умолчанию
-    transform: none;
   }
-  color: $secondary-gray;
   &--light {
+    color: $primary-dark-gray;
     &:hover {
       color: $primary-black;
     }
-    &:disabled {
-      color: $primary-dark-gray;
-    }
   }
   &--dark {
+    color: $primary-light-gray;
     &:hover {
       color: $primary-white;
-    }
-    &:disabled {
-      color: $primary-light-gray;
     }
   }
 }

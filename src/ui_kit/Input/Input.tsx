@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { FC } from 'react';
+import { FC, useId } from 'react';
 
 import styles from './Input.module.scss';
 
@@ -12,32 +12,24 @@ export interface InputProps
   label?: string;
   theme: theme;
   error?: string;
-  className?: string;
 }
 
-const Input: FC<InputProps> = ({
-  label,
-  theme,
-  error,
-  className,
-  ...props
-}) => {
+const Input: FC<InputProps> = ({ label, theme, error, ...props }) => {
+  const id = useId();
+
   return (
     <div className={clsx(styles.container)}>
-      <label
-        htmlFor={label}
-        className={clsx(styles.label, styles[`label--${theme}`])}
-      >
-        {label}
-      </label>
+      {label && (
+        <label
+          htmlFor={id}
+          className={clsx(styles.label, styles[`label--${theme}`])}
+        >
+          {label}
+        </label>
+      )}
       <input
-        id={label}
-        className={clsx(
-          styles.input,
-          styles[`input--${theme}`],
-          error && styles.inputError,
-          className
-        )}
+        id={id}
+        className={clsx(styles.input, styles[`input--${theme}`])}
         {...props}
       />
       {error && (

@@ -2,25 +2,13 @@
 @use '@/styles/mixins.scss' as *;
 
 .searchLine {
-  width: 340px;
+  width: 100%;
+  height: 100%;
   position: relative;
   border-radius: 4px;
   transition: all 0.5s ease;
   display: flex;
-  &--light {
-    background-color: $primary-white;
-    &:hover {
-      border-color: $secondary-gray;
-    }
-  }
-  &--dark {
-    background-color: $secondary-black;
-    border: 1px solid transparent;
-    color: $primary-light-gray;
-    &:hover {
-      border: 1px solid $primary-dark-gray;
-    }
-  }
+  border: none;
   &.searchLineError {
     border-color: $accept-error;
   }
@@ -43,6 +31,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
+  border: none;
   &--light {
     color: $primary-dark-gray;
   }
@@ -50,7 +40,15 @@
     color: $primary-light-gray;
   }
 }
-
+.searchLine:focus-within .searchIcon:not(.notSearchIcon) {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.searchLine:focus-within input::placeholder {
+  opacity: 0;
+  color: transparent;
+}
 .clearIcon {
   width: 24px;
   height: 24px;
@@ -61,8 +59,18 @@
   align-items: center;
   justify-content: center;
   transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
+  }
 }
-
 .input {
   padding-left: 52px !important;
+}
+.notSearchIcon {
+  display: none;
 }

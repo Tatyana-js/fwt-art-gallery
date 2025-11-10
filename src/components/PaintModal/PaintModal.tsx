@@ -22,7 +22,7 @@ interface IPaintModal {
   theme: theme;
   artistId: string;
   closeModal: (value: boolean) => void;
-  editingPainting?: IPainting | null;
+  editingPainting?: IPainting;
 }
 
 const PaintModal: FC<IPaintModal> = ({
@@ -123,10 +123,12 @@ const PaintModal: FC<IPaintModal> = ({
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
+    e.stopPropagation();
   };
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
+    e.stopPropagation();
     const files = Array.from(e.dataTransfer.files);
     const imageFiles = files.filter((file) => file.type.startsWith('image/'));
     if (imageFiles.length > 0) onFilesDrop(imageFiles);

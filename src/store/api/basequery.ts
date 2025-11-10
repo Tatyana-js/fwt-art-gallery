@@ -6,6 +6,7 @@ import type {
 } from '@reduxjs/toolkit/query';
 
 import { store } from '../index';
+import { logout } from '../slices/authSlice';
 import { authApi } from './authApi';
 
 const baseQuery: BaseQueryFn<
@@ -81,16 +82,13 @@ export const baseQueryWithReauth: BaseQueryFn<
       } catch {
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
-        result = await baseQuery(args, api, extraOptions);
-        window.history.pushState({ background: '/login' }, '', '/');
-        window.dispatchEvent(new PopStateEvent('popstate'));
+        store.dispatch(logout());
 
         return result;
       }
     } else {
       localStorage.removeItem('accessToken');
-      result = await baseQuery(args, api, extraOptions);
-      // Просто редирект на логин
+      store.dispatch(logout());
       window.history.pushState({ background: '/login' }, '', '/');
       window.dispatchEvent(new PopStateEvent('popstate'));
 

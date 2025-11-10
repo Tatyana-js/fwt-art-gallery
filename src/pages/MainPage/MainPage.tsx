@@ -2,7 +2,7 @@ import useTheme from '@/hooks/index';
 import { useGetArtistsQuery } from '@/store/api/artistsApi';
 import { selectIsAuth } from '@/store/index';
 import clsx from 'clsx';
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,6 +13,7 @@ import type IArtist from '@/types/Artist.ts';
 import Button from '@/ui_kit/Buttons';
 import Card from '@/ui_kit/Card/Card';
 import Grid from '@/ui_kit/Grid/Grid';
+import Search from '@/ui_kit/Search';
 
 import router from '@/utils/routes';
 
@@ -21,9 +22,11 @@ import PlusIcon from '@/assets/icons/PlusIcon';
 
 interface IMainPage {
   openMоdal: () => void;
+  value: string;
+  onChange: (value: string) => void;
 }
 
-const MainPage: FC<IMainPage> = ({ openMоdal }) => {
+const MainPage: FC<IMainPage> = ({ openMоdal, value, onChange }) => {
   const [visibleCount, setVisibleCount] = useState<number>(6);
 
   const { theme } = useTheme();
@@ -32,20 +35,31 @@ const MainPage: FC<IMainPage> = ({ openMоdal }) => {
 
   const { data: artistsData } = useGetArtistsQuery();
 
+  useEffect(() => {
+    setVisibleCount(6);
+  }, [value]);
+
+  console.log(value);
+
   const artists =
     ((artistsData && typeof artistsData === 'object' && 'data' in artistsData
       ? artistsData.data
       : artistsData) as IArtist[]) || [];
 
+  const filteredArtists = artists.filter((artist) =>
+    artist.name.toLowerCase().includes(value.toLowerCase().trim())
+  );
+
   const handleCardClick = (artistId: string) => {
     navigate(router.artist_profile(artistId));
   };
 
-  const visibleArtists = artists.slice(0, visibleCount);
-  const hasMoreArtists = visibleCount < artists.length;
+  const visibleArtists = filteredArtists.slice(0, visibleCount);
+  const hasMoreArtists = visibleCount < filteredArtists.length;
 
   const handleLoadMore = () => {
-    setVisibleCount((prev: number) => prev + 8);
+    const nextCount = Math.min(visibleCount + 6, filteredArtists.length);
+    setVisibleCount(nextCount);
   };
 
   return (
@@ -55,24 +69,33 @@ const MainPage: FC<IMainPage> = ({ openMоdal }) => {
           <>
             <div
               className={clsx(
-                styles.addArtistButton,
-                styles[`addArtistButton--${theme}`]
+                styles.buttonContainer,
+                styles[`buttonContainer--${theme}`]
               )}
             >
-              <Button variant="text" theme={theme} onClick={openMоdal}>
-                <PlusIcon />
-                ADD ARTISTS
-              </Button>
-            </div>
-            <div
-              className={clsx(
-                styles.filterButton,
-                styles[`filterButton--${theme}`]
-              )}
-            >
-              <Button variant="icon" theme={theme}>
-                <FilterIcon />
-              </Button>
+              <div className={styles.addArtistButton}>
+                <Button variant="text" theme={theme} onClick={openMоdal}>
+                  <PlusIcon />
+                  ADD ARTISTS
+                </Button>
+              </div>
+
+              <div className={styles.buttons}>
+                <div className={styles.searchButton}>
+                  <Search theme={theme} value={value} onChange={onChange} />
+                </div>
+
+                <div
+                  className={clsx(
+                    styles.filterButton,
+                    styles[`filterButton--${theme}`]
+                  )}
+                >
+                  <Button variant="icon" theme={theme}>
+                    <FilterIcon />
+                  </Button>
+                </div>
+              </div>
             </div>
           </>
         )}
@@ -88,6 +111,22 @@ const MainPage: FC<IMainPage> = ({ openMоdal }) => {
               onClick={() => handleCardClick(artist._id)}
             />
           ))}
+          {value && filteredArtists.length === 0 && (
+            <div className={styles.messageContainer}>
+              <p
+                className={clsx(
+                  styles.noResults,
+                  styles[`noResults--${theme}`]
+                )}
+              >
+                No matches for{' '}
+                <span className={styles.searchValue}>{value}</span>
+              </p>
+              <p className={styles.message}>
+                Please try again with a different spelling or keywords.
+              </p>
+            </div>
+          )}
         </Grid>
         {hasMoreArtists && (
           <div

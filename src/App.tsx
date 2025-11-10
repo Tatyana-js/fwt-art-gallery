@@ -1,4 +1,3 @@
-import useTheme from '@/hooks/index';
 import { useState } from 'react';
 import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
 
@@ -31,28 +30,45 @@ function App() {
 function AppRouter() {
   const [isMenuOpen, setMenuIsOpen] = useState<boolean>(false);
   const [isArtistModalOpen, setIsArtistModalOpen] = useState<boolean>(false);
+    const [searchState, setSearchState] = useState({
+    value: "",
+    isSearch: false,
+  });
 
   const location = useLocation();
-  const { theme, toggleTheme } = useTheme();
   const background = location.state?.background;
+
+const toggleSearch = () => {
+    setSearchState(prev => ({ ...prev, isSearch: !prev.isSearch }));
+  };
+
+const handleSetValue = (value: string) => {
+    setSearchState(prev => ({ ...prev, value }));
+  };
 
   return (
     <>
       <Header
         setMenuIsOpen={setMenuIsOpen}
-        theme={theme}
-        toggleTheme={toggleTheme}
+        isSearch={searchState.isSearch}
+        value={searchState.value}
+        onSearch={toggleSearch}
+        onChange={handleSetValue}
       />
       <Routes location={background || location}>
         <Route
           path={router.artists()}
-          element={<MainPage openMоdal={() => setIsArtistModalOpen(true)} />}
+          element={
+            <MainPage
+              openMоdal={() => setIsArtistModalOpen(true)}
+              value={searchState.value}
+              onChange={handleSetValue}
+            />
+          }
         />
         <Route
           path={router.artist_profile(':id')}
-          element={
-            <ArtistProfile artistMоdal={() => setIsArtistModalOpen(true)} />
-          }
+          element={<ArtistProfile />}
         />
         <Route
           path={router.artist_profileStatic(':id')}
@@ -62,30 +78,16 @@ function AppRouter() {
         <Route path={router.signUp()} element={null} />
       </Routes>
       {isMenuOpen && (
-        <Modal
-          theme={theme}
-          variant="menuModal"
-          closeModal={() => setMenuIsOpen(false)}
-        >
-          <MenuModal
-            theme={theme}
-            onClick={(e: React.MouseEvent) => {
-              e.stopPropagation();
-              toggleTheme();
-            }}
-          />
+        <Modal variant="menuModal" closeModal={() => setMenuIsOpen(false)}>
+          <MenuModal />
         </Modal>
       )}
       {isArtistModalOpen && (
         <Modal
-          theme={theme}
           variant="addArtist"
           closeModal={() => setIsArtistModalOpen(false)}
         >
-          <ArtistModal
-            theme={theme}
-            closeModal={() => setIsArtistModalOpen(false)}
-          />
+          <ArtistModal closeModal={() => setIsArtistModalOpen(false)} />
         </Modal>
       )}
       {background && (
@@ -93,16 +95,16 @@ function AppRouter() {
           <Route
             path={router.login()}
             element={
-              <Modal theme={theme} variant="authorization">
-                <AuthModal theme={theme} />
+              <Modal variant="authorization">
+                <AuthModal />
               </Modal>
             }
           />
           <Route
             path={router.signUp()}
             element={
-              <Modal theme={theme} variant="register">
-                <RegisterModal theme={theme} />
+              <Modal variant="register">
+                <RegisterModal />
               </Modal>
             }
           />

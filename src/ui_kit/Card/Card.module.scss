@@ -87,6 +87,12 @@ img {
   &--dark {
     background-color: $accent-gold;
   }
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 .name {
   word-wrap: break-word;
@@ -148,7 +154,7 @@ img {
 }
 @include screen(tablet) {
   .container {
-    min-width: 300px;
+    width: 90%;
     padding: 12px;
     @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
     .name {
@@ -195,7 +201,7 @@ img {
     align-items: center;
   }
   .container {
-    width: 300px;
+    width: 85%;
     padding: 20px;
     @include fonts('Cormorant SC', sans-serif, 500, 16px, 100%);
   }

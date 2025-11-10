@@ -23,7 +23,7 @@
 .thumbnails {
   display: none;
 }
-.removeContainer {
+.setContainer {
   display: flex;
   width: 164px;
   height: 28px;
@@ -114,7 +114,7 @@
   }
 }
 @include screen(tablet) {
-  .removeContainer {
+  .setContainer {
     top: 40px;
     left: 40px;
   }
@@ -162,12 +162,16 @@
     right: 0;
     svg {
       transform: rotate(90deg);
+      top: 0;
+      left: 0;
     }
   }
   .buttonPrev {
     left: 0;
     svg {
       transform: rotate(-90deg);
+      top: 0;
+      right: 0;
     }
   }
   .clearButton {

@@ -1,3 +1,4 @@
+import useTheme from '@/hooks';
 import {
   useCreateArtistMutation,
   useGetArtistByIdQuery,
@@ -14,7 +15,6 @@ import styles from './ArtistModal.module.scss';
 import EmptyCard from '@/components/EmptyCard';
 
 import { ICreateArtistRequest } from '@/types/Artist';
-import type { theme } from '@/types/types';
 
 import getImageSrc from '@/utils/getImageSrc';
 import router from '@/utils/routes';
@@ -23,14 +23,15 @@ import ArtistForm from './ArtistForm/ArtistForm';
 import addArtistSchema from './validate';
 
 interface IArtistModal {
-  theme: theme;
   closeModal: (value: boolean) => void;
 }
 
-const ArtistModal: FC<IArtistModal> = ({ theme, closeModal }) => {
+const ArtistModal: FC<IArtistModal> = ({ closeModal }) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [isDragOver, setIsDragOver] = useState(false);
+
+  const { theme } = useTheme();
   const location = useLocation();
   const isEditMode = location.pathname.includes('/artists/');
   const id = location.pathname.split('/')[2];
@@ -65,7 +66,6 @@ const ArtistModal: FC<IArtistModal> = ({ theme, closeModal }) => {
   useEffect(() => {
     if (artist?.avatar?.src) {
       const avatarUrl = getImageSrc(artist.avatar.src);
-      console.log(avatarUrl);
       setPreviewUrl(avatarUrl);
     }
   }, [artist]);

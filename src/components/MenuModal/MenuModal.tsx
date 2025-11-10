@@ -1,21 +1,16 @@
+import useTheme from '@/hooks';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 import styles from './MenuModal.module.scss';
 
-import type { theme } from '@/types/types.ts';
-
 import ToggleTheme from '../../ui_kit/ToggleTheme/ToggleTheme';
 
 import router from '@/utils/routes';
 
-export interface IModalInfo {
-  theme: theme;
-  onClick: (e: React.MouseEvent) => void;
-}
-
-const ModalInfo: FC<IModalInfo> = ({ theme, onClick }) => {
+const ModalInfo: FC = () => {
+  const { theme, toggleTheme } = useTheme();
   const location = useLocation();
   return (
     <div
@@ -25,7 +20,7 @@ const ModalInfo: FC<IModalInfo> = ({ theme, onClick }) => {
         theme={theme}
         toggleTheme={(e) => {
           e.stopPropagation();
-          onClick(e);
+          toggleTheme();
         }}
       />
       <div className={clsx(styles.loginbuttons, styles[`login--${theme}`])}>

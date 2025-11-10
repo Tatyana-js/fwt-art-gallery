@@ -50,27 +50,15 @@
   height: 28px;
   right: 8px;
   bottom: 8px;
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 }
 @include screen(tablet_lg) {
-  .image {
-    svg {
-      top: 60px;
-      left: 100px;
-    }
-  }
   .emptyCardMessage {
     display: block;
     text-align: center;
     width: 136px;
     height: 44px;
     position: absolute;
-    bottom: 40px;
+    bottom: 20px;
     left: 32px;
     @include fonts('Inter', sans-serif, 300, 16px, 140%);
     &--light {

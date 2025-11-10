@@ -10,7 +10,7 @@
 }
 .genreContainer {
   height: 260px;
-  margin-top: 10px;
+  margin-top: 20px;
   max-height: 240px;
   overflow-y: scroll;
   transition: all 0.3s ease;
@@ -31,18 +31,15 @@
     background-color: $secondary-black;
   }
 }
-.inputContainer {
-  z-index: 1;
-}
 .selectButton {
   position: absolute;
-  width: 24px;
+  width: 44px;
   height: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
   top: 30px;
-  right: 16px;
+  right: 0;
   transform: rotate(0deg);
   transition: transform 0.3s ease;
   z-index: 7;
@@ -83,8 +80,8 @@
 .selectedGenres {
   position: absolute;
   z-index: 6;
-  width: 230px;
-  height: 46px;
+  width: 260px;
+  height: 38px;
   display: inline;
   top: 26px;
 
@@ -98,6 +95,7 @@
 
   &--dark {
     color: $primary-white;
+    background-color: $secondary-black;
   }
 }
 .selectedItem {
@@ -107,6 +105,9 @@
 
 @include screen(tablet) {
   .multiContainer {
+    width: 340px;
+  }
+  .selectedGenres {
     width: 340px;
   }
 }

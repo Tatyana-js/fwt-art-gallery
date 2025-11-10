@@ -21,27 +21,22 @@ interface IDeleteModaleProps {
   theme: theme;
   artist?: IArtist;
   painting?: IPainting;
-  type: 'artist' | 'painting';
   closeModal?: (value: boolean) => void;
-  artistId?: string;
-  onSuccess?: () => void;
-  // openSlider?: () => void;
-  // paintingsCount: number;
+  type: string;
 }
 
 const DeleteModale: FC<IDeleteModaleProps> = ({
   theme,
   artist,
   painting,
-  type,
-  // openSlider,
-  artistId,
   closeModal,
-  // paintingsCount,
+  type,
 }) => {
   const [deleteArtist] = useDeleteArtistMutation();
   const [deleteArtistPainting] = useDeleteArtistPaintingMutation();
   const navigate = useNavigate();
+
+const artistId = artist?._id;
 
   const handleDelete = async () => {
     try {
