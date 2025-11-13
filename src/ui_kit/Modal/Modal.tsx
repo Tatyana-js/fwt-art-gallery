@@ -1,5 +1,5 @@
-import useTheme from '@/hooks';
 import useScrollLock from '@/hooks/useScrollLock';
+import useTheme from '@/hooks/useTheme';
 import clsx from 'clsx';
 import { FC, useEffect } from 'react';
 import { useRef, useState } from 'react';
@@ -18,7 +18,8 @@ type ModalVariant =
   | 'addArtist'
   | 'deleteArtist'
   | 'painting'
-  | 'slider';
+  | 'slider'
+  | 'filter';
 
 export interface IModal {
   children: React.ReactNode;
@@ -42,9 +43,13 @@ const Modal: FC<IModal> = ({ children, variant, closeModal }) => {
     };
   }, [lock, unlock]);
 
-  useOnClickOutside(drawerRef as React.RefObject<HTMLElement>, () =>
-    setIsActive(false)
-  );
+  useOnClickOutside(drawerRef as React.RefObject<HTMLElement>, () => {
+    const activeToasts = document.querySelectorAll('[data-toast]');
+    if (activeToasts.length > 0) {
+      return;
+    }
+    setIsActive(false);
+  });
 
   const handleAnimationEnd = () => {
     if (!isActive) {
@@ -70,6 +75,7 @@ const Modal: FC<IModal> = ({ children, variant, closeModal }) => {
   const getVariantClasses = (variant: ModalVariant, theme: string) => {
     switch (variant) {
       case 'menuModal':
+      case 'filter':
         return [
           styles.menuModal,
           styles[`menuModal--${theme}`],

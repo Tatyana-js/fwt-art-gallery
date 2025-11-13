@@ -1,4 +1,5 @@
-import useTheme from '@/hooks';
+import useTheme from '@/hooks/useTheme';
+import { useToast } from '@/hooks/useToast';
 import { useRegisterMutation } from '@/store/api/authApi';
 import { authSlice } from '@/store/slices/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -34,6 +35,7 @@ const RegisterModal: FC = () => {
   const [registerMutation] = useRegisterMutation();
   const dispatch = useDispatch();
   const { login } = authSlice.actions;
+  const { showError } = useToast();
 
   const {
     register,
@@ -41,7 +43,6 @@ const RegisterModal: FC = () => {
     formState: { errors, isSubmitting },
     watch,
     reset,
-    setError,
   } = useForm<UseFormData>({
     resolver: yupResolver(userSchema),
     mode: 'onSubmit',
@@ -71,11 +72,20 @@ const RegisterModal: FC = () => {
       reset();
       navigate(router.artists());
     } catch (err) {
-      if (err instanceof Error) {
-        setError('root.serverError', {
-          type: 'server',
-          message: err.message || 'Registration failed',
-        });
+      if (err && typeof err === 'object' && 'data' in err) {
+        const errorData = err.data as {
+          statusCode?: number;
+          message?: string;
+          error?: string;
+        };
+
+        if (errorData.statusCode === 409) {
+          showError('Пользователь с таким email уже существует');
+        } else {
+          showError(errorData.message || 'Ошибка авторизации');
+        }
+      } else {
+        showError('Произошла ошибка при регистрации');
       }
     }
   };

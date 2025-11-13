@@ -6,16 +6,6 @@
   height: 100%;
   display: inline;
   position: relative;
-  &--light {
-    color: $primary-black;
-  }
-  &--dark {
-    background-color: $secondary-black;
-  }
-  &:focus {
-    border: 1px solid $primary-dark-gray;
-    z-index: 999;
-  }
 }
 .label {
   display: block;

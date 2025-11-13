@@ -14,26 +14,6 @@
     background-color: $primary-black;
   }
 }
-.buttonContainer {
-  width: 100%;
-  height: 24px;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  margin-top: 36px;
-  &--light {
-    color: $primary-dark-gray;
-  }
-  &--dark {
-    color: $primary-light-gray;
-  }
-}
-.addArtistButton {
-  width: 110px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
 .loadButton {
   width: 72px;
   height: 15px;
@@ -56,9 +36,6 @@
     width: 16px;
     height: 16px;
   }
-}
-.searchButton {
-  display: none;
 }
 .messageContainer {
   width: 100%;

@@ -42,8 +42,6 @@
 }
 .searchLine:focus-within .searchIcon:not(.notSearchIcon) {
   opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
 }
 .searchLine:focus-within input::placeholder {
   opacity: 0;

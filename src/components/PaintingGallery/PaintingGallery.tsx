@@ -19,6 +19,7 @@ import Modal from '@/ui_kit/Modal';
 import PlusIcon from '@/assets/icons/PlusIcon';
 
 import DeleteModal from '../DeleteModal';
+import Pagination from '../Pagination';
 import PaintModal from '../PaintModal';
 import SliderPaintings from '../SliderPaintings';
 
@@ -125,12 +126,14 @@ const PaintingsGallery: FC<IPaintingsGalleryProps> = ({
           />
         )}
       </div>
+      <Pagination
+        currentIndex={currentIndex ?? 0}
+        setCurrentIndex={setCurrentIndex}
+        totalPages={paintings.length}
+        theme={theme}
+      />
       {isEditModal && (
-        <Modal
-          theme={theme}
-          variant="painting"
-          closeModal={() => setEditModal(false)}
-        >
+        <Modal variant="painting" closeModal={() => setEditModal(false)}>
           <PaintModal
             theme={theme}
             artistId={artist._id}
@@ -142,11 +145,7 @@ const PaintingsGallery: FC<IPaintingsGalleryProps> = ({
         </Modal>
       )}
       {isDeleteModal && (
-        <Modal
-          theme={theme}
-          variant="deleteArtist"
-          closeModal={() => setDeleteModal(false)}
-        >
+        <Modal variant="deleteArtist" closeModal={() => setDeleteModal(false)}>
           <DeleteModal
             theme={theme}
             closeModal={() => setDeleteModal(false)}

@@ -13,3 +13,9 @@ export interface AuthFormData {
   email: string;
   password: string;
 }
+export interface ArtistsQueryParams {
+  genres?: string[];
+  orderBy?: string;
+  direction?: 'asc' | 'desc';
+  name?: string;
+}

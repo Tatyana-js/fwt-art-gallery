@@ -1,4 +1,4 @@
-import useTheme from '@/hooks';
+import useTheme from '@/hooks/useTheme';
 import { selectIsAuth } from '@/store/index';
 import { authSlice } from '@/store/slices/authSlice';
 import clsx from 'clsx';

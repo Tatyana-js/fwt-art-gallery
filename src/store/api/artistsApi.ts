@@ -2,6 +2,7 @@ import { baseQueryWithReauth } from '@/store/api/basequery';
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import IArtist, { IGenre, IPainting } from '@/types/Artist';
+import { ArtistsQueryParams } from '@/types/types';
 
 export const artistsApi = createApi({
   reducerPath: 'artistsApi',
@@ -9,12 +10,32 @@ export const artistsApi = createApi({
   tagTypes: ['Artist', 'Painting', 'Genres'],
   endpoints: (builder) => ({
     // Получение всех артистов
-    getArtists: builder.query<IArtist[], void>({
-      query: () => {
+    getArtists: builder.query<IArtist[], ArtistsQueryParams | void>({
+      query: (params) => {
         const token = localStorage.getItem('accessToken');
-        return token ? '/artists' : '/artists/static/';
+        const baseUrl = token ? '/artists' : '/artists/static/';
+
+        if (!params) return baseUrl;
+        const searchParams = new URLSearchParams();
+
+        Object.entries(params).forEach(([key, value]) => {
+          if (value !== undefined) {
+            if (Array.isArray(value)) {
+              value.forEach((item) => {
+                searchParams.append(key, item.toString());
+              });
+            } else {
+              searchParams.append(key, value.toString());
+            }
+          }
+        });
+        const queryString = searchParams.toString();
+        return queryString ? `${baseUrl}?${queryString}` : baseUrl;
       },
-      providesTags: ['Artist'],
+      providesTags: (_result, _error, arg) => [
+        'Artist',
+        { type: 'Artist', id: `FILTERS-${JSON.stringify(arg || 'ALL')}` },
+      ],
       keepUnusedDataFor: 60 * 60,
     }),
     // Получение артиста по _id

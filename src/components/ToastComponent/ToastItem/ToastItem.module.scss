@@ -1,0 +1,91 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/mixins.scss' as *;
+
+.errorContainer {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  gap: 8px;
+  justify-content: start;
+  align-items: center;
+  position: relative;
+  border-radius: 8px;
+
+  &--light {
+    background-color: $secondary-white;
+    border: 1px solid $primary-light-gray;
+  }
+  &--dark {
+    background-color: $secondary-black;
+  }
+}
+.errorButton {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  &--light {
+    background-color: $secondary-white;
+  }
+  &--dark {
+    background-color: $secondary-black;
+  }
+}
+.message {
+  @include fonts('Inter', sans-serif, 300, 12px, 140%);
+  text-align: start;
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
+  }
+}
+.closeButton {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.errorText,
+.lineError {
+  display: none;
+}
+
+@include screen(tablet) {
+  .errorContainer {
+    height: 88px;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding-left: 40px;
+  }
+  .errorText {
+    display: block;
+    color: $accept-error;
+    @include fonts('Inter', sans-serif, 500, 16px, 140%);
+  }
+  .errorButton {
+    position: absolute;
+    top: 20px;
+    left: 15px;
+  }
+  .closeButton {
+    width: 16px;
+    height: 16px;
+  }
+  .lineError {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 8px;
+    height: 88px;
+    background-color: $accept-error;
+  }
+}

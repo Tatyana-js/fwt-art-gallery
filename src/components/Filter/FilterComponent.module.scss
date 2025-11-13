@@ -1,0 +1,33 @@
+@use '@/styles/variables.scss' as *;
+@use '@/styles/mixins.scss' as *;
+
+.filterWrapper {
+  width: 50%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+
+  &--light {
+    background: $primary-white;
+    color: $primary-black;
+  }
+
+  &--dark {
+    background: $secondary-black;
+    color: $primary-white;
+  }
+}
+.closeButton {
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  right: 20px;
+  top: 32px;
+}
+@include screen(tablet_lg) {
+  .filterWrapper {
+    width: 492px;
+  }
+}

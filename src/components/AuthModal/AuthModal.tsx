@@ -1,4 +1,5 @@
-import useTheme from '@/hooks';
+import useTheme from '@/hooks/useTheme';
+import { useToast } from '@/hooks/useToast';
 import { useLoginMutation } from '@/store/api/authApi';
 import { login } from '@/store/slices/authSlice';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -32,6 +33,7 @@ const AuthModal: FC = () => {
   const dispatch = useDispatch();
   const [loginMutation] = useLoginMutation();
   const navigate = useNavigate();
+  const { showError } = useToast();
 
   const {
     register,
@@ -39,7 +41,6 @@ const AuthModal: FC = () => {
     formState: { errors, isSubmitting },
     watch,
     reset,
-    setError,
   } = useForm<UseFormData>({
     resolver: yupResolver(userSchema),
     mode: 'onSubmit',
@@ -64,11 +65,22 @@ const AuthModal: FC = () => {
       reset();
       navigate(router.artists());
     } catch (err) {
-      if (err instanceof Error) {
-        setError('root.serverError', {
-          type: 'server',
-          message: err.message || 'Authorization failed',
-        });
+      if (err && typeof err === 'object' && 'data' in err) {
+        const errorData = err.data as {
+          statusCode?: number;
+          message?: string;
+          error?: string;
+        };
+
+        if (errorData.statusCode === 409) {
+          showError('Неверный email или пароль');
+        } else if (errorData.statusCode === 404) {
+          showError('Пользователь с таким email не существует');
+        } else {
+          showError(errorData.message || 'Ошибка авторизации');
+        }
+      } else {
+        showError('Ошибка авторизации');
       }
     }
   };

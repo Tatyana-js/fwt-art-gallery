@@ -1,4 +1,4 @@
-import useTheme from '@/hooks/index';
+import useTheme from '@/hooks/useTheme';
 import clsx from 'clsx';
 import { FC } from 'react';
 

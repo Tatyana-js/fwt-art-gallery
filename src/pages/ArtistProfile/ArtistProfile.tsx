@@ -1,4 +1,4 @@
-import useTheme from '@/hooks/index';
+import useTheme from '@/hooks/useTheme';
 import { useGetArtistByIdQuery } from '@/store/api/artistsApi';
 import { selectIsAuth } from '@/store/index';
 import clsx from 'clsx';

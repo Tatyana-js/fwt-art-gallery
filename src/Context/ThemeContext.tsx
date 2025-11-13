@@ -11,7 +11,7 @@ export interface IThemeProviderProps {
 
 const ThemeContextProvider = ({
   children,
-  defaultTheme = 'dark',
+  defaultTheme = 'light',
 }: IThemeProviderProps) => {
   const [theme, setTheme] = useState(defaultTheme);
 

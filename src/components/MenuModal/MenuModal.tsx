@@ -1,4 +1,4 @@
-import useTheme from '@/hooks';
+import useTheme from '@/hooks/useTheme';
 import clsx from 'clsx';
 import { FC } from 'react';
 import { Link, useLocation } from 'react-router-dom';

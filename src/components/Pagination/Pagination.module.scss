@@ -1,0 +1,76 @@
+@use '@/styles/mixins.scss' as *;
+@use '@/styles/variables.scss' as *;
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  padding-bottom: 60px;
+}
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  gap: 4px;
+}
+.pageItem {
+  @include fonts('Inter', sans-serif, 300, 16px, 140%);
+  padding: 1px 8px;
+  background: none;
+  outline: none;
+  border: none;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 1px;
+    transform: scaleX(0);
+    transition: transform 0.3s;
+  }
+  &:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+.pagePrevious,
+.pageNext {
+  @include fonts('Inter', sans-serif, 300, 20px, 140%);
+  padding: 1px 8px;
+  background: none;
+  outline: none;
+  border: none;
+  &--light {
+    color: $primary-dark-gray;
+  }
+  &--dark {
+    color: $primary-light-gray;
+  }
+}
+.pagePrevious {
+  margin-right: 20px;
+}
+.pageNext {
+  margin-left: 20px;
+}
+.active {
+  border-radius: 4px;
+  font-weight: 500;
+  &--light {
+    background-color: $secondary-white;
+  }
+  &--dark {
+    background-color: $secondary-black;
+  }
+}

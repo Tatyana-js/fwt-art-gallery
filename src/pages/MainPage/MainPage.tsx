@@ -1,24 +1,24 @@
-import useTheme from '@/hooks/index';
+import useTheme from '@/hooks/useTheme';
 import { useGetArtistsQuery } from '@/store/api/artistsApi';
 import { selectIsAuth } from '@/store/index';
 import clsx from 'clsx';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import styles from './MainPage.module.scss';
 
+import AuthSection from '@/components/AuthSection';
+import FilterCopmponent from '@/components/Filter';
+
 import type IArtist from '@/types/Artist.ts';
+import { ArtistsQueryParams } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';
 import Card from '@/ui_kit/Card/Card';
 import Grid from '@/ui_kit/Grid/Grid';
-import Search from '@/ui_kit/Search';
 
 import router from '@/utils/routes';
-
-import FilterIcon from '@/assets/icons/FilterIcon';
-import PlusIcon from '@/assets/icons/PlusIcon';
 
 interface IMainPage {
   openMоdal: () => void;
@@ -26,78 +26,116 @@ interface IMainPage {
   onChange: (value: string) => void;
 }
 
+export interface IFilterModalState {
+  isOpen: boolean;
+  genres: {
+    isListOpen: boolean;
+    selectedGenres: string[];
+  };
+  sort: {
+    isSortOpen: boolean;
+    selected: string | null;
+  };
+}
+
 const MainPage: FC<IMainPage> = ({ openMоdal, value, onChange }) => {
   const [visibleCount, setVisibleCount] = useState<number>(6);
+  const [filterState, setFilterState] = useState<IFilterModalState>({
+    isOpen: false,
+    genres: {
+      isListOpen: false,
+      selectedGenres: [],
+    },
+    sort: {
+      isSortOpen: false,
+      selected: null,
+    },
+  });
 
   const { theme } = useTheme();
   const navigate = useNavigate();
   const isAuth = useSelector(selectIsAuth);
+  const { genres, sort } = filterState;
 
-  const { data: artistsData } = useGetArtistsQuery();
+  const queryParams = useMemo((): ArtistsQueryParams => {
+    const params: ArtistsQueryParams = {};
+
+    if (value) {
+      params.name = value.trim();
+    }
+    if (genres.selectedGenres.length > 0) {
+      params.genres = genres.selectedGenres;
+    }
+    return params;
+  }, [value, genres.selectedGenres]);
+
+  const { data: artistsData } = useGetArtistsQuery(
+    Object.keys(queryParams).length > 0 ? queryParams : undefined
+  );
+
+  const artists = useMemo(
+    () =>
+      ((artistsData && typeof artistsData === 'object' && 'data' in artistsData
+        ? artistsData.data
+        : artistsData) as IArtist[]) || [],
+    [artistsData]
+  );
+
+  // сортировка на клиенте
+  const sortedArtists = useMemo(() => {
+    if (!artists) return [];
+
+    if (sort.selected === 'a_to_z') {
+      return [...artists].sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sort.selected === 'z_to_a') {
+      return [...artists].sort((a, b) => b.name.localeCompare(a.name));
+    }
+    return artists;
+  }, [artists, sort.selected]);
 
   useEffect(() => {
     setVisibleCount(6);
-  }, [value]);
-
-  console.log(value);
-
-  const artists =
-    ((artistsData && typeof artistsData === 'object' && 'data' in artistsData
-      ? artistsData.data
-      : artistsData) as IArtist[]) || [];
-
-  const filteredArtists = artists.filter((artist) =>
-    artist.name.toLowerCase().includes(value.toLowerCase().trim())
-  );
+  }, [value, genres.selectedGenres, sort.selected]);
 
   const handleCardClick = (artistId: string) => {
     navigate(router.artist_profile(artistId));
   };
 
-  const visibleArtists = filteredArtists.slice(0, visibleCount);
-  const hasMoreArtists = visibleCount < filteredArtists.length;
+  const visibleArtists = sortedArtists.slice(0, visibleCount);
+  const hasMoreArtists = visibleCount < sortedArtists.length;
 
   const handleLoadMore = () => {
-    const nextCount = Math.min(visibleCount + 6, filteredArtists.length);
+    const nextCount = Math.min(visibleCount + 6, artists.length);
     setVisibleCount(nextCount);
+  };
+
+  const handleCloseModal = () => {
+    setFilterState((prev) => ({
+      ...prev,
+      isOpen: false,
+    }));
+  };
+  const handleApplyFilters = () => {
+    setFilterState((prev) => ({ ...prev, isOpen: false }));
+    setVisibleCount(6);
   };
 
   return (
     <div className={clsx(styles.mainPage, styles[`mainPage--${theme}`])}>
       <div className="container">
         {isAuth && (
-          <>
-            <div
-              className={clsx(
-                styles.buttonContainer,
-                styles[`buttonContainer--${theme}`]
-              )}
-            >
-              <div className={styles.addArtistButton}>
-                <Button variant="text" theme={theme} onClick={openMоdal}>
-                  <PlusIcon />
-                  ADD ARTISTS
-                </Button>
-              </div>
-
-              <div className={styles.buttons}>
-                <div className={styles.searchButton}>
-                  <Search theme={theme} value={value} onChange={onChange} />
-                </div>
-
-                <div
-                  className={clsx(
-                    styles.filterButton,
-                    styles[`filterButton--${theme}`]
-                  )}
-                >
-                  <Button variant="icon" theme={theme}>
-                    <FilterIcon />
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </>
+          <AuthSection
+            theme={theme}
+            value={value}
+            onChange={onChange}
+            onAddArtist={openMоdal}
+            onOpenFilter={() =>
+              setFilterState((prev) => ({
+                ...prev,
+                isOpen: true,
+              }))
+            }
+          />
         )}
         <Grid>
           {visibleArtists?.map((artist: IArtist) => (
@@ -111,7 +149,7 @@ const MainPage: FC<IMainPage> = ({ openMоdal, value, onChange }) => {
               onClick={() => handleCardClick(artist._id)}
             />
           ))}
-          {value && filteredArtists.length === 0 && (
+          {visibleArtists.length === 0 && (
             <div className={styles.messageContainer}>
               <p
                 className={clsx(
@@ -128,6 +166,15 @@ const MainPage: FC<IMainPage> = ({ openMоdal, value, onChange }) => {
             </div>
           )}
         </Grid>
+        {filterState.isOpen && (
+          <FilterCopmponent
+            theme={theme}
+            closeModal={handleCloseModal}
+            filterState={filterState}
+            setFilterState={setFilterState}
+            onApplyFilters={handleApplyFilters}
+          />
+        )}
         {hasMoreArtists && (
           <div
             className={clsx(styles.loadButton, styles[`loadButton--${theme}`])}
@@ -143,3 +190,14 @@ const MainPage: FC<IMainPage> = ({ openMоdal, value, onChange }) => {
 };
 
 export default MainPage;
+
+// Сортировка на сервере не работает.
+//   if (sort.selected && sort.selected !== 'recently_added') {
+//     if (sort.selected === 'a_to_z') {
+//       params.orderBy = 'name';
+//       params.direction = 'asc';
+//     } else if (sort.selected === 'z_to_a') {
+//       params.orderBy = 'name';
+//       params.direction = 'desc';
+//     }
+//   }

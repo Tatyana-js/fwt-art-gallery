@@ -39,7 +39,10 @@ function AppRouter() {
   const background = location.state?.background;
 
   const toggleSearch = () => {
-    setSearchState((prev) => ({ ...prev, isSearch: !prev.isSearch }));
+    setSearchState((prev) => {
+      const newState = { ...prev, isSearch: !prev.isSearch };
+      return newState;
+    });
   };
 
   const handleSetValue = (value: string) => {
