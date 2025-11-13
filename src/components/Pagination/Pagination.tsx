@@ -27,7 +27,7 @@ const Pagination = ({
   };
 
   const isActive = (index: number) =>
-    currentIndex === index ? [styles.active, styles[`active--${theme}`]]  : '';
+    currentIndex === index ? [styles.active, styles[`active--${theme}`]] : '';
 
   const getPageNumbers = useCallback((): (number | '...')[] => {
     const visiblePages = new Set<number>();
@@ -67,10 +67,7 @@ const Pagination = ({
     <div className={styles.container}>
       <button
         type="button"
-        className={clsx(
-          styles.pagePrevious,
-          styles[`pagePrevious--${theme}`]
-        )}
+        className={clsx(styles.pagePrevious, styles[`pagePrevious--${theme}`])}
         onClick={() => handlePageClick(currentIndex - 1)}
         disabled={currentIndex === 0}
       >

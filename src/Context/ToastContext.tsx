@@ -17,14 +17,14 @@ export const ToastProvider: FC<IToastProviderProps> = ({ children }) => {
   }, []);
 
   const showError = useCallback(
-    (message: string, duration = 5000) => { 
+    (message: string, duration = 5000) => {
       const toastId = Math.random().toString(36).substring(2, 9);
 
       setToasts((prev) => {
         const updatedToasts =
           prev.length >= MAX_TOASTS
-            ? [...prev.slice(1), { id: toastId, message, duration}]
-            : [...prev, { id: toastId, message, duration}];
+            ? [...prev.slice(1), { id: toastId, message, duration }]
+            : [...prev, { id: toastId, message, duration }];
 
         return updatedToasts;
       });
@@ -35,7 +35,7 @@ export const ToastProvider: FC<IToastProviderProps> = ({ children }) => {
         }, duration);
       }
     },
-    [ removeToast, MAX_TOASTS]
+    [removeToast, MAX_TOASTS]
   );
 
   const value: ToastContextType = useMemo(
