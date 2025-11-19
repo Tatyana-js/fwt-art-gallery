@@ -1,6 +1,5 @@
-import { useSwipe } from '@/hooks/useSwipe';
 import clsx from 'clsx';
-import { FC, useCallback, useEffect } from 'react';
+import { FC } from 'react';
 
 import styles from './SliderPaintings.module.scss';
 
@@ -9,13 +8,12 @@ import { theme } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';
 
-import getImageSrc from '@/utils/getImageSrc';
-
-import ArrowIcon from '@/assets/icons/ArrowIcon';
 import ClearIcon from '@/assets/icons/ClearIcon';
 import DeleteIcon from '@/assets/icons/DeleteIcon';
 import EditIcon from '@/assets/icons/EditIcon';
 import PreviewIcon from '@/assets/icons/PreviewIcon';
+
+import AnimatedImage from './AnimatedImage';
 
 interface ISliderPaintingsProps {
   theme: theme;
@@ -42,51 +40,10 @@ const SliderPaintings: FC<ISliderPaintingsProps> = ({
   const currentPainting =
     currentIndex !== null ? paintings[currentIndex] : undefined;
 
-  const goToNext = useCallback(() => {
-    if (currentIndex === null || paintings.length === 0) return;
-    const nextIndex = (currentIndex + 1) % paintings.length;
-    onSlideChange(nextIndex);
-  }, [currentIndex, paintings.length, onSlideChange]);
-
-  const goToPrev = useCallback(() => {
-    if (currentIndex === null || paintings.length === 0) return;
-    const prevIndex = (currentIndex - 1 + paintings.length) % paintings.length;
-    onSlideChange(prevIndex);
-  }, [currentIndex, paintings.length, onSlideChange]);
-
-  const swipeHandlers = useSwipe(goToNext, goToPrev);
-
-  useEffect(() => {
-    if (!currentPainting) {
-      openSlider();
-      return;
-    }
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (paintings.length === 0) return;
-      if (e.key === 'ArrowRight') goToNext();
-      if (e.key === 'ArrowLeft') goToPrev();
-    };
-    document.addEventListener('keydown', handleKeyDown);
-    document.body.style.overflow = 'hidden';
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      document.body.style.overflow = 'unset';
-    };
-  }, [
-    currentPainting,
-    currentIndex,
-    paintings.length,
-    onSlideChange,
-    openSlider,
-    goToNext,
-    goToPrev,
-  ]);
-
   if (!currentPainting) {
     return null;
   }
-  console.log(currentIndex);
+
   const pageCounterText =
     currentIndex !== null && paintings.length > 0
       ? `${currentIndex + 1} / ${paintings.length}`
@@ -95,12 +52,14 @@ const SliderPaintings: FC<ISliderPaintingsProps> = ({
   const isMainPaint = currentPainting._id === mainPainting?._id;
 
   return (
-    <div className={styles.container} {...swipeHandlers}>
-      <div className={styles.mainImageContainer}>
-        <img
-          src={getImageSrc(currentPainting.image.src)}
-          alt={currentPainting.name}
-          className={styles.mainImage}
+    <div className={styles.container}>
+      <div className={clsx(styles.mainImageContainer)}>
+        <AnimatedImage
+          theme={theme}
+          currentPainting={currentPainting}
+          onSlideChange={onSlideChange}
+          currentIndex={currentIndex!}
+          paintings={paintings}
         />
         {!isMainPaint && (
           <div className={styles.setContainer}>
@@ -122,16 +81,6 @@ const SliderPaintings: FC<ISliderPaintingsProps> = ({
         >
           <ClearIcon />
         </button>
-        <div className={styles.buttonNext}>
-          <Button variant="icon" theme={theme} onClick={goToNext}>
-            <ArrowIcon />
-          </Button>
-        </div>
-        <div className={styles.buttonPrev}>
-          <Button variant="icon" theme={theme} onClick={goToPrev}>
-            <ArrowIcon />
-          </Button>
-        </div>
         <div
           className={clsx(
             styles.infoContainer,

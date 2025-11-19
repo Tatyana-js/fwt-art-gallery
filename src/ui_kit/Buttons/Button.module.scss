@@ -8,9 +8,12 @@
   text-decoration-color: $color;
 }
 .defaultButton {
-  width: fit-content;
+  width: 200px;
+  height: 47px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 30px;
-  padding: 16px 80px;
   border: none;
   color: $primary-white;
   transition: all 0.5s ease;

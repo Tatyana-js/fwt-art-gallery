@@ -1,6 +1,7 @@
 import { useUpdateArtistMainPaintingMutation } from '@/store/api/artistsApi';
 import clsx from 'clsx';
-import { FC, useCallback, useState } from 'react';
+import { nanoid } from 'nanoid';
+import { FC, useState } from 'react';
 import { useMediaQuery } from 'usehooks-ts';
 
 import styles from './PaintingGallery.module.scss';
@@ -21,18 +22,21 @@ import PlusIcon from '@/assets/icons/PlusIcon';
 import DeleteModal from '../DeleteModal';
 import Pagination from '../Pagination';
 import PaintModal from '../PaintModal';
+import Skeletons from '../Skeletons';
 import SliderPaintings from '../SliderPaintings';
 
 interface IPaintingsGalleryProps {
   theme: theme;
   artist: IArtist;
   isAuth: boolean;
+  isLoading: boolean;
 }
 
 const PaintingsGallery: FC<IPaintingsGalleryProps> = ({
   theme,
   artist,
   isAuth,
+  isLoading,
 }) => {
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
   const [isDeleteModal, setDeleteModal] = useState<boolean>(false);
@@ -48,17 +52,12 @@ const PaintingsGallery: FC<IPaintingsGalleryProps> = ({
 
   const isMobile = useMediaQuery('(max-width: 1024px)');
 
-  const handleSetMainPainting = useCallback(
-    (paintId: string) => {
-      if (currentIndex !== null && artist?._id) {
-        updateMainPainting({
-          id: artist._id,
-          paintingId: paintId,
-        });
-      }
-    },
-    [currentIndex, artist?._id, updateMainPainting]
-  );
+  const handleSetMainPainting = (paintId: string) => {
+    updateMainPainting({
+      id: artist._id,
+      paintingId: paintId,
+    });
+  };
 
   return (
     <>
@@ -82,6 +81,10 @@ const PaintingsGallery: FC<IPaintingsGalleryProps> = ({
         )}
         {paintings?.length > 0 ? (
           <Grid>
+            {isLoading &&
+              Array(paintings.length)
+                .fill(null)
+                .map(() => <Skeletons key={nanoid()} theme={theme} />)}
             {paintings.map((painting, index) => (
               <div
                 key={painting._id}

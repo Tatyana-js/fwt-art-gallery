@@ -28,6 +28,9 @@
   justify-content: center;
   align-items: center;
   gap: 40px;
+  input {
+    height: 32px;
+  }
 }
 .loginMessage {
   width: 100%;

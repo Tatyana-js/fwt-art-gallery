@@ -1,0 +1,112 @@
+@use '@/styles/mixins.scss' as *;
+@use '@/styles/variables.scss' as *;
+
+.painting {
+  width: 100%;
+  position: relative;
+  aspect-ratio: 1.507;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-size: 200% 100% !important;
+    animation: wave 2s infinite linear !important;
+    z-index: 2;
+  }
+  &--light {
+    background-color: $skeletons-white;
+    &::before {
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(212, 207, 207, 0.1) 2%,
+        rgba(220, 218, 218, 0.6) 5%,
+        rgba(212, 207, 207, 0.1) 8%,
+        transparent 12%
+      );
+    }
+  }
+  &--dark {
+    background-color: $skeletons-black;
+    &::before {
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(26, 24, 24, 0.1) 2%,
+        rgba(26, 24, 24, 0.4) 5%,
+        rgba(26, 24, 24, 0.1) 8%,
+        transparent 12%
+      );
+    }
+  }
+}
+.container {
+  width: 300px;
+  height: 82px;
+  min-width: 236px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  bottom: 0;
+  left: 0;
+  border: none;
+  padding: 20px;
+  padding-right: 36px;
+  &--light {
+    background-color: $primary-white;
+  }
+  &--dark {
+    background-color: $primary-black;
+  }
+}
+.name {
+  width: 214px;
+  height: 19px;
+  &--light {
+    background-color: $skeletons-white;
+  }
+  &--dark {
+    background-color: $skeletons-black;
+  }
+}
+.details {
+  width: 70px;
+  height: 15px;
+  &--light {
+    background-color: $skeletons-white;
+  }
+  &--dark {
+    background-color: $skeletons-black;
+  }
+}
+@include screen(tablet) {
+  .container {
+    width: 90%;
+    padding: 12px;
+    .name {
+      padding-right: 20px;
+    }
+  }
+  .details {
+    margin-top: 8px;
+  }
+}
+@include screen(tablet_lg) {
+  .container {
+    width: 85%;
+    padding: 20px;
+  }
+}
+
+@keyframes wave {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}

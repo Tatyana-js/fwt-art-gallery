@@ -14,7 +14,7 @@ import PaintingsGallery from '@/components/PaintingGallery';
 const ArtistProfile: FC = () => {
   const { theme } = useTheme();
   const { id } = useParams();
-  const { data: artist } = useGetArtistByIdQuery(id);
+  const { data: artist, isLoading } = useGetArtistByIdQuery(id);
   const isAuth = useSelector(selectIsAuth);
 
   if (!artist) return null;
@@ -22,7 +22,12 @@ const ArtistProfile: FC = () => {
   return (
     <div className={clsx(styles[`containerArtist--${theme}`])}>
       <Artist theme={theme} artist={artist} />
-      <PaintingsGallery theme={theme} artist={artist} isAuth={isAuth} />
+      <PaintingsGallery
+        theme={theme}
+        artist={artist}
+        isAuth={isAuth}
+        isLoading={isLoading}
+      />
     </div>
   );
 };

@@ -7,9 +7,14 @@
   gap: 8px;
 }
 .label {
-  color: $primary-white;
   transition: all 0.5s ease;
   @include fonts('Inter', sans-serif, 700, 12px, 100%);
+  &--light {
+    color: $primary-black;
+  }
+  &--dark {
+    color: $primary-white;
+  }
 }
 .textarea {
   width: 100%;

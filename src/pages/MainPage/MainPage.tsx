@@ -2,6 +2,7 @@ import useTheme from '@/hooks/useTheme';
 import { useGetArtistsQuery } from '@/store/api/artistsApi';
 import { selectIsAuth } from '@/store/index';
 import clsx from 'clsx';
+import { nanoid } from 'nanoid';
 import { FC, useEffect, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -10,9 +11,10 @@ import styles from './MainPage.module.scss';
 
 import AuthSection from '@/components/AuthSection';
 import FilterCopmponent from '@/components/Filter';
+import Skeletons from '@/components/Skeletons/Skeletons';
 
 import type IArtist from '@/types/Artist.ts';
-import { ArtistsQueryParams } from '@/types/types';
+import { ArtistsQueryParams, IFilterModalState } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';
 import Card from '@/ui_kit/Card/Card';
@@ -24,18 +26,6 @@ interface IMainPage {
   openMоdal: () => void;
   value: string;
   onChange: (value: string) => void;
-}
-
-export interface IFilterModalState {
-  isOpen: boolean;
-  genres: {
-    isListOpen: boolean;
-    selectedGenres: string[];
-  };
-  sort: {
-    isSortOpen: boolean;
-    selected: string | null;
-  };
 }
 
 const MainPage: FC<IMainPage> = ({ openMоdal, value, onChange }) => {
@@ -69,7 +59,7 @@ const MainPage: FC<IMainPage> = ({ openMоdal, value, onChange }) => {
     return params;
   }, [value, genres.selectedGenres]);
 
-  const { data: artistsData } = useGetArtistsQuery(
+  const { data: artistsData, isLoading } = useGetArtistsQuery(
     Object.keys(queryParams).length > 0 ? queryParams : undefined
   );
 
@@ -138,6 +128,12 @@ const MainPage: FC<IMainPage> = ({ openMоdal, value, onChange }) => {
           />
         )}
         <Grid>
+          {isLoading &&
+            Array(visibleCount)
+              .fill(null)
+              .map(() => (
+                <Skeletons key={nanoid()} theme={theme} />
+              ))}
           {visibleArtists?.map((artist: IArtist) => (
             <Card
               key={artist._id}

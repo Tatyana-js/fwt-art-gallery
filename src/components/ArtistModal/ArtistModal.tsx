@@ -39,9 +39,13 @@ const ArtistModal: FC<IArtistModal> = ({ closeModal }) => {
     skip: !isEditMode,
   });
 
-  const [createArtistMutation] = useCreateArtistMutation();
-  const [updateArtistMutation] = useUpdateArtistMutation();
+  const [createArtistMutation, { isLoading: isCreating }] =
+    useCreateArtistMutation();
+  const [updateArtistMutation, { isLoading: isUpdating }] =
+    useUpdateArtistMutation();
   const navigate = useNavigate();
+
+  const isLoading = isCreating || isUpdating;
 
   const methods = useForm<ICreateArtistRequest>({
     mode: 'onChange',
@@ -141,7 +145,11 @@ const ArtistModal: FC<IArtistModal> = ({ closeModal }) => {
           setIsDragOver={setIsDragOver}
           handleClearImage={handleClearImage}
         />
-        <ArtistForm theme={theme} onSubmit={methods.handleSubmit(onSubmit)} />
+        <ArtistForm
+          theme={theme}
+          onSubmit={methods.handleSubmit(onSubmit)}
+          isLoading={isLoading}
+        />
       </div>
     </FormProvider>
   );

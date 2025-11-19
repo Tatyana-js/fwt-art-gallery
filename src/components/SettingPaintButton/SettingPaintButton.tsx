@@ -12,8 +12,8 @@ import SettingIcon from '@/assets/icons/SettingIcon';
 interface ISettingPaintButtonProps {
   theme: theme;
   onEdit: () => void;
-  onDelete: () => void;
-  onSetMainPaint: () => void;
+  onDelete?: () => void;
+  onSetMainPaint?: () => void;
 }
 
 const SettingPaintButton = memo(

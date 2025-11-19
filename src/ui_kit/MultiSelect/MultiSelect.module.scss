@@ -10,7 +10,7 @@
 }
 .genreContainer {
   height: 260px;
-  margin-top: 20px;
+  margin-top: 10px;
   max-height: 240px;
   overflow-y: scroll;
   transition: all 0.3s ease;
@@ -25,6 +25,7 @@
   &--light {
     color: $primary-dark-gray;
     background-color: $primary-white;
+    border: 1px solid $primary-light-gray;
   }
   &--dark {
     color: $secondary-gray;
@@ -33,13 +34,13 @@
 }
 .selectButton {
   position: absolute;
-  width: 44px;
-  height: 24px;
+  width: 40px;
+  height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   top: 30px;
-  right: 0;
+  right: 1px;
   transform: rotate(0deg);
   transition: transform 0.3s ease;
   z-index: 7;
@@ -81,9 +82,9 @@
   position: absolute;
   z-index: 6;
   width: 260px;
-  height: 38px;
+  height: 44px;
   display: inline;
-  top: 26px;
+  top: 22px;
 
   overflow: hidden;
   text-overflow: ellipsis;

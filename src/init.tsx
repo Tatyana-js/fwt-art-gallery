@@ -1,3 +1,4 @@
+import { ErrorBoundary } from 'react-error-boundary';
 import { Provider } from 'react-redux';
 
 import App from './App';
@@ -9,9 +10,13 @@ const init = async (): Promise<React.ReactNode> => {
   return (
     <ThemeContextProvider>
       <ToastProvider>
-        <Provider store={store}>
-          <App />
-        </Provider>
+        <ErrorBoundary
+          fallback={<div>Извините, данные временно недоступны</div>}
+        >
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </ErrorBoundary>
       </ToastProvider>
     </ThemeContextProvider>
   );

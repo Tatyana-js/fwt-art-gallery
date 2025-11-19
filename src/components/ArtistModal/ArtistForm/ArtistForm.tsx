@@ -4,6 +4,8 @@ import { useFormContext } from 'react-hook-form';
 
 import styles from './ArtistForm.module.scss';
 
+import Loader from '@/components/Loader';
+
 import { ICreateArtistRequest } from '@/types/Artist';
 import type { theme } from '@/types/types';
 
@@ -15,9 +17,14 @@ import TextArea from '@/ui_kit/Textarea';
 interface IArtistFormProps {
   theme: theme;
   onSubmit: (e?: BaseSyntheticEvent) => Promise<void>;
+  isLoading: boolean;
 }
 
-const AddArtistForm: FC<IArtistFormProps> = ({ theme, onSubmit }) => {
+const AddArtistForm: FC<IArtistFormProps> = ({
+  theme,
+  onSubmit,
+  isLoading,
+}) => {
   const {
     register,
     formState: { errors },
@@ -70,8 +77,13 @@ const AddArtistForm: FC<IArtistFormProps> = ({ theme, onSubmit }) => {
         onGenresChange={handleGenresChange}
       />
       <div className={styles.buttonContainer}>
-        <Button type="submit" variant="defaultButton" theme={theme}>
-          SAVE
+        <Button
+          type="submit"
+          variant="defaultButton"
+          theme={theme}
+          disabled={isLoading}
+        >
+          {isLoading ? <Loader theme={theme} /> : 'SAVE'}
         </Button>
       </div>
     </form>

@@ -17,7 +17,7 @@
     background-color: rgba($color: $primary-black, $alpha: 5%);
   }
   &--dark {
-    color: #ffffff;
+    color: $primary-white;
     background-color: transparent;
     border: 1px solid $primary-white;
   }
