@@ -131,9 +131,7 @@ const MainPage: FC<IMainPage> = ({ openMоdal, value, onChange }) => {
           {isLoading &&
             Array(visibleCount)
               .fill(null)
-              .map(() => (
-                <Skeletons key={nanoid()} theme={theme} />
-              ))}
+              .map(() => <Skeletons key={nanoid()} theme={theme} />)}
           {visibleArtists?.map((artist: IArtist) => (
             <Card
               key={artist._id}
