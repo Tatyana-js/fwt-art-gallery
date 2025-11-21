@@ -58,7 +58,10 @@
 
 @include screen(tablet) {
   .errorContainer {
+    width: 441px;
     height: 88px;
+    position: absolute;
+    right: 0;
     flex-direction: column;
     align-items: start;
     justify-content: center;
@@ -85,7 +88,9 @@
     left: 0;
     z-index: 999;
     width: 8px;
-    height: 88px;
+    height: 87px;
     background-color: $accept-error;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
   }
 }

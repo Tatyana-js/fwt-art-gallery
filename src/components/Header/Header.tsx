@@ -52,9 +52,12 @@ const Header: FC<IHeader> = ({
           styles[`container--${theme}`]
         )}
       >
-        <div className={styles.iconLogo}>
+        <Link
+          to={router.artists()}
+          className={clsx(styles.iconLogo, styles[`iconLogo--${theme}`])}
+        >
           <IconLogo />
-        </div>
+        </Link>
         <div className={styles.containerButtons}>
           {isAuth ? (
             <button

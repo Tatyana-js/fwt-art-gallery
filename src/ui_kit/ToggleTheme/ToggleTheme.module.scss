@@ -6,6 +6,14 @@
   gap: 12px;
   align-items: center;
   background-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+  button {
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 .iconTheme {
   width: 40px;

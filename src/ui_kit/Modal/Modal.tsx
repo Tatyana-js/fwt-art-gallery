@@ -49,6 +49,7 @@ const Modal: FC<IModal> = ({ children, variant, closeModal }) => {
       return;
     }
     setIsActive(false);
+    navigation('/', { replace: true });
   });
 
   const handleAnimationEnd = () => {

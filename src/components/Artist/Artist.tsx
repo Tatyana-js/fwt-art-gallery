@@ -91,7 +91,6 @@ const Artist: FC<IArtistsProps> = ({ artist, theme }) => {
       </div>
       {isDeleteModal && (
         <Modal
-          theme={theme}
           variant="deleteArtist"
           closeModal={() => setDeleteModal(false)}
         >
@@ -105,11 +104,10 @@ const Artist: FC<IArtistsProps> = ({ artist, theme }) => {
       )}
       {isEditModal && (
         <Modal
-          theme={theme}
           variant="addArtist"
           closeModal={() => setEditModal(false)}
         >
-          <ArtistModal theme={theme} closeModal={() => setEditModal(false)} />
+          <ArtistModal closeModal={() => setEditModal(false)} />
         </Modal>
       )}
     </>

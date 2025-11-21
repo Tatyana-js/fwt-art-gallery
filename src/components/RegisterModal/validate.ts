@@ -7,7 +7,7 @@ const userSchema = object().shape({
     .required('Обязательное поле'),
   password: string()
     .required('Обязательное поле')
-    .min(6, 'Не менее 6 символов'),
+    .min(3, 'Не менее 3 символов'),
 });
 
 export type UserFormData = InferType<typeof userSchema>;

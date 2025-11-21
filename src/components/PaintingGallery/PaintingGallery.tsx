@@ -129,12 +129,15 @@ const PaintingsGallery: FC<IPaintingsGalleryProps> = ({
           />
         )}
       </div>
-      <Pagination
-        currentIndex={currentIndex ?? 0}
-        setCurrentIndex={setCurrentIndex}
-        totalPages={paintings.length}
-        theme={theme}
-      />
+      {paintings.length >= 6 && (
+        <Pagination
+          currentIndex={currentIndex ?? 0}
+          setCurrentIndex={setCurrentIndex}
+          totalPages={paintings.length}
+          theme={theme}
+        />
+      )}
+
       {isEditModal && (
         <Modal variant="painting" closeModal={() => setEditModal(false)}>
           <PaintModal
