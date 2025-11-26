@@ -48,7 +48,7 @@ function AppRouter() {
   const handleSetValue = (value: string) => {
     setSearchState((prev) => ({ ...prev, value }));
   };
-console.log(isArtistModalOpen)
+  console.log(isArtistModalOpen);
   return (
     <>
       <Header
