@@ -24,7 +24,7 @@ type ModalVariant =
 export interface IModal {
   children: React.ReactNode;
   variant: ModalVariant;
-  closeModal?: (value: boolean) => void;
+  closeModal?: () => void;
 }
 
 const Modal: FC<IModal> = ({ children, variant, closeModal }) => {
@@ -49,6 +49,7 @@ const Modal: FC<IModal> = ({ children, variant, closeModal }) => {
       return;
     }
     setIsActive(false);
+    closeModal?.();
     navigation('/', { replace: true });
   });
 
@@ -62,7 +63,7 @@ const Modal: FC<IModal> = ({ children, variant, closeModal }) => {
           navigation('/', { replace: true });
         }
       } else if (closeModal) {
-        closeModal(false);
+        closeModal();
       } else {
         if (location.state?.background) {
           navigation(location.state.background, { replace: true });
@@ -130,7 +131,7 @@ const Modal: FC<IModal> = ({ children, variant, closeModal }) => {
               }
             }
             if (closeModal && variant !== 'menuModal') {
-              closeModal(false);
+              closeModal();
             }
           }}
         >

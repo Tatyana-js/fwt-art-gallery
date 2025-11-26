@@ -43,9 +43,9 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
     return selectedGenres.includes(_id);
   };
 
-  const selectedGenreObjects = genres.filter((genre) =>
-    selectedGenres.includes(genre._id)
-  );
+  const selectedGenreObjects = selectedGenres
+    .map((id) => genres.find((genre) => genre._id === id))
+    .filter((genre): genre is IGenre => genre !== undefined);
 
   const renderSelect = (genres: IGenre[], theme: theme) => (
     <div
@@ -73,27 +73,37 @@ const MultiSelect: React.FC<IMultiSelectProps> = ({
     </div>
   );
 
-  const renderSelectedLabel = (selectedGenres: IGenre[], theme: theme) => (
-    <div
-      className={clsx(
-        styles.selectedGenres,
-        styles[`selectedGenres--${theme}`]
-      )}
-    >
-      {selectedGenres.map((genre) => (
-        <div key={genre._id} className={styles.selectedItem}>
-          <Label
-            key={genre._id}
-            theme={theme}
-            onClick={() => toggleGenre(genre)}
-            showCloseButton={true}
-          >
-            {genre.name}
-          </Label>
-        </div>
-      ))}
-    </div>
-  );
+  const renderSelectedLabel = (selectedGenres: IGenre[], theme: theme) => {
+    console.log(
+      'All selected genres:',
+      selectedGenres.map((g) => g.name)
+    );
+    console.log(
+      'Selected IDs:',
+      selectedGenres.map((g) => g._id)
+    );
+    return (
+      <div
+        className={clsx(
+          styles.selectedGenres,
+          styles[`selectedGenres--${theme}`]
+        )}
+      >
+        {selectedGenres.map((genre) => (
+          <div key={genre._id} className={styles.selectedItem}>
+            <Label
+              key={genre._id}
+              theme={theme}
+              onClick={() => toggleGenre(genre)}
+              showCloseButton={true}
+            >
+              {genre.name}
+            </Label>
+          </div>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className={styles.multiContainer}>
