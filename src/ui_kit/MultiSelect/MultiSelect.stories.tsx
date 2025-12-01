@@ -42,7 +42,7 @@ export const DefaultDark: Story = {
     theme: 'dark',
     genres: genres,
     selectedGenres: selectedGenres,
-    onGenresChange: () => {}
+    onGenresChange: () => {},
   },
 };
 
@@ -51,6 +51,6 @@ export const DefaultLight: Story = {
     theme: 'light',
     genres: genres,
     selectedGenres: selectedGenres,
-    onGenresChange: () => {}
+    onGenresChange: () => {},
   },
 };

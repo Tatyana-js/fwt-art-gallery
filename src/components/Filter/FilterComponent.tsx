@@ -1,10 +1,10 @@
 import useMediaQuery from '@/hooks/useMediaQuery';
-import { IFilterModalState } from '@/types/types';
 import clsx from 'clsx';
 import { FC } from 'react';
 
 import styles from './FilterComponent.module.scss';
 
+import { IFilterModalState } from '@/types/types';
 import { theme } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';

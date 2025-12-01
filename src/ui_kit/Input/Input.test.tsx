@@ -6,7 +6,7 @@ import Input from './Input';
 describe('Card Input', () => {
   describe('render Input', () => {
     const { container } = render(
-      <Input label="text" theme="dark" error='error' />
+      <Input label="text" theme="dark" error="error" />
     );
     const inputForm = container.firstChild;
 

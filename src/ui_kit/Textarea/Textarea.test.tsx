@@ -6,7 +6,7 @@ import TextArea from './Textarea';
 describe('Card InputForm', () => {
   describe('render InputForm', () => {
     const { container } = render(
-      <TextArea label="text" theme="dark" error='error' />
+      <TextArea label="text" theme="dark" error="error" />
     );
     const textArea = container.firstChild;
 

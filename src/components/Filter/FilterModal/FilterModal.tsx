@@ -1,4 +1,3 @@
-import { IFilterModalState } from '@/types/types';
 import { useGetGenresQuery } from '@/store/api/artistsApi';
 import clsx from 'clsx';
 import { produce } from 'immer';
@@ -7,6 +6,7 @@ import { FC } from 'react';
 import styles from './FilterModal.module.scss';
 
 import { IGenre } from '@/types/Artist';
+import { IFilterModalState } from '@/types/types';
 import { theme } from '@/types/types';
 
 import Button from '@/ui_kit/Buttons';
