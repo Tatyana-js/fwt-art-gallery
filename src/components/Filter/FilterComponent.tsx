@@ -1,5 +1,5 @@
 import useMediaQuery from '@/hooks/useMediaQuery';
-import { IFilterModalState } from '@/pages/MainPage/MainPage';
+import { IFilterModalState } from '@/types/types';
 import clsx from 'clsx';
 import { FC } from 'react';
 

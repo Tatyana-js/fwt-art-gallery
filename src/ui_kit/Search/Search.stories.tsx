@@ -30,6 +30,8 @@ export const DefaultDark: Story = {
   args: {
     theme: 'dark',
     error: false,
+    value: '',
+    onChange: () => {},
   },
 };
 
@@ -37,6 +39,8 @@ export const DefaultLight: Story = {
   args: {
     theme: 'light',
     error: false,
+    value: '',
+    onChange: () => {},
   },
 };
 
@@ -44,5 +48,7 @@ export const ErrorStory: Story = {
   args: {
     theme: 'dark',
     error: true,
+    value: '',
+    onChange: () => {},
   },
 };

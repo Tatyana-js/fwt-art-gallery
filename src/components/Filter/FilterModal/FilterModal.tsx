@@ -1,4 +1,4 @@
-import { IFilterModalState } from '@/pages/MainPage/MainPage';
+import { IFilterModalState } from '@/types/types';
 import { useGetGenresQuery } from '@/store/api/artistsApi';
 import clsx from 'clsx';
 import { produce } from 'immer';
@@ -34,7 +34,7 @@ const FilterModal: FC<IFilterModalProps> = ({
 
   const toggleList = () => {
     setFilterState(
-      produce((draft) => {
+      produce((draft: IFilterModalState) => {
         draft.genres.isListOpen = !draft.genres.isListOpen;
       })
     );
@@ -42,7 +42,7 @@ const FilterModal: FC<IFilterModalProps> = ({
 
   const handleSortSelect = (sortType: SortType) => {
     setFilterState(
-      produce((draft) => {
+      produce((draft: IFilterModalState) => {
         draft.sort.selected =
           draft.sort.selected === sortType ? null : sortType;
       })
@@ -51,7 +51,7 @@ const FilterModal: FC<IFilterModalProps> = ({
 
   const toggleSort = () => {
     setFilterState(
-      produce((draft) => {
+      produce((draft: IFilterModalState) => {
         draft.sort.isSortOpen = !draft.sort.isSortOpen;
       })
     );
@@ -59,9 +59,9 @@ const FilterModal: FC<IFilterModalProps> = ({
 
   const handleGenreClick = (genre: IGenre) => {
     setFilterState(
-      produce((draft) => {
+      produce((draft: IFilterModalState) => {
         const genreIndex = draft.genres.selectedGenres.findIndex(
-          (id) => id === genre._id
+          (id: string) => id === genre._id
         );
 
         if (genreIndex > -1) {
@@ -75,7 +75,7 @@ const FilterModal: FC<IFilterModalProps> = ({
 
   const handleClear = () => {
     setFilterState(
-      produce((draft) => {
+      produce((draft: IFilterModalState) => {
         draft.genres.selectedGenres = [];
         draft.sort.selected = null;
       })
@@ -83,7 +83,7 @@ const FilterModal: FC<IFilterModalProps> = ({
   };
 
   const isSelected = (id: string) =>
-    genres.selectedGenres.some((genreId) => genreId === id)
+    genres.selectedGenres.some((genreId: string) => genreId === id)
       ? `${styles.selectedItem} ${styles[`selectedItem--${theme}`]}`
       : '';
 

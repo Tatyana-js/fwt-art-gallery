@@ -3,14 +3,20 @@ import { describe, expect, test } from 'vitest';
 
 import IArtist from '@/types/Artist';
 
-import { Card } from '../Card';
+import Card from '../Card';
 import Grid from './Grid';
 import type { IGridProps } from './Grid';
 import artists from './mock';
 
 const mainPaintingsData: IGridProps = {
   children: artists.map((artistData: IArtist) => (
-    <Card key={artistData._id} artist={artistData} theme="dark" />
+    <Card
+      key={artistData._id}
+      type="painting"
+      theme="dark"
+      details={artistData.yearsOfLife}
+      imageSrc={artistData.mainPainting.image.src}
+    />
   )),
 };
 

@@ -5,8 +5,10 @@ import type { ICardProps } from './Card';
 import artist from './mock';
 
 const cardData: ICardProps = {
-  artist: artist,
+  type: 'painting',
   theme: 'dark',
+  details: artist[0].yearsOfLife,
+  imageSrc: artist[0].mainPainting.image.src,
 };
 
 const meta = {

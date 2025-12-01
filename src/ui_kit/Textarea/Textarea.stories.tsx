@@ -16,10 +16,6 @@ const meta = {
       control: 'text',
       description: 'Текст лейбла',
     },
-    text: {
-      control: 'text',
-      description: 'Текст в textarea',
-    },
     error: {
       control: 'boolean',
       description: 'Показать ошибку',
@@ -27,9 +23,8 @@ const meta = {
   },
   args: {
     label: 'Описание',
-    text: '',
     theme: 'dark',
-    error: false,
+    error: 'error',
   },
 } satisfies Meta<typeof Textarea>;
 
@@ -40,9 +35,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     label: 'Описание проекта',
-    text: 'Это описание моего проекта...',
     theme: 'dark',
-    error: false,
+    error: 'error',
   },
 };
 
@@ -50,9 +44,8 @@ export const Default: Story = {
 export const LightTheme: Story = {
   args: {
     label: 'Комментарий',
-    text: 'Этот комментарий содержит несколько строк текста для демонстрации работы текстового поля.',
     theme: 'light',
-    error: false,
+    error: 'error',
   },
 };
 
@@ -60,9 +53,8 @@ export const LightTheme: Story = {
 export const WithErrorLight: Story = {
   args: {
     label: 'Email',
-    text: 'invalid-email',
     theme: 'dark',
-    error: true,
+    error: 'error',
   },
 };
 
@@ -70,8 +62,7 @@ export const WithErrorLight: Story = {
 export const WithLongText: Story = {
   args: {
     label: 'Полное описание',
-    text: 'Это очень длинный текст, который занимает несколько строк и демонстрирует работу скроллбара. Текст продолжается и продолжается, чтобы показать как компонент ведет себя с большим объемом контента. Еще немного текста для заполнения пространства...',
     theme: 'light',
-    error: false,
+    error: 'error',
   },
 };

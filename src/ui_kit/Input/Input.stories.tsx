@@ -24,7 +24,7 @@ const meta = {
   args: {
     label: 'Label',
     theme: 'light',
-    error: false,
+    error: 'errror',
   },
 } satisfies Meta<typeof Input>;
 export default meta;
@@ -35,7 +35,7 @@ export const DefaultDark: Story = {
   args: {
     label: 'Имя художника',
     theme: 'dark',
-    error: false,
+    error: 'error',
     placeholder: 'Placeholder',
   },
 };
@@ -44,7 +44,7 @@ export const DefaultLight: Story = {
   args: {
     label: 'Имя художника',
     theme: 'light',
-    error: false,
+    error: 'error',
   },
 };
 
@@ -52,6 +52,6 @@ export const ErrorStory: Story = {
   args: {
     label: 'Имя художника',
     theme: 'dark',
-    error: true,
+    error: 'error',
   },
 };
