@@ -40,7 +40,11 @@ const Card: FC<ICardProps> = ({
         ]
       )}
     >
-      <a aria-label='Link to artist' href="#" className={styles.linkboxOverlay}></a>
+      <a
+        aria-label="Link to artist"
+        href="#"
+        className={styles.linkboxOverlay}
+      ></a>
       {isEmpty ? (
         <div className={styles.emptyContainer}>
           <EmptyImage />
