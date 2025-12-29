@@ -17,6 +17,7 @@
     "noFallthroughCasesInSwitch": true,
     "types": ["vitest", "@testing-library/jest-dom"],
     "baseUrl": ".",
+    "forceConsistentCasingInFileNames": true,
     "paths": {
       "@/*": ["./src/*"]
     }
