@@ -42,30 +42,39 @@ const FilterCopmponent: FC<IFilterCopmponentProps> = ({
           />
         </Modal>
       ) : (
-        <div
-          className={clsx(
-            styles.filterWrapper,
-            styles[`filterWrapper--${theme}`]
-          )}
-        >
-          <FilterModal
-            theme={theme}
-            filterState={filterState}
-            setFilterState={setFilterState}
-            onApplyFilters={onApplyFilters}
+        <>
+          <div
+            className={styles.overlay}
+            onClick={() =>
+              setFilterState((prev) => ({ ...prev, isOpen: false }))
+            }
+            aria-hidden="true"
           />
-          <div className={styles.closeButton}>
-            <Button
-              variant="icon"
+          <div
+            className={clsx(
+              styles.filterWrapper,
+              styles[`filterWrapper--${theme}`]
+            )}
+          >
+            <FilterModal
               theme={theme}
-              onClick={() =>
-                setFilterState((prev) => ({ ...prev, isOpen: false }))
-              }
-            >
-              <ClearIcon />
-            </Button>
+              filterState={filterState}
+              setFilterState={setFilterState}
+              onApplyFilters={onApplyFilters}
+            />
+            <div className={styles.closeButton}>
+              <Button
+                variant="icon"
+                theme={theme}
+                onClick={() =>
+                  setFilterState((prev) => ({ ...prev, isOpen: false }))
+                }
+              >
+                <ClearIcon />
+              </Button>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </>
   );

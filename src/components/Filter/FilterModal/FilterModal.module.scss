@@ -2,7 +2,7 @@
 @use '@/styles/mixins.scss' as *;
 
 .filterContainer {
-  width: 100;
+  width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -86,10 +86,6 @@
   }
   .title {
     font-size: 16px;
-  }
-  .iconButton {
-    width: 24px;
-    height: 24px;
   }
   .buttons {
     right: 32px;

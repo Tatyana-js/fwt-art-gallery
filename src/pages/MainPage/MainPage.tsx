@@ -70,7 +70,7 @@ const MainPage: FC<IMainPage> = ({ openMоdal, value, onChange }) => {
         : artistsData) as IArtist[]) || [],
     [artistsData]
   );
-
+  console.log(artists);
   // сортировка на клиенте
   const sortedArtists = useMemo(() => {
     if (!artists) return [];
@@ -92,10 +92,10 @@ const MainPage: FC<IMainPage> = ({ openMоdal, value, onChange }) => {
   };
 
   const visibleArtists = sortedArtists.slice(0, visibleCount);
-  const hasMoreArtists = visibleCount > sortedArtists.length;
+  const hasMoreArtists = visibleCount < sortedArtists.length;
 
   const handleLoadMore = () => {
-    const nextCount = Math.min(visibleCount + 6, artists.length);
+    const nextCount = Math.min(visibleCount + 6, sortedArtists.length);
     setVisibleCount(nextCount);
   };
 

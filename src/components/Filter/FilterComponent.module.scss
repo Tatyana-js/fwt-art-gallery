@@ -1,13 +1,20 @@
 @use '@/styles/variables.scss' as *;
 @use '@/styles/mixins.scss' as *;
 
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 100;
+}
+
 .filterWrapper {
   width: 50%;
   position: fixed;
   top: 0;
   bottom: 0;
   right: 0;
-  z-index: 1;
+  z-index: 101;
 
   &--light {
     background: $primary-white;
